@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Gizlilik Politikası — ONCEP</title>
+<meta name="description" content="ONCEP Gizlilik Politikası. Son güncelleme: 24 Eylül 2026.">
+<link rel="canonical" href="https://oncep.com.tr/gizlilik">
+<meta property="og:title" content="Gizlilik Politikası — ONCEP">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://oncep.com.tr/gizlilik">
+<meta property="og:site_name" content="ONCEP">
+<meta property="og:locale" content="tr_TR">
+<meta name="theme-color" content="#050507">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #050507;
+    --ink: #F3F3F7;
+    --text: #BCBDCC;
+    --mute: #8E8FA3;
+    --mute-2: #5C5D70;
+    --line: rgba(255, 255, 255, .10);
+    --glass: rgba(14, 14, 24, .72);
+    --ember: #FF6F00;
+    --ember-2: #FFA047;
+    --display: 'Bricolage Grotesque', 'Arial Narrow', Impact, sans-serif;
+    --body: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+    --gutter: clamp(24px, 4vw, 56px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 96px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: var(--body); font-size: 16px; line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Tek sabit ışık: ana sayfadaki halkanın kalıntısı gibi, üstte sönük turuncu. */
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 45% at 85% -10%, rgba(255, 111, 0, .16), transparent 70%),
+      radial-gradient(50% 40% at 0% 0%, rgba(76, 92, 255, .08), transparent 70%);
+  }
+  a { color: var(--ember-2); text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--ember-2); outline-offset: 3px; }
+  ::selection { background: var(--ember); color: #000; }
+
+  .ust {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px var(--gutter);
+    background: linear-gradient(180deg, rgba(5,5,7,.92), rgba(5,5,7,.75));
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .marka {
+    font-family: var(--mono); font-weight: 700; font-size: 12px; letter-spacing: .32em;
+    text-decoration: none; color: var(--ink); display: inline-flex; align-items: center; gap: 12px;
+  }
+  .marka i { width: 8px; height: 8px; border-radius: 50%; background: var(--ember); box-shadow: 0 0 14px var(--ember); }
+  .geri {
+    text-decoration: none; font-size: 12.5px; font-weight: 600; color: #000; background: var(--ink);
+    padding: 8px 14px; border-radius: 999px;
+  }
+
+  main { position: relative; z-index: 1; padding: clamp(48px, 9vh, 96px) var(--gutter) 40px; max-width: 1180px; margin: 0 auto; }
+  .alt-yazi {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--mute); font-weight: 500; margin: 0;
+  }
+  .alt-yazi b { color: var(--ember-2); font-weight: 700; }
+  h1 {
+    font-family: var(--display); font-weight: 800; text-transform: uppercase; color: var(--ink);
+    font-size: clamp(44px, 8vw, 112px); line-height: .88; letter-spacing: -.02em;
+    font-variation-settings: 'wdth' 78, 'opsz' 96; margin: 16px 0 0; text-wrap: balance;
+  }
+
+  .duzen { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); margin-top: clamp(40px, 7vh, 72px); align-items: start; }
+  .icindekiler { position: sticky; top: 96px; }
+  .icindekiler ol { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 2px; border-left: 1px solid var(--line); }
+  .icindekiler a {
+    display: block; padding: 5px 0 5px 14px; margin-left: -1px; border-left: 1px solid transparent;
+    color: var(--mute); text-decoration: none; font-size: 13.5px; line-height: 1.4;
+  }
+  .icindekiler a:hover { color: var(--ink); }
+  .icindekiler a.aktif { color: var(--ink); border-left-color: var(--ember); }
+
+  .metin { max-width: 68ch; }
+  section { padding: 28px 0; border-top: 1px solid var(--line); }
+  section:first-child { border-top: 0; padding-top: 0; }
+  h2 { font-family: var(--body); font-weight: 600; font-size: 19px; color: var(--ink); margin: 0 0 10px; line-height: 1.35; letter-spacing: -.005em; }
+  p { margin: 0; white-space: pre-line; }
+
+  .diger { margin-top: 56px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .diger a {
+    display: flex; flex-direction: column; gap: 4px; padding: 18px 20px; text-decoration: none;
+    border: 1px solid var(--line); border-radius: 16px; background: var(--glass); color: var(--ink);
+  }
+  .diger a:hover { border-color: rgba(255,255,255,.3); }
+  .diger small { font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--mute); }
+  .diger b { font-family: var(--display); font-weight: 700; font-size: 22px; font-variation-settings: 'wdth' 90; letter-spacing: -.01em; }
+
+  footer {
+    position: relative; z-index: 1; max-width: 1180px; margin: 40px auto 0; padding: 22px var(--gutter) 34px;
+    display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--mute-2);
+  }
+  footer a { color: var(--mute); text-decoration: none; }
+  footer a:hover, footer a[aria-current] { color: var(--ink); }
+  footer .eposta { text-transform: none; letter-spacing: .04em; }
+  footer .telif { margin-left: auto; }
+
+  @media (max-width: 900px) {
+    .duzen { grid-template-columns: 1fr; }
+    .icindekiler { position: static; }
+    .icindekiler ol { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .diger { grid-template-columns: 1fr; }
+    footer .telif { margin-left: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <header class="ust">
+    <a class="marka" href="/"><i></i>ONCEP</a>
+    <a class="geri" href="/">← Ana sayfa</a>
+  </header>
+
+  <main>
+    <p class="alt-yazi"><b>Hukuki</b> · Son güncelleme 24 Eylül 2026</p>
+    <h1>Gizlilik Politikası</h1>
+
+    <div class="duzen">
+      <nav class="icindekiler" aria-label="İçindekiler">
+        <p class="alt-yazi">İçindekiler</p>
+        <ol>
+          <li><a href="#b1">1. Genel Bilgilendirme</a></li>
+          <li><a href="#b2">2. Topladığımız Bilgiler</a></li>
+          <li><a href="#b3">3. Bilgileri Nasıl Kullanırız</a></li>
+          <li><a href="#b4">4. Veri Paylaşımı</a></li>
+          <li><a href="#b5">5. Veri Saklama Süresi</a></li>
+          <li><a href="#b6">6. Çerezler ve İzleme</a></li>
+          <li><a href="#b7">7. Güvenlik Önlemleri</a></li>
+          <li><a href="#b8">8. Kullanıcı Haklarınız</a></li>
+          <li><a href="#b9">9. Değişiklikler</a></li>
+          <li><a href="#b10">10. İletişim</a></li>
+        </ol>
+      </nav>
+
+      <div class="metin">
+        <section id="b1">
+          <h2>1. Genel Bilgilendirme</h2>
+          <p>ONCEP olarak, kullanıcılarımızın kişisel verilerinin gizliliğine ve güvenliğine büyük önem veriyoruz. Bu Gizlilik Politikası, ONCEP mobil uygulamasını ve oncep.com.tr internet sitesini kullanırken hangi verilerinizi topladığımızı, nasıl kullandığımızı ve haklarınızı açıklar.</p>
+        </section>
+        <section id="b2">
+          <h2>2. Topladığımız Bilgiler</h2>
+          <p>Hesap oluştururken ad, soyad, e-posta adresi, telefon numarası ve şehir bilgilerinizi alırız; isterseniz profil fotoğrafı da ekleyebilirsiniz. İlan oluştururken yüklediğiniz fotoğrafları, cihaz bilgilerini (marka, model, hafıza, renk, durum, pil sağlığı, değişen parçalar), fiyatı ve ilanın şehri ile ilçesini saklarız. Mesajlarınız, teklifleriniz, favorileriniz ve şikayetleriniz hizmetin işleyişi için saklanır. Bildirim gönderebilmek için cihazınızın bildirim anahtarını (FCM) saklarız. Geri bildirim gönderirseniz mesajınızla birlikte kullandığınız platform (Android veya iOS) kaydedilir. IP adresiniz kötüye kullanımı önlemek (istek sınırlama) için bağlantı sırasında işlenir ve hesabınızla birlikte saklanmaz; sunucu sağlayıcımızın teknik kayıtlarında sınırlı bir süre bulunabilir. Mağaza hesapları için ayrıca yetkili adı ve soyadı, vergi numarası, ilçe ve açık adres bilgisi alınır.</p>
+        </section>
+        <section id="b3">
+          <h2>3. Bilgileri Nasıl Kullanırız</h2>
+          <p>Topladığımız verileri yalnızca aşağıdaki amaçlarla kullanırız:
+
+• Hesabınızı oluşturmak ve yönetmek
+• İlanlarınızı yayınlamak ve sergilemek
+• Mağazalar ile aranızda teklif ve mesajlaşma akışını sağlamak
+• Sahte hesap ve dolandırıcılık riskine karşı güvenlik kontrolleri yapmak
+• Yasal yükümlülüklere uymak (KVKK, vergi mevzuatı vb.)
+• Hizmetlerimizi geliştirmek için anonim istatistikler üretmek
+• Talep ettiğiniz bildirim ve duyuruları göndermek</p>
+        </section>
+        <section id="b4">
+          <h2>4. Veri Paylaşımı</h2>
+          <p>Kişisel verilerinizi üçüncü taraflara satmayız. Yalnızca aşağıdaki durumlarda paylaşılır:
+
+• Mağazalar ile sizin oluşturduğunuz iletişim çerçevesinde
+• Yasal makamlardan gelen yetkili talepler doğrultusunda
+• Altyapı sağlayıcılarımız (sunucu, mesajlaşma) ile sözleşmesel sınırlar içinde</p>
+        </section>
+        <section id="b5">
+          <h2>5. Veri Saklama Süresi</h2>
+          <p>Hesabınız aktif olduğu sürece verileriniz saklanır. Hesabınızı sildiğinizde kişisel verileriniz 30 gün içinde anonimleştirilir veya silinir. Yasal saklama yükümlülüğü olan veriler (örneğin fatura) ilgili mevzuatın gerektirdiği süre kadar saklanır.</p>
+        </section>
+        <section id="b6">
+          <h2>6. Çerezler ve İzleme</h2>
+          <p>Web sitemizde oturum yönetimi, tercih kaydetme ve istatistik amaçlı çerezler kullanılır. Mobil uygulamada FCM (Firebase Cloud Messaging) yalnızca push bildirim için kullanılır. Bildirimleri cihaz ayarlarınızdan veya uygulamadan kapatabilirsiniz.</p>
+        </section>
+        <section id="b7">
+          <h2>7. Güvenlik Önlemleri</h2>
+          <p>Verileriniz SSL/TLS şifrelemesi ile aktarılır ve şifrelerinizi geri döndürülemeyecek şekilde (hash) saklarız. Sunucularımız güvenlik testlerinden geçer ve düzenli yedeklenir. Yine de internet üzerinden hiçbir veri aktarımının %100 güvenli olmadığını hatırlatırız.</p>
+        </section>
+        <section id="b8">
+          <h2>8. Kullanıcı Haklarınız</h2>
+          <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında verilerinize ilişkin bilgi talep etme, düzeltme, silme ve aktarmama hakkına sahipsiniz. Detaylı bilgi için &quot;KVKK Aydınlatma Metni&quot; sayfasına bakınız.</p>
+        </section>
+        <section id="b9">
+          <h2>9. Değişiklikler</h2>
+          <p>Bu Gizlilik Politikası zaman zaman güncellenebilir. Önemli değişiklikler uygulama içi bildirim veya e-posta ile size duyurulur. Değişiklikten sonra uygulamayı kullanmaya devam etmeniz, güncel politikayı kabul ettiğiniz anlamına gelir.</p>
+        </section>
+        <section id="b10">
+          <h2>10. İletişim</h2>
+          <p>Gizlilik ile ilgili tüm soru ve talepleriniz için: <a href="mailto:destek@oncep.com.tr">destek@oncep.com.tr</a> adresine yazabilirsiniz. Yanıt süremiz en geç 30 iş günüdür.</p>
+        </section>
+
+        <nav class="diger" aria-label="Diğer hukuki metinler">
+          <a href="/kullanim-sartlari"><small>Hukuki</small><b>Kullanım Şartları</b></a>
+          <a href="/kvkk"><small>Hukuki</small><b>KVKK Aydınlatma Metni</b></a>
+        </nav>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <a href="/gizlilik" aria-current="page">Gizlilik</a>
+    <a href="/kullanim-sartlari">Şartlar</a>
+    <a href="/kvkk">KVKK</a>
+    <a class="eposta" href="mailto:destek@oncep.com.tr">destek@oncep.com.tr</a>
+    <span class="telif">© 2026 ONCEP</span>
+  </footer>
+
+  <script>
+    // İçindekilerde okunan bölümü işaretle. Yalnız görsel yardım; JS yoksa sayfa aynı.
+    (function () {
+      var baglar = Array.prototype.slice.call(document.querySelectorAll('.icindekiler a'));
+      if (!('IntersectionObserver' in window) || !baglar.length) return;
+      var gozcu = new IntersectionObserver(function (girdiler) {
+        girdiler.forEach(function (g) {
+          if (!g.isIntersecting) return;
+          baglar.forEach(function (a) { a.classList.toggle('aktif', a.getAttribute('href') === '#' + g.target.id); });
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+      document.querySelectorAll('.metin section').forEach(function (s) { gozcu.observe(s); });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kullanım Şartları — ONCEP</title>
+<meta name="description" content="ONCEP Kullanım Şartları. Son güncelleme: 24 Eylül 2026.">
+<link rel="canonical" href="https://oncep.com.tr/kullanim-sartlari">
+<meta property="og:title" content="Kullanım Şartları — ONCEP">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://oncep.com.tr/kullanim-sartlari">
+<meta property="og:site_name" content="ONCEP">
+<meta property="og:locale" content="tr_TR">
+<meta name="theme-color" content="#050507">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #050507;
+    --ink: #F3F3F7;
+    --text: #BCBDCC;
+    --mute: #8E8FA3;
+    --mute-2: #5C5D70;
+    --line: rgba(255, 255, 255, .10);
+    --glass: rgba(14, 14, 24, .72);
+    --ember: #FF6F00;
+    --ember-2: #FFA047;
+    --display: 'Bricolage Grotesque', 'Arial Narrow', Impact, sans-serif;
+    --body: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+    --gutter: clamp(24px, 4vw, 56px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 96px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: var(--body); font-size: 16px; line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Tek sabit ışık: ana sayfadaki halkanın kalıntısı gibi, üstte sönük turuncu. */
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 45% at 85% -10%, rgba(255, 111, 0, .16), transparent 70%),
+      radial-gradient(50% 40% at 0% 0%, rgba(76, 92, 255, .08), transparent 70%);
+  }
+  a { color: var(--ember-2); text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--ember-2); outline-offset: 3px; }
+  ::selection { background: var(--ember); color: #000; }
+
+  .ust {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px var(--gutter);
+    background: linear-gradient(180deg, rgba(5,5,7,.92), rgba(5,5,7,.75));
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .marka {
+    font-family: var(--mono); font-weight: 700; font-size: 12px; letter-spacing: .32em;
+    text-decoration: none; color: var(--ink); display: inline-flex; align-items: center; gap: 12px;
+  }
+  .marka i { width: 8px; height: 8px; border-radius: 50%; background: var(--ember); box-shadow: 0 0 14px var(--ember); }
+  .geri {
+    text-decoration: none; font-size: 12.5px; font-weight: 600; color: #000; background: var(--ink);
+    padding: 8px 14px; border-radius: 999px;
+  }
+
+  main { position: relative; z-index: 1; padding: clamp(48px, 9vh, 96px) var(--gutter) 40px; max-width: 1180px; margin: 0 auto; }
+  .alt-yazi {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--mute); font-weight: 500; margin: 0;
+  }
+  .alt-yazi b { color: var(--ember-2); font-weight: 700; }
+  h1 {
+    font-family: var(--display); font-weight: 800; text-transform: uppercase; color: var(--ink);
+    font-size: clamp(44px, 8vw, 112px); line-height: .88; letter-spacing: -.02em;
+    font-variation-settings: 'wdth' 78, 'opsz' 96; margin: 16px 0 0; text-wrap: balance;
+  }
+
+  .duzen { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); margin-top: clamp(40px, 7vh, 72px); align-items: start; }
+  .icindekiler { position: sticky; top: 96px; }
+  .icindekiler ol { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 2px; border-left: 1px solid var(--line); }
+  .icindekiler a {
+    display: block; padding: 5px 0 5px 14px; margin-left: -1px; border-left: 1px solid transparent;
+    color: var(--mute); text-decoration: none; font-size: 13.5px; line-height: 1.4;
+  }
+  .icindekiler a:hover { color: var(--ink); }
+  .icindekiler a.aktif { color: var(--ink); border-left-color: var(--ember); }
+
+  .metin { max-width: 68ch; }
+  section { padding: 28px 0; border-top: 1px solid var(--line); }
+  section:first-child { border-top: 0; padding-top: 0; }
+  h2 { font-family: var(--body); font-weight: 600; font-size: 19px; color: var(--ink); margin: 0 0 10px; line-height: 1.35; letter-spacing: -.005em; }
+  p { margin: 0; white-space: pre-line; }
+
+  .diger { margin-top: 56px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .diger a {
+    display: flex; flex-direction: column; gap: 4px; padding: 18px 20px; text-decoration: none;
+    border: 1px solid var(--line); border-radius: 16px; background: var(--glass); color: var(--ink);
+  }
+  .diger a:hover { border-color: rgba(255,255,255,.3); }
+  .diger small { font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--mute); }
+  .diger b { font-family: var(--display); font-weight: 700; font-size: 22px; font-variation-settings: 'wdth' 90; letter-spacing: -.01em; }
+
+  footer {
+    position: relative; z-index: 1; max-width: 1180px; margin: 40px auto 0; padding: 22px var(--gutter) 34px;
+    display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--mute-2);
+  }
+  footer a { color: var(--mute); text-decoration: none; }
+  footer a:hover, footer a[aria-current] { color: var(--ink); }
+  footer .eposta { text-transform: none; letter-spacing: .04em; }
+  footer .telif { margin-left: auto; }
+
+  @media (max-width: 900px) {
+    .duzen { grid-template-columns: 1fr; }
+    .icindekiler { position: static; }
+    .icindekiler ol { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .diger { grid-template-columns: 1fr; }
+    footer .telif { margin-left: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <header class="ust">
+    <a class="marka" href="/"><i></i>ONCEP</a>
+    <a class="geri" href="/">← Ana sayfa</a>
+  </header>
+
+  <main>
+    <p class="alt-yazi"><b>Hukuki</b> · Son güncelleme 24 Eylül 2026</p>
+    <h1>Kullanım Şartları</h1>
+
+    <div class="duzen">
+      <nav class="icindekiler" aria-label="İçindekiler">
+        <p class="alt-yazi">İçindekiler</p>
+        <ol>
+          <li><a href="#b1">1. Taraflar ve Konu</a></li>
+          <li><a href="#b2">2. Üyelik</a></li>
+          <li><a href="#b3">3. Hizmetin Niteliği</a></li>
+          <li><a href="#b4">4. Kullanıcı Yükümlülükleri</a></li>
+          <li><a href="#b5">5. İlan Kuralları</a></li>
+          <li><a href="#b6">6. Mağaza Hesapları</a></li>
+          <li><a href="#b7">7. Ücretler ve Komisyon</a></li>
+          <li><a href="#b8">8. Fikri Mülkiyet</a></li>
+          <li><a href="#b9">9. Sorumluluk Reddi</a></li>
+          <li><a href="#b10">10. Hesabın Askıya Alınması veya Kapatılması</a></li>
+          <li><a href="#b11">11. Değişiklikler</a></li>
+          <li><a href="#b12">12. Uygulanacak Hukuk ve Yetki</a></li>
+          <li><a href="#b13">13. İletişim</a></li>
+        </ol>
+      </nav>
+
+      <div class="metin">
+        <section id="b1">
+          <h2>1. Taraflar ve Konu</h2>
+          <p>Bu sözleşme, ONCEP mobil uygulamasını (&quot;Uygulama&quot;) ve oncep.com.tr web sitesini kullanmak isteyen gerçek ya da tüzel kişi (&quot;Kullanıcı&quot;) ile uygulamanın işleticisi ONCEP (&quot;Hizmet Sağlayıcı&quot;) arasında akdedilmiştir. Uygulamayı kullanmaya başladığınız anda bu şartları kabul etmiş sayılırsınız.</p>
+        </section>
+        <section id="b2">
+          <h2>2. Üyelik</h2>
+          <p>ONCEP'e üye olabilmek için 18 yaşını doldurmuş olmanız ve sağladığınız bilgilerin doğru, güncel ve eksiksiz olması gerekir. Bir kullanıcı tek bir bireysel hesap, tek bir mağaza hesabı açabilir. Aynı kişiye ait birden fazla aktif hesap tespit edildiğinde tüm hesaplar kapatılabilir.</p>
+        </section>
+        <section id="b3">
+          <h2>3. Hizmetin Niteliği</h2>
+          <p>ONCEP, ikinci el ve sıfır akıllı telefonların alım-satımına aracılık eden bir platformdur. ONCEP, satıcı veya alıcı sıfatıyla işlem yapmaz. Kullanıcılar arasındaki alım-satım, ödeme ve teslimat ilişkisi tamamen kullanıcıların kendi sorumluluğundadır.</p>
+        </section>
+        <section id="b4">
+          <h2>4. Kullanıcı Yükümlülükleri</h2>
+          <p>Kullanıcı, uygulamayı kullanırken:
+
+• Yasalara ve genel ahlak kurallarına uymayı,
+• Doğru, eksiksiz ve güncel bilgi girmeyi,
+• Başkalarına ait fotoğraf, marka veya içerik yüklemekten kaçınmayı,
+• Sahte, yanıltıcı veya yasak ürünler için ilan oluşturmamayı,
+• Diğer kullanıcılara saygılı davranmayı,
+• Hesap erişim bilgilerini güvende tutmayı kabul eder.</p>
+        </section>
+        <section id="b5">
+          <h2>5. İlan Kuralları</h2>
+          <p>Yayınlanan her ilan ONCEP yönetimi tarafından kontrol edilebilir. Çalıntı, sahte, taklit, çalışmayan veya yasal olarak satışı yasak ürün ilanları kaldırılır ve hesap askıya alınabilir. Aynı cihaz birden fazla ilan halinde yayınlanamaz. İlan başlığı ve açıklaması cihazın gerçek durumunu yansıtmalıdır.</p>
+        </section>
+        <section id="b6">
+          <h2>6. Mağaza Hesapları</h2>
+          <p>Mağaza olarak kayıt olabilmek için faaliyet gösteren bir vergi mükellefi olunmalı ve istenen belgelerin sunulması gerekir. Mağazalar verdikleri tekliflerden ve gerçekleştirdikleri satışlardan kendileri sorumludur. ONCEP, mağaza hesaplarına ücretli üyelik planları sunma hakkını saklı tutar.</p>
+        </section>
+        <section id="b7">
+          <h2>7. Ücretler ve Komisyon</h2>
+          <p>Bireysel kullanıcılar için temel hizmetler ücretsizdir. Mağazalar için premium özellikler ve &quot;öne çıkar&quot; gibi tanıtım hizmetleri ücretli olabilir. Geçerli fiyat tarifesi uygulama içinde gösterilir. ONCEP ödeme aracılığı yapmaz; yapılan alışverişlerden komisyon almaz.</p>
+        </section>
+        <section id="b8">
+          <h2>8. Fikri Mülkiyet</h2>
+          <p>ONCEP logosu, markası, tasarımı, yazılım kodları ve içerikleri ONCEP'e aittir. Kullanıcılar yükledikleri içeriklerin haklarına sahip olduklarını ve bu içerikleri ONCEP'in uygulama içinde kullanma, görüntüleme ve dağıtma hakkını verdiğini kabul eder.</p>
+        </section>
+        <section id="b9">
+          <h2>9. Sorumluluk Reddi</h2>
+          <p>ONCEP, kullanıcılar arasındaki alım-satım, teslimat, ödeme veya ürün kalitesi konularında taraf değildir ve sorumlu tutulamaz. Uygulamada kısa süreli aksaklıklar veya bakım dönemleri yaşanabilir. ONCEP, bu durumlarda doğrudan veya dolaylı zararlardan sorumlu tutulamaz.</p>
+        </section>
+        <section id="b10">
+          <h2>10. Hesabın Askıya Alınması veya Kapatılması</h2>
+          <p>Bu Kullanım Şartlarına aykırı davranan, sahte ilan yayınlayan, diğer kullanıcılara zarar veren veya yasal olmayan faaliyetlerde bulunan kullanıcıların hesapları önceden uyarılmaksızın askıya alınabilir veya kapatılabilir.</p>
+        </section>
+        <section id="b11">
+          <h2>11. Değişiklikler</h2>
+          <p>ONCEP, bu Kullanım Şartlarında dilediği zaman değişiklik yapma hakkını saklı tutar. Değişiklikler uygulama içinde duyurulur. Değişiklik tarihinden sonra uygulamayı kullanmaya devam etmek, yeni şartların kabul edildiği anlamına gelir.</p>
+        </section>
+        <section id="b12">
+          <h2>12. Uygulanacak Hukuk ve Yetki</h2>
+          <p>Bu sözleşmeden doğacak uyuşmazlıklarda Türkiye Cumhuriyeti kanunları uygulanır. Tarafların anlaşamaması halinde İstanbul Mahkemeleri ve İcra Daireleri yetkilidir.</p>
+        </section>
+        <section id="b13">
+          <h2>13. İletişim</h2>
+          <p>Sorularınız için: <a href="mailto:destek@oncep.com.tr">destek@oncep.com.tr</a></p>
+        </section>
+
+        <nav class="diger" aria-label="Diğer hukuki metinler">
+          <a href="/gizlilik"><small>Hukuki</small><b>Gizlilik Politikası</b></a>
+          <a href="/kvkk"><small>Hukuki</small><b>KVKK Aydınlatma Metni</b></a>
+        </nav>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <a href="/gizlilik">Gizlilik</a>
+    <a href="/kullanim-sartlari" aria-current="page">Şartlar</a>
+    <a href="/kvkk">KVKK</a>
+    <a class="eposta" href="mailto:destek@oncep.com.tr">destek@oncep.com.tr</a>
+    <span class="telif">© 2026 ONCEP</span>
+  </footer>
+
+  <script>
+    // İçindekilerde okunan bölümü işaretle. Yalnız görsel yardım; JS yoksa sayfa aynı.
+    (function () {
+      var baglar = Array.prototype.slice.call(document.querySelectorAll('.icindekiler a'));
+      if (!('IntersectionObserver' in window) || !baglar.length) return;
+      var gozcu = new IntersectionObserver(function (girdiler) {
+        girdiler.forEach(function (g) {
+          if (!g.isIntersecting) return;
+          baglar.forEach(function (a) { a.classList.toggle('aktif', a.getAttribute('href') === '#' + g.target.id); });
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+      document.querySelectorAll('.metin section').forEach(function (s) { gozcu.observe(s); });
+    })();
+  </script>
+</body>
+</html>
