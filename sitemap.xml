@@ -2,6 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://oncep.com.tr/</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://oncep.com.tr/gizlilik</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://oncep.com.tr/kullanim-sartlari</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://oncep.com.tr/kvkk</loc>
+    <lastmod>2026-09-24</lastmod>
   </url>
 </urlset>
