@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/ilan/:id", "destination": "/ilan-ac/index.html" },
+    { "source": "/kullanici-ilani/:id", "destination": "/ilan-ac/index.html" }
+  ]
+}
