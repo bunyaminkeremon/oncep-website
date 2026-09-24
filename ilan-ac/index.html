@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ONCEP'teki ilan</title>
+<meta name="description" content="Bu ilan ONCEP uygulamasında. Uygulamada açarak ayrıntıları gör, teklif ver.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#050507">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  /* Paylaşılan ilan linkinin açıldığı sayfa: https://oncep.com.tr/ilan/123 ve
+     /kullanici-ilani/123 buraya yeniden yazılıyor (vercel.json). Uygulama
+     yüklü ve App Link doğrulanmışsa Android bu sayfayı hiç göstermeden
+     uygulamayı açar; burayı uygulaması olmayanlar ve masaüstü görür. */
+  :root {
+    color-scheme: dark;
+    --bg: #050507;
+    --ink: #F3F3F7;
+    --text: #BCBDCC;
+    --mute: #8E8FA3;
+    --line: rgba(255, 255, 255, .10);
+    --glass: rgba(14, 14, 24, .72);
+    --ember: #FF6F00;
+    --ember-2: #FFA047;
+    --display: 'Bricolage Grotesque', 'Arial Narrow', Impact, sans-serif;
+    --body: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+    --gutter: clamp(24px, 5vw, 56px);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100svh; background: var(--bg); color: var(--text);
+    font-family: var(--body); font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    display: grid; grid-template-rows: auto 1fr auto;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(70% 50% at 50% 110%, rgba(255, 111, 0, .18), transparent 70%),
+      radial-gradient(50% 40% at 0% 0%, rgba(76, 92, 255, .08), transparent 70%);
+  }
+  a { color: var(--ember-2); }
+  :focus-visible { outline: 2px solid var(--ember-2); outline-offset: 3px; }
+
+  header, main, footer { position: relative; z-index: 1; }
+  header { padding: 22px var(--gutter); }
+  .marka {
+    font-family: var(--mono); font-weight: 700; font-size: 12px; letter-spacing: .32em;
+    text-decoration: none; color: var(--ink); display: inline-flex; align-items: center; gap: 12px;
+  }
+  .marka i { width: 8px; height: 8px; border-radius: 50%; background: var(--ember); box-shadow: 0 0 14px var(--ember); }
+
+  main { display: grid; align-content: center; padding: 24px var(--gutter) 48px; max-width: 640px; }
+  .alt-yazi {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--mute); margin: 0;
+  }
+  .alt-yazi b { color: var(--ember-2); }
+  h1 {
+    font-family: var(--display); font-weight: 800; text-transform: uppercase; color: var(--ink);
+    font-size: clamp(44px, 11vw, 88px); line-height: .88; letter-spacing: -.02em;
+    font-variation-settings: 'wdth' 78, 'opsz' 96; margin: 14px 0 18px; text-wrap: balance;
+  }
+  h1 em { font-style: normal; color: var(--ember-2); }
+  p { margin: 0; max-width: 46ch; }
+  .dugmeler { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .dugme {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 0 22px; border-radius: 999px; text-decoration: none;
+    font-weight: 600; font-size: 15px;
+  }
+  .dugme.ana { background: var(--ember); color: #1a0d00; }
+  .dugme.ikincil { border: 1px solid var(--line); background: var(--glass); color: var(--ink); }
+  .not { margin-top: 22px; font-size: 14px; color: var(--mute); }
+
+  footer {
+    padding: 20px var(--gutter) 30px; border-top: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: 8px 22px;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: #5C5D70;
+  }
+  footer a { color: var(--mute); text-decoration: none; }
+  footer .eposta { text-transform: none; letter-spacing: .04em; }
+</style>
+</head>
+<body>
+  <header>
+    <a class="marka" href="/"><i></i>ONCEP</a>
+  </header>
+
+  <main>
+    <p class="alt-yazi" id="tur"><b>İlan</b> · ONCEP</p>
+    <h1>Bu ilan<br><em>ONCEP'te.</em></h1>
+    <p>Ayrıntıları görmek ve teklif vermek için ilanı ONCEP uygulamasında aç.</p>
+
+    <div class="dugmeler">
+      <a class="dugme ana" id="uygulamada-ac" href="oncep://ilan">Uygulamada aç</a>
+      <a class="dugme ikincil" href="/">ONCEP nedir?</a>
+    </div>
+
+    <p class="not">Uygulama yüklü değilse düğme bir şey yapmaz. ONCEP çok yakında Google Play ve App Store'da.</p>
+  </main>
+
+  <footer>
+    <a href="/gizlilik">Gizlilik</a>
+    <a href="/kullanim-sartlari">Şartlar</a>
+    <a href="/kvkk">KVKK</a>
+    <a class="eposta" href="mailto:destek@oncep.com.tr">destek@oncep.com.tr</a>
+  </footer>
+
+  <script>
+    // /ilan/123 → oncep://ilan/123, /kullanici-ilani/123 → oncep://kullanici-ilani/123.
+    // Uygulamanın ayrıştırıcısı (DeepLinkService.parse) ikisini de tanıyor.
+    // Kimlik yalnız rakamsa kullanılıyor; değilse düğme uygulamayı ilansız açar.
+    (function () {
+      var m = location.pathname.match(/^\/(ilan|kullanici-ilani)\/(\d+)\/?$/);
+      if (!m) return;
+      document.getElementById('uygulamada-ac').href = 'oncep://' + m[1] + '/' + m[2];
+      if (m[1] === 'kullanici-ilani') {
+        document.getElementById('tur').innerHTML = '<b>Kullanıcı ilanı</b> · ONCEP';
+      }
+    })();
+  </script>
+</body>
+</html>
