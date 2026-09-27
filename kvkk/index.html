@@ -175,7 +175,7 @@
 • İlan bilgileri: cihaz özellikleri ve durumu, fiyat, açıklama, ilanın şehri ve ilçesi
 • Müşteri işlem verileri: teklifler ve karşı teklifler, mesajlar, favoriler, puan ve yorumlar, şikâyetler, engellemeler, bildirim geçmişi, geri bildirimler
 • Hukuki işlem verileri: kayıt sırasında verilen onayın tarihi ve metin sürümü, hesap silme tarihi
-• İşlem güvenliği verileri: şifrenin geri çözülemez özeti, oturum ve bildirim (FCM) anahtarları, bildirim tercihleri; IP adresi (istek sınırlama için anlık işlenir, hesapla birlikte saklanmaz)</p>
+• İşlem güvenliği verileri: şifrenin geri çözülemez özeti; giriş yapılan her cihaz için oturum kaydı (oturum anahtarının geri çözülemez özeti, oluşturulma ve son kullanım zamanı) ve bildirim (FCM) anahtarı; e-posta doğrulama kodlarının özeti ve adresin doğrulandığı tarih; bildirim tercihleri; IP adresi (istek sınırlama için anlık işlenir, hesapla birlikte saklanmaz); uygulama çöktüğünde cihaz ve hata bilgisi (çökme raporu, kimlik bilgisi içermez)</p>
         </section>
         <section id="b3">
           <h2>3. Kişisel Verilerin İşlenme Amaçları</h2>
@@ -184,7 +184,8 @@
 • Üyelik kaydının oluşturulması ve yönetilmesi
 • İlanların incelenmesi ve yayımlanması, kullanıcılar ile mağazalar arasında teklif ve mesajlaşmanın sağlanması
 • Mağaza başvurularının ve mağaza bilgisi değişikliklerinin incelenmesi
-• Bildirimlerin ve işlem e-postalarının (şifre sıfırlama, mağaza onayı) gönderilmesi
+• Bildirimlerin ve işlem e-postalarının (şifre sıfırlama, e-posta doğrulama ve adres değişikliği, mağaza onayı) gönderilmesi
+• Uygulama hatalarının tespit edilip giderilmesi (çökme raporları)
 • Şikâyetlerin incelenmesi, platform kurallarının uygulanması; sahtekârlık, dolandırıcılık ve kötüye kullanımın önlenmesi
 • Hesap silme taleplerinin ve veri sahibi başvurularının yerine getirilmesi
 • Yasal yükümlülüklerin yerine getirilmesi ve yetkili kurumların taleplerinin karşılanması</p>
@@ -196,19 +197,19 @@
 • Bir sözleşmenin kurulması veya ifasıyla doğrudan ilgili olması (üyelik, ilan, teklif ve mesajlaşma)
 • Veri sorumlusunun hukuki yükümlülüğünü yerine getirebilmesi için zorunlu olması
 • Bir hakkın tesisi, kullanılması veya korunması için zorunlu olması
-• İlgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla veri sorumlusunun meşru menfaatleri için zorunlu olması (güvenlik, kötüye kullanımın önlenmesi, şikâyetlerin incelenmesi)
+• İlgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla veri sorumlusunun meşru menfaatleri için zorunlu olması (güvenlik, kötüye kullanımın önlenmesi, şikâyetlerin incelenmesi, uygulama hatalarının giderilmesi)
 • Kanunlarda açıkça öngörülmesi</p>
         </section>
         <section id="b5">
           <h2>5. Kişisel Verilerin Toplanma Yöntemi</h2>
-          <p>Verileriniz; kayıt, ilan, teklif, mesaj ve profil ekranlarına girdiğiniz bilgilerden, uygulamayı kullanırken otomatik olarak oluşan kayıtlardan (bildirim ve oturum anahtarları, istek kayıtları) ve destek@oncep.com.tr adresine yazdığınız e-postalardan, elektronik ortamda toplanır. Web sitesi çerez kullanmaz.</p>
+          <p>Verileriniz; kayıt, ilan, teklif, mesaj ve profil ekranlarına girdiğiniz bilgilerden, uygulamayı kullanırken otomatik olarak oluşan kayıtlardan (bildirim ve oturum anahtarları, istek kayıtları, çökme raporları) ve destek@oncep.com.tr adresine yazdığınız e-postalardan, elektronik ortamda toplanır. Web sitesi çerez kullanmaz.</p>
         </section>
         <section id="b6">
           <h2>6. Kişisel Verilerin Aktarılması</h2>
           <p>Kişisel verileriniz yukarıdaki amaçlarla ve gerektiği ölçüde şu alıcılara aktarılır:
 
 • Platformdaki diğer kullanıcılar ve mağazalar: ilanlarınız ve iletişime geçtiğiniz tarafla yazışmalarınız. Mağazalar sizi adınız ve soyadınızın baş harfiyle görür; telefon numaranız ve e-posta adresiniz mağazalara gösterilmez.
-• Barındırma ve altyapı hizmeti aldığımız tedarikçiler: Render ve Cloudflare (sunucu ve ağ), Supabase (veritabanı), Cloudinary (fotoğraf depolama), Google Firebase Cloud Messaging (anlık bildirim), Resend (işlem e-postaları), Zoho (destek e-postası), Vercel (web sitesi).
+• Barındırma ve altyapı hizmeti aldığımız tedarikçiler: Render ve Cloudflare (sunucu ve ağ), Supabase (veritabanı), Cloudinary (fotoğraf depolama), Google Firebase Cloud Messaging (anlık bildirim) ve Firebase Crashlytics (çökme raporu), Resend (işlem e-postaları), Zoho (destek e-postası), Vercel (web sitesi).
 • Kanunen yetkili kamu kurum ve kuruluşları.
 
 Bu tedarikçilerin sunucuları yurt dışında bulunduğundan kişisel verileriniz yurt dışına aktarılmaktadır. Yurt dışına aktarım KVKK'nın 9. maddesinde öngörülen şartlara uygun olarak yapılır.</p>

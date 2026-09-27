@@ -170,7 +170,9 @@
 • İlanlar: cihaz bilgileri (marka, model, hafıza, renk, durum, pil sağlığı, değişen parçalar, aksesuar ve garanti durumu), fotoğraflar, fiyat, açıklama, ilanın şehri ve ilçesi.
 • Platformdaki işlemleriniz: teklifler ve karşı teklifler, mesajlar (metin ve fotoğraf), favoriler, mağaza puanları ve yorumları, şikâyetler, engellediğiniz hesaplar ve size gönderilen bildirimler.
 • Onaylar ve tercihler: kayıt sırasında verdiğiniz onayın (18 yaş beyanı ile Kullanım Şartları ve Gizlilik Politikası) tarihi ve metin sürümü, bildirim tercihleriniz.
-• Teknik veriler: bildirim gönderebilmek için cihazınızın bildirim anahtarı (FCM) ve oturumunuzu sürdürmek için oturum anahtarı. IP adresiniz kötüye kullanımı önlemek (istek sınırlama) için bağlantı sırasında işlenir ve hesabınızla birlikte saklanmaz; barındırma sağlayıcılarımızın teknik kayıtlarında sınırlı bir süre bulunabilir.
+• Teknik veriler: oturumunuzu sürdürmek için giriş yaptığınız her cihaz için ayrı bir oturum kaydı (oturum anahtarının geri çözülemeyen özeti, geçerlilik süresi, oluşturulma ve son kullanım zamanı) ve bildirim gönderebilmek için o cihazın bildirim anahtarı (FCM). IP adresiniz kötüye kullanımı önlemek (istek sınırlama) için bağlantı sırasında işlenir ve hesabınızla birlikte saklanmaz; barındırma sağlayıcılarımızın teknik kayıtlarında sınırlı bir süre bulunabilir.
+• E-posta doğrulama: adresinizi doğrulamak ya da değiştirmek için gönderilen kodun geri çözülemeyen özeti, kodun gönderildiği adres ve adresinizin doğrulandığı tarih.
+• Çökme raporları: uygulama çöktüğünde cihaz modeli, işletim sistemi ve uygulama sürümü, hatanın teknik ayrıntısı ve rastgele bir kurulum kimliği (Firebase Crashlytics). Raporlara adınız, e-posta adresiniz, mesajlarınız veya hesap kimliğiniz eklenmez.
 • Destek ve geri bildirim: gönderdiğiniz geri bildirimin metni, e-posta adresiniz ve kullandığınız platform (Android veya iOS); destek@oncep.com.tr adresine yazdığınız e-postalar.
 
 Yüklediğiniz fotoğraflardaki konum ve cihaz bilgisi (EXIF) yüklemeden önce uygulama tarafından silinir. Uygulama konumunuzu, rehberinizi veya cihazınızdaki diğer dosyaları okumaz; şehir ve ilçeyi kendiniz seçersiniz.</p>
@@ -185,7 +187,8 @@ Yüklediğiniz fotoğraflardaki konum ve cihaz bilgisi (EXIF) yüklemeden önce 
 • Mesaj, teklif ve ilan durumu bildirimlerini tercihlerinize göre göndermek
 • Mağaza başvurularını ve mağaza adı ile fotoğrafı değişikliklerini incelemek
 • Şikâyetleri incelemek, platform kurallarını uygulamak; sahte hesap ve dolandırıcılığı önlemek
-• Şifre sıfırlama kodu ve mağaza onayı gibi işlem e-postalarını göndermek
+• Şifre sıfırlama, e-posta doğrulama ve adres değişikliği kodları ile mağaza onayı gibi işlem e-postalarını göndermek
+• Uygulamadaki hataları tespit edip düzeltmek (çökme raporları)
 • Hesap silme taleplerini yerine getirmek
 • Yasal yükümlülüklere uymak
 
@@ -196,7 +199,7 @@ Pazarlama amaçlı ileti göndermeyiz ve verilerinizi reklam için kullanmayız.
           <p>Kişisel verilerinizi satmayız ve reklam amacıyla kimseyle paylaşmayız. Veriler yalnızca şu durumlarda paylaşılır:
 
 • Platformun işleyişi gereği diğer kullanıcılarla: bireysel ilanlarınız ONCEP'teki mağazalara gösterilir. Mağazalar sizi adınız ve soyadınızın baş harfiyle (örneğin &quot;Ahmet Y.&quot;) görür; telefon numaranız ve e-posta adresiniz mağazalara gösterilmez. Mağaza hesaplarının adı, yetkilisi, telefonu ve adresi giriş yapmış kullanıcılara gösterilir.
-• Hizmeti sunmak için çalıştığımız altyapı sağlayıcılarıyla, yalnızca hizmetin gerektirdiği ölçüde: Render (uygulama sunucusu) ve Cloudflare (ağ trafiği), Supabase (veritabanı), Cloudinary (fotoğraf depolama), Google Firebase Cloud Messaging (anlık bildirim), Resend (işlem e-postaları), Zoho Mail (destek e-postası) ve Vercel (web sitesi barındırma).
+• Hizmeti sunmak için çalıştığımız altyapı sağlayıcılarıyla, yalnızca hizmetin gerektirdiği ölçüde: Render (uygulama sunucusu) ve Cloudflare (ağ trafiği), Supabase (veritabanı), Cloudinary (fotoğraf depolama), Google Firebase Cloud Messaging (anlık bildirim) ve Firebase Crashlytics (çökme raporu), Resend (işlem e-postaları), Zoho Mail (destek e-postası) ve Vercel (web sitesi barındırma).
 • Yasal olarak yetkili kamu kurum ve kuruluşlarının talebi üzerine.
 
 Bu sağlayıcıların sunucuları yurt dışında bulunduğundan verileriniz yurt dışına aktarılır. Ayrıntılar <a href="/kvkk">KVKK Aydınlatma Metni</a>'nde.</p>
@@ -205,23 +208,31 @@ Bu sağlayıcıların sunucuları yurt dışında bulunduğundan verileriniz yur
           <h2>5. Veri Saklama Süresi</h2>
           <p>Hesabınız açık olduğu sürece verileriniz saklanır. Hesabınızı sildiğinizde hesabınız hemen kapanır ve ilanlarınız yayından kalkar; 30 gün sonra adınız, soyadınız, e-posta adresiniz, telefon numaranız, şehriniz ve profil fotoğrafınız silinerek hesabınız anonimleştirilir. Mağaza hesaplarında mağaza adı, yetkili bilgileri, iletişim ve adres bilgileri, vergi numarası ve fotoğraf da anonimleştirilir. Karşı tarafla yaptığınız yazışmalar, teklif kayıtları ve yazdığınız yorumlar karşı tarafın hesabında &quot;Silinmiş Kullanıcı&quot; adıyla kalır. Yüklediğiniz fotoğrafların dosyaları depolama hizmetinde kalabilir; silinmesini isterseniz destek@oncep.com.tr adresine yazabilirsiniz. Ayrıntılar <a href="/hesap-silme">Hesap Silme</a> sayfasında.
 
-Şifre sıfırlama kodları 15 dakika geçerlidir. Yasal bir saklama yükümlülüğü bulunan kayıtlar mevzuatın öngördüğü süre boyunca saklanır.</p>
+Bazı kayıtlar hesabınız açıkken de belirli sürelerin sonunda silinir:
+
+• Şifre sıfırlama ve e-posta doğrulama kodları 15 dakika geçerlidir; süresi dolan kodlar en geç bir gün sonra silinir.
+• Bir cihazdaki oturum, o cihazda uygulama 30 gün kullanılmazsa sona erer; oturum kaydı ve o cihazın bildirim anahtarı en geç bir gün sonra silinir.
+• Bildirimler 1 yıl saklanır.
+• Sonuçlanmış şikâyetler sonuçlandıkları tarihten itibaren 2 yıl saklanır; incelenmekte olan şikâyetler sonuçlanana kadar saklanır.
+• Çökme raporları Firebase Crashlytics'te 90 gün saklanır.
+
+Yasal bir saklama yükümlülüğü bulunan kayıtlar mevzuatın öngördüğü süre boyunca saklanır.</p>
         </section>
         <section id="b6">
           <h2>6. Çerezler ve Cihazda Saklanan Veriler</h2>
           <p>oncep.com.tr çerez kullanmaz. Site, yazı tiplerini Google Fonts'tan ve bazı dosyaları cdnjs'ten (Cloudflare) yüklediği için bu hizmetler bağlantı sırasında IP adresinizi görür.
 
-Mobil uygulama oturumunuzu sürdürmek için oturum anahtarlarını cihazınızın güvenli deposunda; tercihlerinizi ve son görüntülediğiniz ilanları yalnızca cihazınızda saklar. Uygulamada reklam veya analiz aracı yoktur; Firebase yalnızca anlık bildirim için kullanılır. Bildirimleri uygulamanın Bildirim Ayarları bölümünden tür tür ya da cihaz ayarlarınızdan tamamen kapatabilirsiniz.</p>
+Mobil uygulama oturumunuzu sürdürmek için oturum anahtarlarını cihazınızın güvenli deposunda; tercihlerinizi ve son görüntülediğiniz ilanları yalnızca cihazınızda saklar. Uygulamada reklam veya analiz aracı yoktur; Firebase yalnızca anlık bildirim ve çökme raporu (Crashlytics) için kullanılır. Bildirimleri uygulamanın Bildirim Ayarları bölümünden tür tür ya da cihaz ayarlarınızdan tamamen kapatabilirsiniz. Bildirimler kilit ekranında gizli olarak işaretlenir; içeriklerinin kilit ekranında görünüp görünmeyeceğini cihazınızın kilit ekranı ayarı belirler.</p>
         </section>
         <section id="b7">
           <h2>7. Güvenlik Önlemleri</h2>
-          <p>Uygulama ile sunucu arasındaki bütün bağlantılar şifrelidir (HTTPS). Şifreler geri çözülemeyecek şekilde (BCrypt) saklanır; giriş, şifre sıfırlama ve hesap silme için deneme sınırları vardır. Her hesap yalnızca kendi verilerine erişebilir; yönetim paneli ayrıdır ve yalnızca yetkili yöneticilere açıktır. Yüklenen fotoğraflardan konum bilgisi silinir.
+          <p>Uygulama ile sunucu arasındaki bütün bağlantılar şifrelidir (HTTPS). Şifreler geri çözülemeyecek şekilde (BCrypt) saklanır; giriş, şifre sıfırlama ve hesap silme için deneme sınırları vardır. Her hesap yalnızca kendi verilerine erişebilir; yönetim paneli ayrıdır ve yalnızca yetkili yöneticilere açıktır. Yüklenen fotoğraflardan konum bilgisi silinir. Her cihazdaki oturum ayrıdır: şifrenizi değiştirdiğinizde öteki cihazlardaki oturumlarınız kapanır; Ayarlar'daki &quot;Diğer cihazlardan çıkış yap&quot; ile bu cihaz dışındaki oturumları kendiniz de kapatabilirsiniz. E-posta adresiniz değiştirildiğinde eski adresinize bilgi verilir.
 
 Fotoğraflar, bağlantısını bilen herkesin açabileceği adreslerde saklanır; fotoğraflarınızda kişisel bilgi (örneğin fatura üzerindeki ad veya adres) bulunmamasına dikkat edin. İnternet üzerinden hiçbir veri aktarımının tamamen güvenli olmadığını hatırlatırız.</p>
         </section>
         <section id="b8">
           <h2>8. Kullanıcı Haklarınız</h2>
-          <p>KVKK'nın 11. maddesi uyarınca kişisel verilerinizin işlenip işlenmediğini öğrenme, bunlara ilişkin bilgi talep etme, düzeltilmesini veya silinmesini isteme, aktarıldığı üçüncü kişileri bilme ve itiraz etme gibi haklara sahipsiniz. Hesabınızı uygulamanın Ayarlar bölümünden kendiniz silebilirsiniz. Haklarınızın tam listesi ve nasıl kullanacağınız <a href="/kvkk">KVKK Aydınlatma Metni</a>'nde.</p>
+          <p>KVKK'nın 11. maddesi uyarınca kişisel verilerinizin işlenip işlenmediğini öğrenme, bunlara ilişkin bilgi talep etme, düzeltilmesini veya silinmesini isteme, aktarıldığı üçüncü kişileri bilme ve itiraz etme gibi haklara sahipsiniz. E-posta adresinizi uygulamanın Ayarlar bölümünden değiştirebilir, hesabınızı da yine oradan kendiniz silebilirsiniz. Haklarınızın tam listesi ve nasıl kullanacağınız <a href="/kvkk">KVKK Aydınlatma Metni</a>'nde.</p>
         </section>
         <section id="b9">
           <h2>9. Değişiklikler</h2>
