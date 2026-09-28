@@ -11,130 +11,23 @@
 <meta property="og:url" content="https://oncep.com.tr/gizlilik">
 <meta property="og:site_name" content="ONCEP">
 <meta property="og:locale" content="tr_TR">
-<meta name="theme-color" content="#050507">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
 <link rel="icon" href="/favicon-192x192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    color-scheme: dark;
-    --bg: #050507;
-    --ink: #F3F3F7;
-    --text: #BCBDCC;
-    --mute: #8E8FA3;
-    --mute-2: #5C5D70;
-    --line: rgba(255, 255, 255, .10);
-    --glass: rgba(14, 14, 24, .72);
-    --ember: #FF6F00;
-    --ember-2: #FFA047;
-    --display: 'Bricolage Grotesque', 'Arial Narrow', Impact, sans-serif;
-    --body: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
-    --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
-    --gutter: clamp(24px, 4vw, 56px);
-  }
-  * { box-sizing: border-box; }
-  html { scroll-padding-top: 96px; }
-  body {
-    margin: 0; background: var(--bg); color: var(--text);
-    font-family: var(--body); font-size: 16px; line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-  /* Tek sabit ışık: ana sayfadaki halkanın kalıntısı gibi, üstte sönük turuncu. */
-  body::before {
-    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background:
-      radial-gradient(60% 45% at 85% -10%, rgba(255, 111, 0, .16), transparent 70%),
-      radial-gradient(50% 40% at 0% 0%, rgba(76, 92, 255, .08), transparent 70%);
-  }
-  a { color: var(--ember-2); text-underline-offset: 3px; }
-  :focus-visible { outline: 2px solid var(--ember-2); outline-offset: 3px; }
-  ::selection { background: var(--ember); color: #000; }
-
-  .ust {
-    position: sticky; top: 0; z-index: 10;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px var(--gutter);
-    background: linear-gradient(180deg, rgba(5,5,7,.92), rgba(5,5,7,.75));
-    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--line);
-  }
-  .marka {
-    font-family: var(--mono); font-weight: 700; font-size: 12px; letter-spacing: .32em;
-    text-decoration: none; color: var(--ink); display: inline-flex; align-items: center; gap: 12px;
-  }
-  .marka i { width: 8px; height: 8px; border-radius: 50%; background: var(--ember); box-shadow: 0 0 14px var(--ember); }
-  .geri {
-    text-decoration: none; font-size: 12.5px; font-weight: 600; color: #000; background: var(--ink);
-    padding: 8px 14px; border-radius: 999px;
-  }
-
-  main { position: relative; z-index: 1; padding: clamp(48px, 9vh, 96px) var(--gutter) 40px; max-width: 1180px; margin: 0 auto; }
-  .alt-yazi {
-    font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
-    color: var(--mute); font-weight: 500; margin: 0;
-  }
-  .alt-yazi b { color: var(--ember-2); font-weight: 700; }
-  h1 {
-    font-family: var(--display); font-weight: 800; text-transform: uppercase; color: var(--ink);
-    font-size: clamp(44px, 8vw, 112px); line-height: .88; letter-spacing: -.02em;
-    font-variation-settings: 'wdth' 78, 'opsz' 96; margin: 16px 0 0; text-wrap: balance;
-  }
-
-  .duzen { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); margin-top: clamp(40px, 7vh, 72px); align-items: start; }
-  .icindekiler { position: sticky; top: 96px; }
-  .icindekiler ol { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 2px; border-left: 1px solid var(--line); }
-  .icindekiler a {
-    display: block; padding: 5px 0 5px 14px; margin-left: -1px; border-left: 1px solid transparent;
-    color: var(--mute); text-decoration: none; font-size: 13.5px; line-height: 1.4;
-  }
-  .icindekiler a:hover { color: var(--ink); }
-  .icindekiler a.aktif { color: var(--ink); border-left-color: var(--ember); }
-
-  .metin { max-width: 68ch; }
-  section { padding: 28px 0; border-top: 1px solid var(--line); }
-  section:first-child { border-top: 0; padding-top: 0; }
-  h2 { font-family: var(--body); font-weight: 600; font-size: 19px; color: var(--ink); margin: 0 0 10px; line-height: 1.35; letter-spacing: -.005em; }
-  p { margin: 0; white-space: pre-line; }
-
-  .diger { margin-top: 56px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .diger a {
-    display: flex; flex-direction: column; gap: 4px; padding: 18px 20px; text-decoration: none;
-    border: 1px solid var(--line); border-radius: 16px; background: var(--glass); color: var(--ink);
-  }
-  .diger a:hover { border-color: rgba(255,255,255,.3); }
-  .diger small { font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--mute); }
-  .diger b { font-family: var(--display); font-weight: 700; font-size: 22px; font-variation-settings: 'wdth' 90; letter-spacing: -.01em; }
-
-  footer {
-    position: relative; z-index: 1; max-width: 1180px; margin: 40px auto 0; padding: 22px var(--gutter) 34px;
-    display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center;
-    border-top: 1px solid var(--line);
-    font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--mute-2);
-  }
-  footer a { color: var(--mute); text-decoration: none; }
-  footer a:hover, footer a[aria-current] { color: var(--ink); }
-  footer .eposta { text-transform: none; letter-spacing: .04em; }
-  footer .telif { margin-left: auto; }
-
-  @media (max-width: 900px) {
-    .duzen { grid-template-columns: 1fr; }
-    .icindekiler { position: static; }
-    .icindekiler ol { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 560px) {
-    .diger { grid-template-columns: 1fr; }
-    footer .telif { margin-left: 0; width: 100%; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/sayfa.css">
 </head>
 <body>
   <header class="ust">
-    <a class="marka" href="/"><i></i>ONCEP</a>
-    <a class="geri" href="/">← Ana sayfa</a>
+    <div class="kap">
+      <a class="logo" href="/" aria-label="ONCEP ana sayfa"><b>ON</b><i>CEP</i></a>
+      <nav class="ana-nav" aria-label="Site"><a href="/#hesap">Değer hesapla</a><a href="/#gez">Mağazaları gez</a><a href="/#ozellikler">Özellikler</a><a href="/#sss">Sorular</a></nav>
+      <a class="cta" href="/">Ana sayfa</a>
+    </div>
   </header>
 
   <main>
@@ -251,13 +144,14 @@ Fotoğraflar, bağlantısını bilen herkesin açabileceği adreslerde saklanır
     </div>
   </main>
 
-  <footer>
-    <a href="/gizlilik" aria-current="page">Gizlilik</a>
-    <a href="/kullanim-sartlari">Şartlar</a>
-    <a href="/kvkk">KVKK</a>
-    <a href="/hesap-silme">Hesap silme</a>
-    <a class="eposta" href="mailto:destek@oncep.com.tr">destek@oncep.com.tr</a>
-    <span class="telif">© 2026 ONCEP</span>
+  <footer class="alt">
+    <div class="kap">
+      <div class="alt-ust">
+        <a class="logo" href="/" aria-label="ONCEP ana sayfa"><b>ON</b><i>CEP</i></a>
+        <nav aria-label="Yasal ve iletişim"><a href="/gizlilik" aria-current="page">Gizlilik</a><a href="/kullanim-sartlari">Kullanım Şartları</a><a href="/kvkk">KVKK Aydınlatma Metni</a><a href="/hesap-silme">Hesap silme</a><a href="mailto:destek@oncep.com.tr">destek@oncep.com.tr</a></nav>
+      </div>
+      <p class="telif">© 2026 ONCEP · İkinci el telefon alım satım platformu</p>
+    </div>
   </footer>
 
   <script>
