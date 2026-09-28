@@ -69,7 +69,7 @@ const LOGO = '<b>ON</b><i>CEP</i>';
 
 // ---------- Bölümler ----------
 function ust() {
-  const L = [['#hesap', 'Değer hesapla'], ['#gez', 'Mağazaları gez'], ['#sat', 'Sat'], ['#karsilastir', 'Karşılaştır'], ['#guvenlik', 'Güvenlik'], ['#magaza', 'Mağazalar için'], ['#sss', 'Sorular']];
+  const L = [['#hesap', 'Değer hesapla'], ['#gez', 'Mağazaları gez'], ['#ozellikler', 'Özellikler'], ['#guvenlik', 'Güvenlik'], ['#magaza', 'Mağazalar için'], ['#sss', 'Sorular']];
   const linkler = L.map(([h, s]) => `<a href="${h}">${s}</a>`).join('');
   return `<header class="ust">
   <div class="kap">
@@ -134,10 +134,10 @@ function hesap() {
       <form id="deger-form" class="hesap-form" novalidate>
         <fieldset>
           <legend><span>1</span>Hangi telefon?</legend>
-          <div class="alanlar">
-            <label class="alan">Marka<select name="marka">${secenek(markalar, BASLANGIC.marka)}</select></label>
-            <label class="alan">Model<select name="model">${secenek(modeller, BASLANGIC.model)}</select></label>
-            <label class="alan">Depolama<select name="depolama">${secenek(depolar, BASLANGIC.depolama)}</select></label>
+          <div class="alanlar telefon-sec">
+            <label class="alan a-marka">Marka<select name="marka">${secenek(markalar, BASLANGIC.marka)}</select></label>
+            <label class="alan a-model">Model<select name="model">${secenek(modeller, BASLANGIC.model)}</select></label>
+            <label class="alan a-depolama">Depolama<select name="depolama">${secenek(depolar, BASLANGIC.depolama)}</select></label>
           </div>
         </fieldset>
         <fieldset>
@@ -145,14 +145,17 @@ function hesap() {
           <div class="alanlar iki">${seg('ekran', 'Ekran', BASLANGIC.ekran)}${seg('kasa', 'Kasa', BASLANGIC.kasa)}</div>
           <p class="ipucu">Dürüst seçim daha doğru fiyat verir: çizikleri ve kırıkları hesaba kat.</p>
         </fieldset>
-        <fieldset>
-          <legend><span>3</span>Pil ve ekstralar <small>isteğe bağlı</small></legend>
-          <div class="alanlar">
-            <label class="alan">Pil sağlığı<select name="pil">${secenek([['', 'Bilmiyorum'], ['90', '%90 ve üstü'], ['85', '%85–89'], ['80', '%80–84'], ['0', '%80’in altı']], BASLANGIC.pil)}</select></label>
-            <label class="alan">Değişen parça<select name="degisen">${secenek([['0', 'Yok'], ['1', 'Var']], '0')}</select></label>
-            <label class="alan">Garanti<select name="garanti">${secenek([['0', 'Yok ya da bitti'], ['1', 'Devam ediyor']], '0')}</select></label>
-          </div>
-        </fieldset>
+        <details class="ekstra" open>
+          <summary><span class="adim-rozet">3</span><span class="ekstra-baslik">Pil ve ekstralar <small>isteğe bağlı</small></span><span class="ekstra-ozet" data-ozet>%90 ve üstü · Değişen yok · Garanti yok</span><span class="ekstra-ok">${ic('down', 16, K.mut)}</span></summary>
+          <fieldset>
+            <legend class="gizli">Pil ve ekstralar</legend>
+            <div class="alanlar">
+              <label class="alan">Pil sağlığı<select name="pil">${secenek([['', 'Bilmiyorum'], ['90', '%90 ve üstü'], ['85', '%85–89'], ['80', '%80–84'], ['0', '%80’in altı']], BASLANGIC.pil)}</select></label>
+              <label class="alan">Değişen parça<select name="degisen">${secenek([['0', 'Yok'], ['1', 'Var']], '0')}</select></label>
+              <label class="alan">Garanti<select name="garanti">${secenek([['0', 'Yok ya da bitti'], ['1', 'Devam ediyor']], '0')}</select></label>
+            </div>
+          </fieldset>
+        </details>
       </form>
       <div class="sonuc" aria-live="polite">
         ${taraf('sat', 'Mağazaya satarsan', ilkSonuc.sat, ilkOlcek.sat)}
@@ -195,16 +198,6 @@ function gez() {
 </section>`;
 }
 
-function yollar() {
-  const it = [['tag', 'Telefonumu satacağım', 'İlanını ver, mağazalar sana teklif etsin.', '#sat'], ['search', 'Telefon arıyorum', 'Mağaza ilanlarına hesap açmadan göz at.', '#al'], ['store', 'Mağaza mısın?', 'Mağazanı ekle, kullanıcı ilanlarına teklif ver.', '#magaza']];
-  return `<section class="yollar">
-  <div class="kap">
-    <h2 class="orta">Ne yapmak istiyorsun?</h2>
-    <div class="yol-liste">${it.map(([i, a, b, h], k) => `<a class="yol${k === 0 ? ' koyu' : ''}" href="${h}"><span class="yol-ikon">${ic(i, 24, k === 0 ? '#FFFFFF' : K.navy)}</span><span class="yol-metin"><b>${a}</b><small>${b}</small></span>${ic('arrow', 20, k === 0 ? K.org : K.navy, 2.2)}</a>`).join('')}</div>
-  </div>
-</section>`;
-}
-
 // Metin + üç telefon ekranı.
 function tur(id, { eb, baslik, alt, madde, ekranlar, sinif = 'gri', ek = '', koyu = false }) {
   return `<section id="${id}" class="tur ${sinif}">
@@ -226,7 +219,7 @@ function yasam() {
   return `<ol class="yasam">${d.map(([a, b], i) => `<li${i === 1 ? ' class="simdi"' : ''}><span class="no">${i + 1}</span><b>${a}</b><span>${b}</span></li>`).join('')}</ol>`;
 }
 
-function karsilastir() {
+function karsiKart() {
   const rows = [
     ['EKRAN', 'Yenileme hızı', '60 Hz', '120 Hz', 50, 100, 'R', '%100 daha fazla'],
     ['PERFORMANS', 'RAM', '4 GB', '6 GB', 67, 100, 'R', '%50 daha fazla'],
@@ -244,19 +237,46 @@ function karsilastir() {
         </div>
       </div>`;
   const taraf = (n, c, sag, s) => `<div class="vs-taraf${sag ? ' sag' : ''}"><div class="vs-foto">${pic(100, c, K.tint)}</div><div><b>${n}</b><small>${s}</small></div></div>`;
-  return `<section id="karsilastir" class="karsi">
-  <div class="kap">
-    <div class="tur-metin">
-      <div class="ust-yazi">KARŞILAŞTIR</div>
-      <h2>İki telefon, beş başlık, tek bakış.</h2>
-      <p class="giris-metin">Ekran, performans, pil ve şarj, kamera, diğer. Hangisi nerede önde, yüzde kaç fark var, çubuklarda görürsün. İlan sayfasından tek dokunuşla açılır.</p>
-    </div>
-    <div class="karsi-kart" aria-label="Örnek karşılaştırma: iPhone 13 ve iPhone 14 Pro">
+  return `<div class="karsi-kart" aria-label="Örnek karşılaştırma: iPhone 13 ve iPhone 14 Pro">
       <div class="vs-bas">${taraf('iPhone 13', RENK.gece, false, '2 kategoride önde')}<span class="vs">VS</span>${taraf('iPhone 14 Pro', RENK.mor, true, '3 kategoride önde')}</div>
       <div>${rows.map(r).join('')}</div>
       <div class="kazanan"><b>iPhone 14 Pro daha iyi</b><span>3 kategoride önde, 2 kategoride geride</span></div>
       <div class="ornek-not">Örnek karşılaştırma</div>
+    </div>`;
+}
+
+// Altı tanıtım tek bölümde, sekmeli. Sekme kimlikleri eski bölüm çapalarıyla
+// aynı (#sat, #al, ...): sayfadaki bağlantılar ilgili sekmeyi açıyor. Betik
+// yoksa bütün paneller alt alta görünür.
+const PANELLER = () => [
+  { id: 'sat', ad: 'Sat', ikon: 'tag', baslik: 'İlanı koy, mağazalar teklif versin.', alt: 'Dört adımda ilan: telefon bilgileri, cihaz durumu, foto ve fiyat, konum. Her ilan yayına girmeden incelenir.', madde: ['Beğenmediğin teklife karşı teklif ver', 'Birini kabul edince diğerleri kendiliğinden kapanır', 'Kargo yok, komisyon yok; mağazada elden teslim'], gorsel: [S.adim2(), S.ilanim(), S.karsi()], ek: yasam() },
+  { id: 'al', ad: 'Al', ikon: 'search', baslik: 'Süz, sırala, ayrıntısına bak.', alt: 'Yalnızca onaylı mağazaların ilanları. Batarya yüzdesi, ekran ve kasa puanı her kartta.', madde: ['Marka, model, durum, fiyat, depolama, renk, şehir ve ilçe filtresi', 'Değişensiz ve garantili telefonları ayır', 'Bataryaya, ekran ve kasaya ya da fiyata göre sırala'], gorsel: [S.kesfet(), S.filtre(), S.detay()] },
+  { id: 'karsilastir', ad: 'Karşılaştır', ikon: 'compare', baslik: 'İki telefon, beş başlık, tek bakış.', alt: 'Hangisi nerede önde, yüzde kaç fark var, çubuklarda görürsün.', madde: ['Ekran, performans, pil ve şarj, kamera, diğer', 'Her ölçüde farkın yüzdesi', 'İlan sayfasından tek dokunuşla açılır'], kart: karsiKart() },
+  { id: 'takip', ad: 'Takip', ikon: 'bell', baslik: 'Fiyat düşünce haberin olsun.', alt: 'Favorine eklediğin ilanın fiyatını eklediğin günle karşılaştırırız. Satılırsa benzerlerini gösteririz.', madde: ['Son baktığın 20 ilan telefonunda saklanır', 'Hangi bildirimi alacağını sen seçersin', 'Bildirimler gün gün gruplanır, kaydırıp silersin'], gorsel: [S.favori(), S.bildirim(), S.bildirimAyar()] },
+  { id: 'mesaj', ad: 'Mesaj', ikon: 'msg', baslik: 'Pazarlık uygulamada, numaran cebinde.', alt: 'Mağazayla ilanın üstünden yazışırsın, fotoğraf atarsın. Rahatsız eden olursa şikâyet et ya da engelle.', madde: ['Kullanıcılar birbirine değil, mağazalara yazar', 'Mağaza seni “Ahmet Y.” gibi adınla ve soyadının baş harfiyle görür', 'Okunmamış sohbetler en üstte'], gorsel: [S.mesajlar(), S.sohbet(true), S.sikayet()] },
+  { id: 'magazalar', ad: 'Mağazalar', ikon: 'store', baslik: 'Kimden aldığını bil.', alt: "Her mağazanın puanı, yorumları, ilan sayısı ve ne zamandır ONCEP'te olduğu görünür.", madde: ['Puana, ilan sayısına ya da A–Z sırala', "Kendi şehrindekileri ya da tüm Türkiye'yi gör", 'Alışverişten sonra mağazayı 1–5 yıldızla puanla'], gorsel: [S.magazalar(), S.magazaSayfa(), S.yorum()] },
+];
+
+function ozellikler() {
+  const p = PANELLER();
+  const sekme = (x, i) => `<button type="button" class="sekme${i === 0 ? ' acik' : ''}" role="tab" id="sekme-${x.id}" aria-controls="${x.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${ic(x.ikon, 17, 'currentColor')}${x.ad}</button>`;
+  const panel = (x, i) => `<div class="panel${i === 0 ? ' acik' : ''}" id="${x.id}" role="tabpanel" aria-labelledby="sekme-${x.id}" tabindex="0">
+      <div class="tur-metin">
+        <h3>${x.baslik}</h3>
+        <p class="giris-metin">${x.alt}</p>
+        ${maddeler(x.madde)}
+        ${x.ek || ''}
+      </div>
+      ${x.kart || `<div class="telefonlar" aria-hidden="true">${x.gorsel.join('')}</div>`}
+    </div>`;
+  return `<section id="ozellikler" class="ozellik">
+  <div class="kap">
+    <div class="ozellik-bas">
+      <div class="ust-yazi">UYGULAMADA NELER VAR</div>
+      <h2>Satmaktan mağaza seçmeye, hepsi tek uygulamada.</h2>
     </div>
+    <div class="sekmeler" role="tablist" aria-label="Uygulamanın bölümleri">${p.map(sekme).join('')}</div>
+    ${p.map(panel).join('\n    ')}
   </div>
 </section>`;
 }
@@ -445,6 +465,17 @@ section[id], footer[id] { scroll-margin-top: 76px; }
 .seg input:checked + span { background: #FFFFFF; color: var(--lacivert); box-shadow: 0 1px 3px rgba(20, 27, 52, 0.14); }
 .seg input:focus-visible + span { outline: 2px solid var(--turuncu); outline-offset: 1px; }
 .ipucu { margin: 10px 0 0; font-size: 13px; color: var(--soluk); }
+.ekstra summary { list-style: none; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; cursor: pointer; font-size: 15px; font-weight: 700; }
+.ekstra summary::-webkit-details-marker { display: none; }
+.adim-rozet { width: 24px; height: 24px; border-radius: 12px; background: var(--lacivert); color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
+.ekstra-baslik small { font-size: 13px; font-weight: 500; color: var(--soluk); }
+.ekstra-ozet { display: none; flex-basis: 100%; padding-left: 32px; font-size: 13px; font-weight: 500; color: var(--metin); }
+.ekstra:not([open]) .ekstra-ozet { display: block; }
+.ekstra-ok { margin-left: auto; display: flex; transition: transform 0.2s; order: 2; }
+.ekstra-ozet { order: 3; }
+.ekstra[open] .ekstra-ok { transform: rotate(180deg); }
+.ekstra fieldset { border: 0; margin: 12px 0 0; padding: 0; min-width: 0; }
+.gizli { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .sonuc { border-top: 1px solid var(--cizgi); padding-top: 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
 .taraf { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .taraf h3 { font-size: 14px; font-weight: 700; color: var(--soluk); }
@@ -474,22 +505,6 @@ section[id], footer[id] { scroll-margin-top: 76px; }
 .ok .daire { width: 52px; height: 52px; border-radius: 26px; background: var(--turuncu); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(242, 106, 27, 0.3); }
 .gez-tel { display: flex; justify-content: center; }
 
-/* Yollar */
-.yollar { background: #FFFFFF; border-top: 1px solid var(--cizgi); border-bottom: 1px solid var(--cizgi); }
-.yollar .kap { padding-top: 44px; padding-bottom: 44px; display: flex; flex-direction: column; gap: 18px; }
-.yollar h2 { font-size: clamp(22px, 2vw, 26px); letter-spacing: -0.6px; }
-.yol-liste { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.yol { display: flex; align-items: center; gap: 16px; padding: 24px 26px; border-radius: 16px; background: var(--zemin-2); color: var(--murekkep); text-decoration: none; min-width: 0; }
-.yol:hover { color: var(--murekkep); box-shadow: inset 0 0 0 1.5px var(--alan); }
-.yol.koyu { background: var(--lacivert); color: #FFFFFF; }
-.yol.koyu:hover { color: #FFFFFF; }
-.yol-ikon { width: 48px; height: 48px; border-radius: 14px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.yol.koyu .yol-ikon { background: rgba(255, 255, 255, 0.12); }
-.yol-metin { flex: 1; min-width: 0; }
-.yol-metin b { display: block; font-size: 20px; }
-.yol-metin small { display: block; font-size: 14px; line-height: 1.4; color: var(--metin); }
-.yol.koyu small { color: var(--lacivert-metin); }
-
 /* Metin + telefonlar */
 .tur .kap { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 56px; align-items: center; padding-top: 96px; padding-bottom: 96px; }
 .tur.gri { background: var(--zemin-2); }
@@ -514,8 +529,6 @@ section[id], footer[id] { scroll-margin-top: 76px; }
 .magaza-ek p { margin: 0; line-height: 1.5; }
 
 /* Karşılaştır */
-.karsi { background: #FFFFFF; }
-.karsi .kap { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 56px; align-items: center; padding-top: 96px; padding-bottom: 96px; }
 .karsi-kart { background: #FFFFFF; border-radius: 20px; box-shadow: 0 1px 0 var(--cizgi), 0 24px 48px rgba(15, 27, 61, 0.08); border: 1px solid var(--cizgi); padding: clamp(18px, 2.6vw, 36px); display: flex; flex-direction: column; gap: 18px; min-width: 0; }
 .vs-bas { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 20px; }
 .vs-taraf { display: flex; align-items: center; gap: 14px; min-width: 0; }
@@ -543,6 +556,19 @@ section[id], footer[id] { scroll-margin-top: 76px; }
 .kazanan b { font-size: 24px; }
 .kazanan span { font-size: 15px; color: var(--lacivert-metin); }
 .ornek-not { font-size: 12px; color: var(--soluk); text-align: right; }
+
+/* Sekmeli tanıtım */
+.ozellik { background: var(--zemin-2); }
+.ozellik .kap { padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 28px; }
+.ozellik-bas { display: flex; flex-direction: column; gap: 14px; max-width: 760px; }
+.sekmeler { display: flex; gap: 8px; flex-wrap: wrap; }
+.sekme { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 999px; border: 0; background: #FFFFFF; color: var(--murekkep); font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; white-space: nowrap; box-shadow: inset 0 0 0 1.5px var(--alan); }
+.sekme:hover { box-shadow: inset 0 0 0 1.5px var(--lacivert); }
+.sekme.acik { background: var(--lacivert); color: #FFFFFF; box-shadow: none; }
+.panel { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 56px; align-items: center; padding-top: 12px; }
+.panel h3 { font-size: clamp(26px, 2.6vw, 36px); line-height: 1.08; letter-spacing: -1px; }
+.panel:focus-visible { outline-offset: 10px; }
+.js .panel:not(.acik) { display: none; }
 
 /* Güvenlik */
 .guv { background: var(--zemin-2); }
@@ -598,7 +624,8 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
 @media (max-width: 1180px) {
   .ana-nav, .ust .cta { display: none; }
   .menu { display: block; }
-  .tur .kap, .karsi .kap, .sss .kap { grid-template-columns: 1fr; gap: 32px; }
+  .tur .kap, .sss .kap { grid-template-columns: 1fr; gap: 32px; }
+  .panel { grid-template-columns: 1fr; gap: 28px; }
   .telefonlar { margin: 0 calc(-1 * var(--kenar)); padding-left: var(--kenar); padding-right: var(--kenar); scroll-padding-left: var(--kenar); }
   .telefonlar > :first-child { margin-left: 0; }
   .lacivert-bolum .kap { grid-template-columns: 1fr; }
@@ -606,8 +633,10 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
   .guv-tel { display: flex; justify-content: center; }
 }
 @media (max-width: 900px) {
+  .guv-tel { display: none; }
+}
+@media (max-width: 900px) {
   .acilis .kap { grid-template-columns: 1fr; gap: 40px; padding-top: 36px; padding-bottom: 56px; }
-  .yol-liste { grid-template-columns: 1fr; gap: 10px; }
   .kurallar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .alt-ust { flex-direction: column; align-items: flex-start; }
   .gez-gorsel { flex-direction: column; align-items: stretch; }
@@ -617,6 +646,10 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
 }
 @media (max-width: 700px) {
   .alanlar, .alanlar.iki { grid-template-columns: 1fr; }
+  .alanlar.telefon-sec { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "marka depolama" "model model"; }
+  .a-marka { grid-area: marka; } .a-model { grid-area: model; } .a-depolama { grid-area: depolama; }
+  .adim-liste { display: none; }
+  .ekstra-ozet { padding-left: 32px; }
   .seg span { font-size: 11px; padding: 10px 0; letter-spacing: -0.2px; }
   .sonuc { grid-template-columns: 1fr; gap: 22px; }
   .hesap-dugmeler .dugme { flex: 1 1 100%; }
@@ -628,7 +661,7 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
   .imei { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 640px) {
-  .lacivert-bolum .kap, .gez .kap, .tur .kap, .karsi .kap, .guv .kap, .sss .kap { padding-top: 52px; padding-bottom: 48px; }
+  .lacivert-bolum .kap, .gez .kap, .tur .kap, .ozellik .kap, .guv .kap, .sss .kap { padding-top: 52px; padding-bottom: 48px; }
   .tur .kap { padding-bottom: 24px; }
   .dugmeler { flex-direction: column; align-items: stretch; }
   .sayilar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; font-size: 13px; }
@@ -636,7 +669,14 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
   .kisayollar { flex-direction: column; }
   .acilis-tel > div { transform: scale(0.8); transform-origin: top center; margin-bottom: -136px; }
   .kurallar { grid-template-columns: 1fr; }
-  .kural { flex-direction: row; align-items: flex-start; gap: 14px; }
+  .kurallar { gap: 0; background: #FFFFFF; border-radius: 16px; box-shadow: 0 1px 0 var(--cizgi); }
+  .kural { flex-direction: row; align-items: flex-start; gap: 14px; padding: 14px 16px; border-radius: 0; box-shadow: none; border-top: 1px solid var(--cizgi); background: transparent; }
+  .kural:first-child { border-top: 0; }
+  .kural-ikon { width: 36px; height: 36px; border-radius: 10px; }
+  .imei { padding: 16px; }
+  .sekmeler { flex-wrap: nowrap; overflow-x: auto; margin: 0 calc(-1 * var(--kenar)); padding: 2px var(--kenar); scrollbar-width: none; }
+  .sekmeler::-webkit-scrollbar { display: none; }
+  .sekme { padding: 10px 14px; font-size: 14px; }
   .guvenceler { grid-template-columns: 1fr; }
   .sss summary { font-size: 16px; padding: 16px 18px; }
   .sss details p { padding: 0 18px 16px; }
@@ -703,6 +743,53 @@ const BETIK = `
   form.addEventListener('change', function (e) {
     if (e.target !== el.marka && e.target !== el.model) guncelle();
   });
+  // 3. adım kapalıyken seçilenlerin özeti; telefonda kapalı başlar.
+  var ekstra = document.querySelector('.ekstra'), ozet = document.querySelector('[data-ozet]');
+  function ozetle() {
+    ozet.textContent = el.pil.options[el.pil.selectedIndex].text + ' · Değişen ' + (el.degisen.value === '1' ? 'var' : 'yok') + ' · Garanti ' + (el.garanti.value === '1' ? 'var' : 'yok');
+  }
+  form.addEventListener('change', ozetle);
+  if (ekstra && window.matchMedia('(max-width: 700px)').matches) ekstra.open = false;
+
+  // Sekmeler: tıklama, ok tuşları ve #sat gibi çapalar.
+  var sekmeler = [].slice.call(document.querySelectorAll('.sekme'));
+  function sec(id, odak) {
+    sekmeler.forEach(function (s) {
+      var on = s.getAttribute('aria-controls') === id;
+      s.setAttribute('aria-selected', on ? 'true' : 'false');
+      s.tabIndex = on ? 0 : -1;
+      s.classList.toggle('acik', on);
+      if (on && odak) s.focus();
+    });
+    [].forEach.call(document.querySelectorAll('.panel'), function (p) { p.classList.toggle('acik', p.id === id); });
+  }
+  sekmeler.forEach(function (s, i) {
+    s.addEventListener('click', function () { sec(s.getAttribute('aria-controls')); });
+    s.addEventListener('keydown', function (e) {
+      var yon = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!yon) return;
+      e.preventDefault();
+      sec(sekmeler[(i + yon + sekmeler.length) % sekmeler.length].getAttribute('aria-controls'), true);
+    });
+  });
+  function bolumeGit() { document.getElementById('ozellikler').scrollIntoView(); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if (!document.getElementById('sekme-' + id)) return;
+    e.preventDefault();
+    sec(id);
+    bolumeGit();
+    history.replaceState(null, '', '#' + id);
+  });
+  function capadanAc() {
+    var id = location.hash.slice(1);
+    if (id && document.getElementById('sekme-' + id)) { sec(id); bolumeGit(); }
+  }
+  window.addEventListener('hashchange', capadanAc);
+  capadanAc();
+
   // Mobil menü: bağlantıya dokununca kapansın.
   var menu = document.querySelector('.menu');
   if (menu) menu.addEventListener('click', function (e) { if (e.target.closest('a')) menu.removeAttribute('open'); });
@@ -739,6 +826,7 @@ const html = `<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Bu dosya üretilir: node tool/ana-sayfa/uret.js — elle düzenleme bir sonraki üretimde kaybolur. -->
+<script>document.documentElement.className += ' js';</script>
 <style>${CSS}</style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"ONCEP","alternateName":"ONCEP İkinci El Telefon","url":"https://oncep.com.tr/"}
@@ -750,13 +838,7 @@ ${ust()}
 ${acilis()}
 ${hesap()}
 ${gez()}
-${yollar()}
-${tur('sat', { eb: 'SAT', baslik: 'İlanı koy, mağazalar teklif versin.', alt: 'Dört adımda ilan: telefon bilgileri, cihaz durumu, foto ve fiyat, konum. Her ilan yayına girmeden incelenir.', madde: ['Beğenmediğin teklife karşı teklif ver', 'Birini kabul edince diğerleri kendiliğinden kapanır', 'Kargo yok, komisyon yok; mağazada elden teslim'], ekranlar: [S.adim2(), S.ilanim(), S.karsi()], ek: yasam() })}
-${tur('al', { eb: 'AL', baslik: 'Süz, sırala, ayrıntısına bak.', alt: 'Yalnızca onaylı mağazaların ilanları. Batarya yüzdesi, ekran ve kasa puanı her kartta.', madde: ['Marka, model, durum, fiyat, depolama, renk, şehir ve ilçe filtresi', 'Değişensiz ve garantili telefonları ayır', 'Bataryaya, ekran ve kasaya ya da fiyata göre sırala'], ekranlar: [S.kesfet(), S.filtre(), S.detay()], sinif: 'beyaz' })}
-${karsilastir()}
-${tur('takip', { eb: 'TAKİP', baslik: 'Fiyat düşünce haberin olsun.', alt: 'Favorine eklediğin ilanın fiyatını eklediğin günle karşılaştırırız. Satılırsa benzerlerini gösteririz.', madde: ['Son baktığın 20 ilan telefonunda saklanır', 'Hangi bildirimi alacağını sen seçersin', 'Bildirimler gün gün gruplanır, kaydırıp silersin'], ekranlar: [S.favori(), S.bildirim(), S.bildirimAyar()] })}
-${tur('mesaj', { eb: 'MESAJ', baslik: 'Pazarlık uygulamada, numaran cebinde.', alt: 'Mağazayla ilanın üstünden yazışırsın, fotoğraf atarsın. Rahatsız eden olursa şikâyet et ya da engelle.', madde: ['Kullanıcılar birbirine değil, mağazalara yazar', 'Mağaza seni “Ahmet Y.” gibi adınla ve soyadının baş harfiyle görür', 'Okunmamış sohbetler en üstte'], ekranlar: [S.mesajlar(), S.sohbet(true), S.sikayet()], sinif: 'beyaz' })}
-${tur('magazalar', { eb: 'MAĞAZALAR', baslik: 'Kimden aldığını bil.', alt: "Her mağazanın puanı, yorumları, ilan sayısı ve ne zamandır ONCEP'te olduğu görünür.", madde: ['Puana, ilan sayısına ya da A–Z sırala', "Kendi şehrindekileri ya da tüm Türkiye'yi gör", 'Alışverişten sonra mağazayı 1–5 yıldızla puanla'], ekranlar: [S.magazalar(), S.magazaSayfa(), S.yorum()] })}
+${ozellikler()}
 ${guvenlik()}
 ${magazaIcin()}
 ${sss()}
