@@ -814,7 +814,12 @@ const html = `<!DOCTYPE html>
 <meta property="og:url" content="https://oncep.com.tr/">
 <meta property="og:site_name" content="ONCEP">
 <meta property="og:locale" content="tr_TR">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://oncep.com.tr/paylasim.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ONCEP: Telefonunu sat, mağazalar teklif versin.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oncep.com.tr/paylasim.png">
 <meta name="twitter:title" content="${BASLIK}">
 <meta name="twitter:description" content="${ACIKLAMA}">
 <meta name="theme-color" content="#FFFFFF">

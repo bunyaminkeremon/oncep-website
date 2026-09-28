@@ -16,3 +16,7 @@ node tool/ana-sayfa/uret.js
 Değer hesabı şimdilik bu tahmini tabloyla çalışıyor; uygulama yayına girip yeterli teklif birikince `GET api/PhoneValue/estimate` ucuna bağlanacak.
 
 `tool/` klasörü `.vercelignore` ile yayına gitmez.
+
+## Paylaşım görseli
+
+`/paylasim.png` (1200×630) bütün sayfaların `og:image`i. Kaynağı `tool/paylasim-gorseli/kaynak.html`; değiştirince `node tool/paylasim-gorseli/uret.js` ile yeniden üretilir (Windows'ta Edge gerekir). WhatsApp önizlemeyi önbelleğe alır; eski görsel bir süre görünebilir.
