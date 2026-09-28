@@ -1,0 +1,95 @@
+/* Alt sayfaların ortak stili: gizlilik, kvkk, kullanim-sartlari, hesap-silme, ilan-ac.
+   Renkler ve yazı tipi ana sayfayla (tool/ana-sayfa/uret.js) aynı; biri değişirse öbürü de.
+   Türkçe büyük harf tuzağı yüzünden text-transform: uppercase KULLANILMIYOR. */
+:root {
+  color-scheme: light;
+  --zemin: #FFFFFF; --zemin-2: #F5F7FC; --yumusak: #F1F3FA; --cizgi: #E7EAF3; --alan: #D9DEEC;
+  --murekkep: #0F1B3D; --metin: #4A5470; --soluk: #6B7390;
+  --lacivert: #1A237E; --lacivert-metin: #C7CCEE;
+  --turuncu: #F26A1B;
+  --yazi: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --kenar: clamp(20px, 6.6vw, 96px);
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 96px; scroll-behavior: smooth; }
+body { margin: 0; background: var(--zemin); color: var(--murekkep); font-family: var(--yazi); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: var(--lacivert); text-underline-offset: 3px; }
+a:hover { color: var(--turuncu); }
+:focus-visible { outline: 2px solid var(--turuncu); outline-offset: 3px; border-radius: 4px; }
+.kap { max-width: 1280px; margin: 0 auto; padding-left: var(--kenar); padding-right: var(--kenar); }
+.logo { font-weight: 800; font-size: 24px; letter-spacing: -0.5px; text-decoration: none; }
+.logo b { color: var(--lacivert); font-weight: 800; }
+.logo i { color: var(--turuncu); font-style: normal; }
+
+/* Üst çubuk */
+.ust { position: sticky; top: 0; z-index: 30; background: rgba(255, 255, 255, 0.95); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--cizgi); }
+.ust .kap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
+.ana-nav { display: flex; gap: 26px; font-size: 15px; font-weight: 500; }
+.ana-nav a { text-decoration: none; color: #3B4563; }
+.ana-nav a:hover { color: var(--turuncu); }
+.ust .cta { text-decoration: none; background: var(--lacivert); color: #FFFFFF; padding: 11px 18px; border-radius: 10px; font-size: 15px; font-weight: 600; white-space: nowrap; }
+.ust .cta:hover { color: #FFFFFF; background: #141B66; }
+
+/* Belge sayfaları: gizlilik, kvkk, kullanım şartları, hesap silme */
+main { max-width: 1280px; margin: 0 auto; padding: 56px var(--kenar) 80px; }
+.alt-yazi { margin: 0; font-size: 14px; font-weight: 600; color: var(--soluk); }
+.alt-yazi b { color: var(--turuncu); font-weight: 700; }
+h1 { margin: 12px 0 0; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; letter-spacing: -1.6px; font-weight: 700; text-wrap: balance; }
+.duzen { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); margin-top: 44px; align-items: start; }
+.icindekiler { position: sticky; top: 96px; background: var(--zemin-2); border-radius: 16px; padding: 18px 14px 14px; }
+.icindekiler .alt-yazi { padding: 0 10px; font-size: 13px; font-weight: 700; color: var(--murekkep); }
+.icindekiler ol { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 2px; }
+.icindekiler a { display: block; padding: 8px 10px; border-radius: 8px; color: var(--metin); text-decoration: none; font-size: 14px; line-height: 1.35; }
+.icindekiler a:hover { background: #FFFFFF; color: var(--murekkep); }
+.icindekiler a.aktif { background: #FFFFFF; color: var(--lacivert); font-weight: 600; box-shadow: inset 3px 0 0 var(--turuncu); }
+.metin { max-width: 70ch; min-width: 0; }
+.metin section { padding: 28px 0; border-top: 1px solid var(--cizgi); }
+.metin section:first-child { border-top: 0; padding-top: 0; }
+h2 { margin: 0 0 10px; font-size: 20px; font-weight: 700; line-height: 1.3; letter-spacing: -0.3px; }
+.metin section p { margin: 0; white-space: pre-line; color: var(--metin); line-height: 1.75; overflow-wrap: anywhere; }
+.diger { margin-top: 48px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.diger a { display: flex; flex-direction: column; gap: 4px; padding: 18px 20px; border-radius: 16px; background: var(--zemin-2); color: var(--murekkep); text-decoration: none; }
+.diger a:hover { color: var(--murekkep); box-shadow: inset 0 0 0 1.5px var(--alan); }
+.diger small { font-size: 12px; font-weight: 700; color: var(--turuncu); }
+.diger b { font-size: 18px; }
+
+/* Paylaşılan ilan sayfası */
+.ilan-sayfa { background: var(--zemin-2); }
+.ilan-ana { max-width: 680px; padding-top: 72px; padding-bottom: 96px; }
+.ilan-kart { background: #FFFFFF; border-radius: 24px; padding: clamp(24px, 5vw, 44px); box-shadow: 0 1px 0 var(--cizgi), 0 24px 48px rgba(15, 27, 61, 0.08); display: flex; flex-direction: column; gap: 18px; }
+.ilan-kart h1 { margin: 0; }
+.ilan-kart h1 em { font-style: normal; color: var(--turuncu); }
+.ilan-kart > p { margin: 0; font-size: 17px; line-height: 1.55; color: var(--metin); }
+.ilan-kart > p.alt-yazi { font-size: 14px; color: var(--soluk); }
+.ilan-kart > p.not { font-size: 14px; color: var(--soluk); }
+.dugmeler { display: flex; gap: 12px; flex-wrap: wrap; }
+.dugme { display: inline-flex; align-items: center; justify-content: center; padding: 15px 22px; border-radius: 12px; font-size: 16px; font-weight: 600; text-decoration: none; text-align: center; }
+.dugme.ana { background: var(--turuncu); color: #FFFFFF; }
+.dugme.ana:hover { background: #DD5A0E; color: #FFFFFF; }
+.dugme.ikincil { background: var(--yumusak); color: var(--lacivert); }
+
+/* Alt bilgi */
+.alt { background: var(--lacivert); color: var(--lacivert-metin); }
+.alt .kap { padding-top: 36px; padding-bottom: 32px; display: flex; flex-direction: column; gap: 18px; }
+.alt-ust { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+.alt .logo b { color: #FFFFFF; }
+.alt nav { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 14px; }
+.alt nav a { color: var(--lacivert-metin); text-decoration: none; }
+.alt nav a:hover, .alt nav a[aria-current] { color: #FFFFFF; }
+.alt nav a[aria-current] { text-decoration: underline; text-underline-offset: 4px; }
+.telif { margin: 0; font-size: 12px; line-height: 1.6; color: #8F96CF; }
+
+@media (max-width: 900px) {
+  .ana-nav { display: none; }
+  .duzen { grid-template-columns: 1fr; gap: 28px; margin-top: 32px; }
+  .icindekiler { position: static; }
+}
+@media (max-width: 560px) {
+  main { padding-top: 36px; padding-bottom: 56px; }
+  .diger { grid-template-columns: 1fr; }
+  .dugmeler { flex-direction: column; }
+  .ilan-ana { padding-top: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
