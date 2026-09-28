@@ -24,6 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Bu dosya üretilir: node tool/ana-sayfa/uret.js — elle düzenleme bir sonraki üretimde kaybolur. -->
+<script>document.documentElement.className += ' js';</script>
 <style>
 :root {
   color-scheme: light;
@@ -120,6 +121,17 @@ section[id], footer[id] { scroll-margin-top: 76px; }
 .seg input:checked + span { background: #FFFFFF; color: var(--lacivert); box-shadow: 0 1px 3px rgba(20, 27, 52, 0.14); }
 .seg input:focus-visible + span { outline: 2px solid var(--turuncu); outline-offset: 1px; }
 .ipucu { margin: 10px 0 0; font-size: 13px; color: var(--soluk); }
+.ekstra summary { list-style: none; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; cursor: pointer; font-size: 15px; font-weight: 700; }
+.ekstra summary::-webkit-details-marker { display: none; }
+.adim-rozet { width: 24px; height: 24px; border-radius: 12px; background: var(--lacivert); color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
+.ekstra-baslik small { font-size: 13px; font-weight: 500; color: var(--soluk); }
+.ekstra-ozet { display: none; flex-basis: 100%; padding-left: 32px; font-size: 13px; font-weight: 500; color: var(--metin); }
+.ekstra:not([open]) .ekstra-ozet { display: block; }
+.ekstra-ok { margin-left: auto; display: flex; transition: transform 0.2s; order: 2; }
+.ekstra-ozet { order: 3; }
+.ekstra[open] .ekstra-ok { transform: rotate(180deg); }
+.ekstra fieldset { border: 0; margin: 12px 0 0; padding: 0; min-width: 0; }
+.gizli { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .sonuc { border-top: 1px solid var(--cizgi); padding-top: 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
 .taraf { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .taraf h3 { font-size: 14px; font-weight: 700; color: var(--soluk); }
@@ -149,22 +161,6 @@ section[id], footer[id] { scroll-margin-top: 76px; }
 .ok .daire { width: 52px; height: 52px; border-radius: 26px; background: var(--turuncu); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(242, 106, 27, 0.3); }
 .gez-tel { display: flex; justify-content: center; }
 
-/* Yollar */
-.yollar { background: #FFFFFF; border-top: 1px solid var(--cizgi); border-bottom: 1px solid var(--cizgi); }
-.yollar .kap { padding-top: 44px; padding-bottom: 44px; display: flex; flex-direction: column; gap: 18px; }
-.yollar h2 { font-size: clamp(22px, 2vw, 26px); letter-spacing: -0.6px; }
-.yol-liste { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.yol { display: flex; align-items: center; gap: 16px; padding: 24px 26px; border-radius: 16px; background: var(--zemin-2); color: var(--murekkep); text-decoration: none; min-width: 0; }
-.yol:hover { color: var(--murekkep); box-shadow: inset 0 0 0 1.5px var(--alan); }
-.yol.koyu { background: var(--lacivert); color: #FFFFFF; }
-.yol.koyu:hover { color: #FFFFFF; }
-.yol-ikon { width: 48px; height: 48px; border-radius: 14px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.yol.koyu .yol-ikon { background: rgba(255, 255, 255, 0.12); }
-.yol-metin { flex: 1; min-width: 0; }
-.yol-metin b { display: block; font-size: 20px; }
-.yol-metin small { display: block; font-size: 14px; line-height: 1.4; color: var(--metin); }
-.yol.koyu small { color: var(--lacivert-metin); }
-
 /* Metin + telefonlar */
 .tur .kap { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 56px; align-items: center; padding-top: 96px; padding-bottom: 96px; }
 .tur.gri { background: var(--zemin-2); }
@@ -189,8 +185,6 @@ section[id], footer[id] { scroll-margin-top: 76px; }
 .magaza-ek p { margin: 0; line-height: 1.5; }
 
 /* Karşılaştır */
-.karsi { background: #FFFFFF; }
-.karsi .kap { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 56px; align-items: center; padding-top: 96px; padding-bottom: 96px; }
 .karsi-kart { background: #FFFFFF; border-radius: 20px; box-shadow: 0 1px 0 var(--cizgi), 0 24px 48px rgba(15, 27, 61, 0.08); border: 1px solid var(--cizgi); padding: clamp(18px, 2.6vw, 36px); display: flex; flex-direction: column; gap: 18px; min-width: 0; }
 .vs-bas { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 20px; }
 .vs-taraf { display: flex; align-items: center; gap: 14px; min-width: 0; }
@@ -218,6 +212,19 @@ section[id], footer[id] { scroll-margin-top: 76px; }
 .kazanan b { font-size: 24px; }
 .kazanan span { font-size: 15px; color: var(--lacivert-metin); }
 .ornek-not { font-size: 12px; color: var(--soluk); text-align: right; }
+
+/* Sekmeli tanıtım */
+.ozellik { background: var(--zemin-2); }
+.ozellik .kap { padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 28px; }
+.ozellik-bas { display: flex; flex-direction: column; gap: 14px; max-width: 760px; }
+.sekmeler { display: flex; gap: 8px; flex-wrap: wrap; }
+.sekme { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 999px; border: 0; background: #FFFFFF; color: var(--murekkep); font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; white-space: nowrap; box-shadow: inset 0 0 0 1.5px var(--alan); }
+.sekme:hover { box-shadow: inset 0 0 0 1.5px var(--lacivert); }
+.sekme.acik { background: var(--lacivert); color: #FFFFFF; box-shadow: none; }
+.panel { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 56px; align-items: center; padding-top: 12px; }
+.panel h3 { font-size: clamp(26px, 2.6vw, 36px); line-height: 1.08; letter-spacing: -1px; }
+.panel:focus-visible { outline-offset: 10px; }
+.js .panel:not(.acik) { display: none; }
 
 /* Güvenlik */
 .guv { background: var(--zemin-2); }
@@ -273,7 +280,8 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
 @media (max-width: 1180px) {
   .ana-nav, .ust .cta { display: none; }
   .menu { display: block; }
-  .tur .kap, .karsi .kap, .sss .kap { grid-template-columns: 1fr; gap: 32px; }
+  .tur .kap, .sss .kap { grid-template-columns: 1fr; gap: 32px; }
+  .panel { grid-template-columns: 1fr; gap: 28px; }
   .telefonlar { margin: 0 calc(-1 * var(--kenar)); padding-left: var(--kenar); padding-right: var(--kenar); scroll-padding-left: var(--kenar); }
   .telefonlar > :first-child { margin-left: 0; }
   .lacivert-bolum .kap { grid-template-columns: 1fr; }
@@ -281,8 +289,10 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
   .guv-tel { display: flex; justify-content: center; }
 }
 @media (max-width: 900px) {
+  .guv-tel { display: none; }
+}
+@media (max-width: 900px) {
   .acilis .kap { grid-template-columns: 1fr; gap: 40px; padding-top: 36px; padding-bottom: 56px; }
-  .yol-liste { grid-template-columns: 1fr; gap: 10px; }
   .kurallar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .alt-ust { flex-direction: column; align-items: flex-start; }
   .gez-gorsel { flex-direction: column; align-items: stretch; }
@@ -292,6 +302,10 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
 }
 @media (max-width: 700px) {
   .alanlar, .alanlar.iki { grid-template-columns: 1fr; }
+  .alanlar.telefon-sec { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "marka depolama" "model model"; }
+  .a-marka { grid-area: marka; } .a-model { grid-area: model; } .a-depolama { grid-area: depolama; }
+  .adim-liste { display: none; }
+  .ekstra-ozet { padding-left: 32px; }
   .seg span { font-size: 11px; padding: 10px 0; letter-spacing: -0.2px; }
   .sonuc { grid-template-columns: 1fr; gap: 22px; }
   .hesap-dugmeler .dugme { flex: 1 1 100%; }
@@ -303,7 +317,7 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
   .imei { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 640px) {
-  .lacivert-bolum .kap, .gez .kap, .tur .kap, .karsi .kap, .guv .kap, .sss .kap { padding-top: 52px; padding-bottom: 48px; }
+  .lacivert-bolum .kap, .gez .kap, .tur .kap, .ozellik .kap, .guv .kap, .sss .kap { padding-top: 52px; padding-bottom: 48px; }
   .tur .kap { padding-bottom: 24px; }
   .dugmeler { flex-direction: column; align-items: stretch; }
   .sayilar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; font-size: 13px; }
@@ -311,7 +325,14 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
   .kisayollar { flex-direction: column; }
   .acilis-tel > div { transform: scale(0.8); transform-origin: top center; margin-bottom: -136px; }
   .kurallar { grid-template-columns: 1fr; }
-  .kural { flex-direction: row; align-items: flex-start; gap: 14px; }
+  .kurallar { gap: 0; background: #FFFFFF; border-radius: 16px; box-shadow: 0 1px 0 var(--cizgi); }
+  .kural { flex-direction: row; align-items: flex-start; gap: 14px; padding: 14px 16px; border-radius: 0; box-shadow: none; border-top: 1px solid var(--cizgi); background: transparent; }
+  .kural:first-child { border-top: 0; }
+  .kural-ikon { width: 36px; height: 36px; border-radius: 10px; }
+  .imei { padding: 16px; }
+  .sekmeler { flex-wrap: nowrap; overflow-x: auto; margin: 0 calc(-1 * var(--kenar)); padding: 2px var(--kenar); scrollbar-width: none; }
+  .sekmeler::-webkit-scrollbar { display: none; }
+  .sekme { padding: 10px 14px; font-size: 14px; }
   .guvenceler { grid-template-columns: 1fr; }
   .sss summary { font-size: 16px; padding: 16px 18px; }
   .sss details p { padding: 0 18px 16px; }
@@ -331,11 +352,11 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
 <header class="ust">
   <div class="kap">
     <a class="logo" href="#" aria-label="ONCEP ana sayfa"><b>ON</b><i>CEP</i></a>
-    <nav class="ana-nav" aria-label="Bölümler"><a href="#hesap">Değer hesapla</a><a href="#gez">Mağazaları gez</a><a href="#sat">Sat</a><a href="#karsilastir">Karşılaştır</a><a href="#guvenlik">Güvenlik</a><a href="#magaza">Mağazalar için</a><a href="#sss">Sorular</a></nav>
+    <nav class="ana-nav" aria-label="Bölümler"><a href="#hesap">Değer hesapla</a><a href="#gez">Mağazaları gez</a><a href="#ozellikler">Özellikler</a><a href="#guvenlik">Güvenlik</a><a href="#magaza">Mağazalar için</a><a href="#sss">Sorular</a></nav>
     <a class="cta" href="#indir">Çıkınca haber ver</a>
     <details class="menu">
       <summary aria-label="Menü"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></summary>
-      <nav aria-label="Bölümler"><a href="#hesap">Değer hesapla</a><a href="#gez">Mağazaları gez</a><a href="#sat">Sat</a><a href="#karsilastir">Karşılaştır</a><a href="#guvenlik">Güvenlik</a><a href="#magaza">Mağazalar için</a><a href="#sss">Sorular</a><a href="#indir">Çıkınca haber ver</a></nav>
+      <nav aria-label="Bölümler"><a href="#hesap">Değer hesapla</a><a href="#gez">Mağazaları gez</a><a href="#ozellikler">Özellikler</a><a href="#guvenlik">Güvenlik</a><a href="#magaza">Mağazalar için</a><a href="#sss">Sorular</a><a href="#indir">Çıkınca haber ver</a></nav>
     </details>
   </div>
 </header>
@@ -368,10 +389,10 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
       <form id="deger-form" class="hesap-form" novalidate>
         <fieldset>
           <legend><span>1</span>Hangi telefon?</legend>
-          <div class="alanlar">
-            <label class="alan">Marka<select name="marka"><option value="Apple" selected>Apple</option><option value="Samsung">Samsung</option><option value="Xiaomi">Xiaomi</option><option value="Google">Google</option></select></label>
-            <label class="alan">Model<select name="model"><option value="iPhone 17 Pro Max">iPhone 17 Pro Max</option><option value="iPhone 17 Pro">iPhone 17 Pro</option><option value="iPhone 17">iPhone 17</option><option value="iPhone 16e">iPhone 16e</option><option value="iPhone 16 Pro Max">iPhone 16 Pro Max</option><option value="iPhone 16 Pro">iPhone 16 Pro</option><option value="iPhone 16 Plus">iPhone 16 Plus</option><option value="iPhone 16">iPhone 16</option><option value="iPhone 15 Pro Max">iPhone 15 Pro Max</option><option value="iPhone 15 Pro">iPhone 15 Pro</option><option value="iPhone 15 Plus">iPhone 15 Plus</option><option value="iPhone 15">iPhone 15</option><option value="iPhone 14 Pro Max">iPhone 14 Pro Max</option><option value="iPhone 14 Pro" selected>iPhone 14 Pro</option><option value="iPhone 14 Plus">iPhone 14 Plus</option><option value="iPhone 14">iPhone 14</option><option value="iPhone 13 Pro Max">iPhone 13 Pro Max</option><option value="iPhone 13 Pro">iPhone 13 Pro</option><option value="iPhone 13 Mini">iPhone 13 Mini</option><option value="iPhone 13">iPhone 13</option><option value="iPhone 12 Pro Max">iPhone 12 Pro Max</option><option value="iPhone 12 Pro">iPhone 12 Pro</option><option value="iPhone 12 Mini">iPhone 12 Mini</option><option value="iPhone 12">iPhone 12</option><option value="iPhone 11 Pro Max">iPhone 11 Pro Max</option><option value="iPhone 11 Pro">iPhone 11 Pro</option><option value="iPhone 11">iPhone 11</option><option value="iPhone SE (3. Nesil)">iPhone SE (3. Nesil)</option><option value="iPhone SE (2. Nesil)">iPhone SE (2. Nesil)</option><option value="iPhone Air">iPhone Air</option></select></label>
-            <label class="alan">Depolama<select name="depolama"><option value="128 GB">128 GB</option><option value="256 GB" selected>256 GB</option><option value="512 GB">512 GB</option><option value="1 TB">1 TB</option></select></label>
+          <div class="alanlar telefon-sec">
+            <label class="alan a-marka">Marka<select name="marka"><option value="Apple" selected>Apple</option><option value="Samsung">Samsung</option><option value="Xiaomi">Xiaomi</option><option value="Google">Google</option></select></label>
+            <label class="alan a-model">Model<select name="model"><option value="iPhone 17 Pro Max">iPhone 17 Pro Max</option><option value="iPhone 17 Pro">iPhone 17 Pro</option><option value="iPhone 17">iPhone 17</option><option value="iPhone 16e">iPhone 16e</option><option value="iPhone 16 Pro Max">iPhone 16 Pro Max</option><option value="iPhone 16 Pro">iPhone 16 Pro</option><option value="iPhone 16 Plus">iPhone 16 Plus</option><option value="iPhone 16">iPhone 16</option><option value="iPhone 15 Pro Max">iPhone 15 Pro Max</option><option value="iPhone 15 Pro">iPhone 15 Pro</option><option value="iPhone 15 Plus">iPhone 15 Plus</option><option value="iPhone 15">iPhone 15</option><option value="iPhone 14 Pro Max">iPhone 14 Pro Max</option><option value="iPhone 14 Pro" selected>iPhone 14 Pro</option><option value="iPhone 14 Plus">iPhone 14 Plus</option><option value="iPhone 14">iPhone 14</option><option value="iPhone 13 Pro Max">iPhone 13 Pro Max</option><option value="iPhone 13 Pro">iPhone 13 Pro</option><option value="iPhone 13 Mini">iPhone 13 Mini</option><option value="iPhone 13">iPhone 13</option><option value="iPhone 12 Pro Max">iPhone 12 Pro Max</option><option value="iPhone 12 Pro">iPhone 12 Pro</option><option value="iPhone 12 Mini">iPhone 12 Mini</option><option value="iPhone 12">iPhone 12</option><option value="iPhone 11 Pro Max">iPhone 11 Pro Max</option><option value="iPhone 11 Pro">iPhone 11 Pro</option><option value="iPhone 11">iPhone 11</option><option value="iPhone SE (3. Nesil)">iPhone SE (3. Nesil)</option><option value="iPhone SE (2. Nesil)">iPhone SE (2. Nesil)</option><option value="iPhone Air">iPhone Air</option></select></label>
+            <label class="alan a-depolama">Depolama<select name="depolama"><option value="128 GB">128 GB</option><option value="256 GB" selected>256 GB</option><option value="512 GB">512 GB</option><option value="1 TB">1 TB</option></select></label>
           </div>
         </fieldset>
         <fieldset>
@@ -379,14 +400,17 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
           <div class="alanlar iki"><fieldset class="seg-alan"><legend>Ekran</legend><div class="seg"><label><input type="radio" name="ekran" value="1"><span>Kötü</span></label><label><input type="radio" name="ekran" value="2"><span>Orta</span></label><label><input type="radio" name="ekran" value="3"><span>İyi</span></label><label><input type="radio" name="ekran" value="4" checked><span>Çok iyi</span></label><label><input type="radio" name="ekran" value="5"><span>Mükemmel</span></label></div></fieldset><fieldset class="seg-alan"><legend>Kasa</legend><div class="seg"><label><input type="radio" name="kasa" value="1"><span>Kötü</span></label><label><input type="radio" name="kasa" value="2"><span>Orta</span></label><label><input type="radio" name="kasa" value="3" checked><span>İyi</span></label><label><input type="radio" name="kasa" value="4"><span>Çok iyi</span></label><label><input type="radio" name="kasa" value="5"><span>Mükemmel</span></label></div></fieldset></div>
           <p class="ipucu">Dürüst seçim daha doğru fiyat verir: çizikleri ve kırıkları hesaba kat.</p>
         </fieldset>
-        <fieldset>
-          <legend><span>3</span>Pil ve ekstralar <small>isteğe bağlı</small></legend>
-          <div class="alanlar">
-            <label class="alan">Pil sağlığı<select name="pil"><option value="">Bilmiyorum</option><option value="90" selected>%90 ve üstü</option><option value="85">%85–89</option><option value="80">%80–84</option><option value="0">%80’in altı</option></select></label>
-            <label class="alan">Değişen parça<select name="degisen"><option value="0" selected>Yok</option><option value="1">Var</option></select></label>
-            <label class="alan">Garanti<select name="garanti"><option value="0" selected>Yok ya da bitti</option><option value="1">Devam ediyor</option></select></label>
-          </div>
-        </fieldset>
+        <details class="ekstra" open>
+          <summary><span class="adim-rozet">3</span><span class="ekstra-baslik">Pil ve ekstralar <small>isteğe bağlı</small></span><span class="ekstra-ozet" data-ozet>%90 ve üstü · Değişen yok · Garanti yok</span><span class="ekstra-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6B7390" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M6 9l6 6 6-6"></path></svg></span></summary>
+          <fieldset>
+            <legend class="gizli">Pil ve ekstralar</legend>
+            <div class="alanlar">
+              <label class="alan">Pil sağlığı<select name="pil"><option value="">Bilmiyorum</option><option value="90" selected>%90 ve üstü</option><option value="85">%85–89</option><option value="80">%80–84</option><option value="0">%80’in altı</option></select></label>
+              <label class="alan">Değişen parça<select name="degisen"><option value="0" selected>Yok</option><option value="1">Var</option></select></label>
+              <label class="alan">Garanti<select name="garanti"><option value="0" selected>Yok ya da bitti</option><option value="1">Devam ediyor</option></select></label>
+            </div>
+          </fieldset>
+        </details>
       </form>
       <div class="sonuc" aria-live="polite">
         <div class="taraf sat" data-taraf="sat">
@@ -460,22 +484,21 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
     </div>
   </div>
 </section>
-<section class="yollar">
+<section id="ozellikler" class="ozellik">
   <div class="kap">
-    <h2 class="orta">Ne yapmak istiyorsun?</h2>
-    <div class="yol-liste"><a class="yol koyu" href="#sat"><span class="yol-ikon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M3 12V4h8l10 10-8 8z"></path><circle cx="7.5" cy="8.5" r="1.5"></circle></svg></span><span class="yol-metin"><b>Telefonumu satacağım</b><small>İlanını ver, mağazalar sana teklif etsin.</small></span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26A1B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a class="yol" href="#al"><span class="yol-ikon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg></span><span class="yol-metin"><b>Telefon arıyorum</b><small>Mağaza ilanlarına hesap açmadan göz at.</small></span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a class="yol" href="#magaza"><span class="yol-ikon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M4 9l1.5-5h13L20 9M4 9h16v11H4zM4 9a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0M10 20v-5h4v5"></path></svg></span><span class="yol-metin"><b>Mağaza mısın?</b><small>Mağazanı ekle, kullanıcı ilanlarına teklif ver.</small></span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
-  </div>
-</section>
-<section id="sat" class="tur gri">
-  <div class="kap">
-    <div class="tur-metin">
-      <div class="ust-yazi">SAT</div>
-      <h2>İlanı koy, mağazalar teklif versin.</h2>
-      <p class="giris-metin">Dört adımda ilan: telefon bilgileri, cihaz durumu, foto ve fiyat, konum. Her ilan yayına girmeden incelenir.</p>
-      <ul class="maddeler"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Beğenmediğin teklife karşı teklif ver</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Birini kabul edince diğerleri kendiliğinden kapanır</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Kargo yok, komisyon yok; mağazada elden teslim</span></li></ul>
-      <ol class="yasam"><li><span class="no">1</span><b>BEKLEMEDE</b><span>İncelenir</span></li><li class="simdi"><span class="no">2</span><b>YAYINDA</b><span>30 gün teklif alır</span></li><li><span class="no">3</span><b>7 · 2 GÜN KALA</b><span>Hatırlatma gelir</span></li><li><span class="no">4</span><b>SATILDI / YENİLE</b><span>Sen seçersin</span></li></ol>
+    <div class="ozellik-bas">
+      <div class="ust-yazi">UYGULAMADA NELER VAR</div>
+      <h2>Satmaktan mağaza seçmeye, hepsi tek uygulamada.</h2>
     </div>
-    <div class="telefonlar" aria-hidden="true"><div style="width: 264px; height: 540px; flex-shrink: 0; box-sizing: border-box; border-radius: 40px; background: #0F1B3D; padding: 8px; box-shadow: 0 30px 60px rgba(20,27,52,0.22);">
+    <div class="sekmeler" role="tablist" aria-label="Uygulamanın bölümleri"><button type="button" class="sekme acik" role="tab" id="sekme-sat" aria-controls="sat" aria-selected="true" tabindex="0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M3 12V4h8l10 10-8 8z"></path><circle cx="7.5" cy="8.5" r="1.5"></circle></svg>Sat</button><button type="button" class="sekme" role="tab" id="sekme-al" aria-controls="al" aria-selected="false" tabindex="-1"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>Al</button><button type="button" class="sekme" role="tab" id="sekme-karsilastir" aria-controls="karsilastir" aria-selected="false" tabindex="-1"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><rect x="3" y="5" width="7" height="14" rx="1.5"></rect><rect x="14" y="5" width="7" height="14" rx="1.5"></rect></svg>Karşılaştır</button><button type="button" class="sekme" role="tab" id="sekme-takip" aria-controls="takip" aria-selected="false" tabindex="-1"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg>Takip</button><button type="button" class="sekme" role="tab" id="sekme-mesaj" aria-controls="mesaj" aria-selected="false" tabindex="-1"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M4 5h16v11H9l-5 4z"></path></svg>Mesaj</button><button type="button" class="sekme" role="tab" id="sekme-magazalar" aria-controls="magazalar" aria-selected="false" tabindex="-1"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M4 9l1.5-5h13L20 9M4 9h16v11H4zM4 9a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0M10 20v-5h4v5"></path></svg>Mağazalar</button></div>
+    <div class="panel acik" id="sat" role="tabpanel" aria-labelledby="sekme-sat" tabindex="0">
+      <div class="tur-metin">
+        <h3>İlanı koy, mağazalar teklif versin.</h3>
+        <p class="giris-metin">Dört adımda ilan: telefon bilgileri, cihaz durumu, foto ve fiyat, konum. Her ilan yayına girmeden incelenir.</p>
+        <ul class="maddeler"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Beğenmediğin teklife karşı teklif ver</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Birini kabul edince diğerleri kendiliğinden kapanır</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Kargo yok, komisyon yok; mağazada elden teslim</span></li></ul>
+        <ol class="yasam"><li><span class="no">1</span><b>BEKLEMEDE</b><span>İncelenir</span></li><li class="simdi"><span class="no">2</span><b>YAYINDA</b><span>30 gün teklif alır</span></li><li><span class="no">3</span><b>7 · 2 GÜN KALA</b><span>Hatırlatma gelir</span></li><li><span class="no">4</span><b>SATILDI / YENİLE</b><span>Sen seçersin</span></li></ol>
+      </div>
+      <div class="telefonlar" aria-hidden="true"><div style="width: 264px; height: 540px; flex-shrink: 0; box-sizing: border-box; border-radius: 40px; background: #0F1B3D; padding: 8px; box-shadow: 0 30px 60px rgba(20,27,52,0.22);">
     <div style="width: 100%; height: 100%; border-radius: 32px; overflow: hidden; background: #F5F7FC; display: flex; flex-direction: column; position: relative; font-family: 'Onest', system-ui, sans-serif; color: #0F1B3D;">
       <div style="height: 30px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 11px; font-weight: 700; color: #0F1B3D; background: #FFFFFF;"><span>9:41</span><span style="width: 64px; height: 18px; border-radius: 9px; background: #0F1B3D;"></span><span style="display: flex; gap: 3px; align-items: flex-end;"><span style="width: 3px; height: 5px; background: #0F1B3D;"></span><span style="width: 3px; height: 7px; background: #0F1B3D;"></span><span style="width: 3px; height: 9px; background: #0F1B3D;"></span><span style="width: 16px; height: 8px; border-radius: 2px; box-shadow: inset 0 0 0 1.5px #0F1B3D; margin-left: 3px; position: relative;"><span style="position: absolute; left: 2px; top: 2px; bottom: 2px; width: 9px; background: #0F1B3D;"></span></span></span></div><div style="flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 6px 14px 10px; background: #FFFFFF; border-bottom: 1px solid #E7EAF3;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F1B3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg><span style="flex: 1; font-size: 15px; font-weight: 800; letter-spacing: -0.2px; white-space: nowrap; overflow: hidden;">İlan Ver</span></div><div style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 10px; padding: 12px;">
   <div style="display: flex; align-items: center; gap: 6px; "><span style="font-size: 10px; font-weight: 700; letter-spacing: 0.6px; color: #6B7390;">ADIM 2 / 4</span><span style="flex: 1;"></span></div>
@@ -511,18 +534,15 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
     <span style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 10px; border-radius: 10px; font-size: 12px; font-weight: 700; white-space: nowrap; background: #F26A1B; color: #FFFFFF; padding: 12px; font-size: 13px; margin-top: auto;">Karşı teklifi gönder</span>
   </div>
     </div></div></div>
-  </div>
-</section>
-<section id="al" class="tur beyaz">
-  <div class="kap">
-    <div class="tur-metin">
-      <div class="ust-yazi">AL</div>
-      <h2>Süz, sırala, ayrıntısına bak.</h2>
-      <p class="giris-metin">Yalnızca onaylı mağazaların ilanları. Batarya yüzdesi, ekran ve kasa puanı her kartta.</p>
-      <ul class="maddeler"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Marka, model, durum, fiyat, depolama, renk, şehir ve ilçe filtresi</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Değişensiz ve garantili telefonları ayır</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Bataryaya, ekran ve kasaya ya da fiyata göre sırala</span></li></ul>
-      
     </div>
-    <div class="telefonlar" aria-hidden="true"><div style="width: 264px; height: 540px; flex-shrink: 0; box-sizing: border-box; border-radius: 40px; background: #0F1B3D; padding: 8px; box-shadow: 0 30px 60px rgba(20,27,52,0.22);">
+    <div class="panel" id="al" role="tabpanel" aria-labelledby="sekme-al" tabindex="0">
+      <div class="tur-metin">
+        <h3>Süz, sırala, ayrıntısına bak.</h3>
+        <p class="giris-metin">Yalnızca onaylı mağazaların ilanları. Batarya yüzdesi, ekran ve kasa puanı her kartta.</p>
+        <ul class="maddeler"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Marka, model, durum, fiyat, depolama, renk, şehir ve ilçe filtresi</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Değişensiz ve garantili telefonları ayır</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Bataryaya, ekran ve kasaya ya da fiyata göre sırala</span></li></ul>
+        
+      </div>
+      <div class="telefonlar" aria-hidden="true"><div style="width: 264px; height: 540px; flex-shrink: 0; box-sizing: border-box; border-radius: 40px; background: #0F1B3D; padding: 8px; box-shadow: 0 30px 60px rgba(20,27,52,0.22);">
     <div style="width: 100%; height: 100%; border-radius: 32px; overflow: hidden; background: #F5F7FC; display: flex; flex-direction: column; position: relative; font-family: 'Onest', system-ui, sans-serif; color: #0F1B3D;">
       <div style="height: 30px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 11px; font-weight: 700; color: #0F1B3D; background: #FFFFFF;"><span>9:41</span><span style="width: 64px; height: 18px; border-radius: 9px; background: #0F1B3D;"></span><span style="display: flex; gap: 3px; align-items: flex-end;"><span style="width: 3px; height: 5px; background: #0F1B3D;"></span><span style="width: 3px; height: 7px; background: #0F1B3D;"></span><span style="width: 3px; height: 9px; background: #0F1B3D;"></span><span style="width: 16px; height: 8px; border-radius: 2px; box-shadow: inset 0 0 0 1.5px #0F1B3D; margin-left: 3px; position: relative;"><span style="position: absolute; left: 2px; top: 2px; bottom: 2px; width: 9px; background: #0F1B3D;"></span></span></span></div><div style="flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 6px 14px 10px; background: #FFFFFF; border-bottom: 1px solid #E7EAF3;"><span style="flex: 1; font-size: 15px; font-weight: 800; letter-spacing: -0.2px; white-space: nowrap; overflow: hidden;"><span style="color: #1A237E;">ON</span><span style="color: #F26A1B;">CEP</span></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F1B3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg></div><div style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 10px; padding: 12px;">
   <div style="display: flex; align-items: center; gap: 8px; height: 36px; border-radius: 10px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #D9DEEC; padding: 0 10px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6B7390" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg><span style="font-size: 11px; font-weight: 500; color: #6B7390; ">Marka, model veya mağaza ara</span></div>
@@ -550,16 +570,15 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
   <div style="background: #FFFFFF; border-radius: 12px; padding: 10px; box-shadow: 0 1px 0 #E7EAF3; "><div style="display: flex; align-items: center; gap: 8px; "><span style="width: 30px; height: 30px; border-radius: 15px; flex-shrink: 0; background: #1A237E; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px;">ÜG</span><div style="display: flex; flex-direction: column; gap: 2px; flex: 1;"><span style="font-size: 12px; font-weight: 700; color: #0F1B3D; ">Üsküdar GSM</span><div style="display: flex; align-items: center; gap: 4px; "><span style="display: inline-flex; gap: 2px; align-items: center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#F26A1B" stroke="#F26A1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"></path></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="#F26A1B" stroke="#F26A1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"></path></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="#F26A1B" stroke="#F26A1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"></path></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="#F26A1B" stroke="#F26A1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"></path></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="#F26A1B" stroke="#F26A1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"></path></svg></span><span style="font-size: 10px; font-weight: 500; color: #6B7390; ">4,9 · 37 değerlendirme</span></div></div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6B7390" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M9 6l6 6-6 6"></path></svg></div></div>
 </div><div style="flex-shrink: 0; display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px; padding: 10px 12px 14px; background: #FFFFFF; border-top: 1px solid #E7EAF3;"><span style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 10px; border-radius: 10px; font-size: 12px; font-weight: 700; white-space: nowrap; background: #FFFFFF; color: #1A237E; box-shadow: inset 0 0 0 1.5px #1A237E; padding: 11px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M4 5h16v11H9l-5 4z"></path></svg>Mesaj</span><span style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 10px; border-radius: 10px; font-size: 12px; font-weight: 700; white-space: nowrap; background: #F26A1B; color: #FFFFFF; padding: 11px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"></path></svg>İletişime Geç</span></div>
     </div></div></div>
-  </div>
-</section>
-<section id="karsilastir" class="karsi">
-  <div class="kap">
-    <div class="tur-metin">
-      <div class="ust-yazi">KARŞILAŞTIR</div>
-      <h2>İki telefon, beş başlık, tek bakış.</h2>
-      <p class="giris-metin">Ekran, performans, pil ve şarj, kamera, diğer. Hangisi nerede önde, yüzde kaç fark var, çubuklarda görürsün. İlan sayfasından tek dokunuşla açılır.</p>
     </div>
-    <div class="karsi-kart" aria-label="Örnek karşılaştırma: iPhone 13 ve iPhone 14 Pro">
+    <div class="panel" id="karsilastir" role="tabpanel" aria-labelledby="sekme-karsilastir" tabindex="0">
+      <div class="tur-metin">
+        <h3>İki telefon, beş başlık, tek bakış.</h3>
+        <p class="giris-metin">Hangisi nerede önde, yüzde kaç fark var, çubuklarda görürsün.</p>
+        <ul class="maddeler"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Ekran, performans, pil ve şarj, kamera, diğer</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Her ölçüde farkın yüzdesi</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>İlan sayfasından tek dokunuşla açılır</span></li></ul>
+        
+      </div>
+      <div class="karsi-kart" aria-label="Örnek karşılaştırma: iPhone 13 ve iPhone 14 Pro">
       <div class="vs-bas"><div class="vs-taraf"><div class="vs-foto"><div style="height: 100px; background: #F1F3FA; display: flex; align-items: center; justify-content: center; flex-shrink: 0; "><div style="width: 34px; height: 74px; border-radius: 6px; background: #232838; position: relative; box-shadow: inset 0 0 0 2px rgba(17,24,39,0.10), 0 6px 14px rgba(17,24,39,0.16);"><div style="position: absolute; left: 3px; top: 3px; width: 17px; height: 17px; border-radius: 4px; background: rgba(17,24,39,0.22); box-sizing: border-box; padding: 2px; display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); gap: 2px;"><div style="border-radius: 50%; background: #111827; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18);"></div><div style="border-radius: 50%; background: #111827; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18);"></div><div style="border-radius: 50%; background: #111827; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18);"></div></div></div></div></div><div><b>iPhone 13</b><small>2 kategoride önde</small></div></div><span class="vs">VS</span><div class="vs-taraf sag"><div class="vs-foto"><div style="height: 100px; background: #F1F3FA; display: flex; align-items: center; justify-content: center; flex-shrink: 0; "><div style="width: 34px; height: 74px; border-radius: 6px; background: #5E4E72; position: relative; box-shadow: inset 0 0 0 2px rgba(17,24,39,0.10), 0 6px 14px rgba(17,24,39,0.16);"><div style="position: absolute; left: 3px; top: 3px; width: 17px; height: 17px; border-radius: 4px; background: rgba(17,24,39,0.22); box-sizing: border-box; padding: 2px; display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); gap: 2px;"><div style="border-radius: 50%; background: #111827; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18);"></div><div style="border-radius: 50%; background: #111827; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18);"></div><div style="border-radius: 50%; background: #111827; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18);"></div></div></div></div></div><div><b>iPhone 14 Pro</b><small>3 kategoride önde</small></div></div></div>
       <div><div class="olcu">
         <div class="olcu-ad"><small>EKRAN</small><b>Yenileme hızı</b></div>
@@ -600,18 +619,15 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
       <div class="kazanan"><b>iPhone 14 Pro daha iyi</b><span>3 kategoride önde, 2 kategoride geride</span></div>
       <div class="ornek-not">Örnek karşılaştırma</div>
     </div>
-  </div>
-</section>
-<section id="takip" class="tur gri">
-  <div class="kap">
-    <div class="tur-metin">
-      <div class="ust-yazi">TAKİP</div>
-      <h2>Fiyat düşünce haberin olsun.</h2>
-      <p class="giris-metin">Favorine eklediğin ilanın fiyatını eklediğin günle karşılaştırırız. Satılırsa benzerlerini gösteririz.</p>
-      <ul class="maddeler"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Son baktığın 20 ilan telefonunda saklanır</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Hangi bildirimi alacağını sen seçersin</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Bildirimler gün gün gruplanır, kaydırıp silersin</span></li></ul>
-      
     </div>
-    <div class="telefonlar" aria-hidden="true"><div style="width: 264px; height: 540px; flex-shrink: 0; box-sizing: border-box; border-radius: 40px; background: #0F1B3D; padding: 8px; box-shadow: 0 30px 60px rgba(20,27,52,0.22);">
+    <div class="panel" id="takip" role="tabpanel" aria-labelledby="sekme-takip" tabindex="0">
+      <div class="tur-metin">
+        <h3>Fiyat düşünce haberin olsun.</h3>
+        <p class="giris-metin">Favorine eklediğin ilanın fiyatını eklediğin günle karşılaştırırız. Satılırsa benzerlerini gösteririz.</p>
+        <ul class="maddeler"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Son baktığın 20 ilan telefonunda saklanır</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Hangi bildirimi alacağını sen seçersin</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Bildirimler gün gün gruplanır, kaydırıp silersin</span></li></ul>
+        
+      </div>
+      <div class="telefonlar" aria-hidden="true"><div style="width: 264px; height: 540px; flex-shrink: 0; box-sizing: border-box; border-radius: 40px; background: #0F1B3D; padding: 8px; box-shadow: 0 30px 60px rgba(20,27,52,0.22);">
     <div style="width: 100%; height: 100%; border-radius: 32px; overflow: hidden; background: #F5F7FC; display: flex; flex-direction: column; position: relative; font-family: 'Onest', system-ui, sans-serif; color: #0F1B3D;">
       <div style="height: 30px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 11px; font-weight: 700; color: #0F1B3D; background: #FFFFFF;"><span>9:41</span><span style="width: 64px; height: 18px; border-radius: 9px; background: #0F1B3D;"></span><span style="display: flex; gap: 3px; align-items: flex-end;"><span style="width: 3px; height: 5px; background: #0F1B3D;"></span><span style="width: 3px; height: 7px; background: #0F1B3D;"></span><span style="width: 3px; height: 9px; background: #0F1B3D;"></span><span style="width: 16px; height: 8px; border-radius: 2px; box-shadow: inset 0 0 0 1.5px #0F1B3D; margin-left: 3px; position: relative;"><span style="position: absolute; left: 2px; top: 2px; bottom: 2px; width: 9px; background: #0F1B3D;"></span></span></span></div><div style="flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 6px 14px 10px; background: #FFFFFF; border-bottom: 1px solid #E7EAF3;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F1B3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg><span style="flex: 1; font-size: 15px; font-weight: 800; letter-spacing: -0.2px; white-space: nowrap; overflow: hidden;">Favorilerim</span></div><div style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 6px; padding: 12px;">
     <div style="display: flex; gap: 8px; align-items: center; background: #E3F3EC; color: #13795B; padding: 9px 10px; border-radius: 10px; font-size: 12px; font-weight: 700;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#13795B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M4 7l6 6 4-4 6 6M20 10v5h-5"></path></svg>2 ilanın fiyatı düştü</div>
@@ -639,18 +655,15 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
     <span style="font-size: 10px; font-weight: 500; color: #6B7390; ">Hesapla ilgili bildirimler her zaman gelir.</span>
   </div>
     </div></div></div>
-  </div>
-</section>
-<section id="mesaj" class="tur beyaz">
-  <div class="kap">
-    <div class="tur-metin">
-      <div class="ust-yazi">MESAJ</div>
-      <h2>Pazarlık uygulamada, numaran cebinde.</h2>
-      <p class="giris-metin">Mağazayla ilanın üstünden yazışırsın, fotoğraf atarsın. Rahatsız eden olursa şikâyet et ya da engelle.</p>
-      <ul class="maddeler"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Kullanıcılar birbirine değil, mağazalara yazar</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Mağaza seni “Ahmet Y.” gibi adınla ve soyadının baş harfiyle görür</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Okunmamış sohbetler en üstte</span></li></ul>
-      
     </div>
-    <div class="telefonlar" aria-hidden="true"><div style="width: 264px; height: 540px; flex-shrink: 0; box-sizing: border-box; border-radius: 40px; background: #0F1B3D; padding: 8px; box-shadow: 0 30px 60px rgba(20,27,52,0.22);">
+    <div class="panel" id="mesaj" role="tabpanel" aria-labelledby="sekme-mesaj" tabindex="0">
+      <div class="tur-metin">
+        <h3>Pazarlık uygulamada, numaran cebinde.</h3>
+        <p class="giris-metin">Mağazayla ilanın üstünden yazışırsın, fotoğraf atarsın. Rahatsız eden olursa şikâyet et ya da engelle.</p>
+        <ul class="maddeler"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Kullanıcılar birbirine değil, mağazalara yazar</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Mağaza seni “Ahmet Y.” gibi adınla ve soyadının baş harfiyle görür</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Okunmamış sohbetler en üstte</span></li></ul>
+        
+      </div>
+      <div class="telefonlar" aria-hidden="true"><div style="width: 264px; height: 540px; flex-shrink: 0; box-sizing: border-box; border-radius: 40px; background: #0F1B3D; padding: 8px; box-shadow: 0 30px 60px rgba(20,27,52,0.22);">
     <div style="width: 100%; height: 100%; border-radius: 32px; overflow: hidden; background: #F5F7FC; display: flex; flex-direction: column; position: relative; font-family: 'Onest', system-ui, sans-serif; color: #0F1B3D;">
       <div style="height: 30px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 11px; font-weight: 700; color: #0F1B3D; background: #FFFFFF;"><span>9:41</span><span style="width: 64px; height: 18px; border-radius: 9px; background: #0F1B3D;"></span><span style="display: flex; gap: 3px; align-items: flex-end;"><span style="width: 3px; height: 5px; background: #0F1B3D;"></span><span style="width: 3px; height: 7px; background: #0F1B3D;"></span><span style="width: 3px; height: 9px; background: #0F1B3D;"></span><span style="width: 16px; height: 8px; border-radius: 2px; box-shadow: inset 0 0 0 1.5px #0F1B3D; margin-left: 3px; position: relative;"><span style="position: absolute; left: 2px; top: 2px; bottom: 2px; width: 9px; background: #0F1B3D;"></span></span></span></div><div style="flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 6px 14px 10px; background: #FFFFFF; border-bottom: 1px solid #E7EAF3;"><span style="flex: 1; font-size: 15px; font-weight: 800; letter-spacing: -0.2px; white-space: nowrap; overflow: hidden;">Mesajlarım</span></div><div style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 10px; padding: 12px;">
     <div style="display: flex; align-items: center; gap: 5px; "><span style="display: inline-flex; align-items: center; gap: 4px; padding: 5px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap; background: #FFFFFF; color: #0F1B3D; box-shadow: inset 0 0 0 1px #D9DEEC; ">Tümü</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 5px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap; background: #1A237E; color: #FFFFFF; ">Okunmamış · 2</span></div>
@@ -675,18 +688,15 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
     <span style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 10px; border-radius: 10px; font-size: 12px; font-weight: 700; white-space: nowrap; background: #F26A1B; color: #FFFFFF; padding: 11px; font-size: 13px;">Gönder</span>
   </div>
     </div></div></div>
-  </div>
-</section>
-<section id="magazalar" class="tur gri">
-  <div class="kap">
-    <div class="tur-metin">
-      <div class="ust-yazi">MAĞAZALAR</div>
-      <h2>Kimden aldığını bil.</h2>
-      <p class="giris-metin">Her mağazanın puanı, yorumları, ilan sayısı ve ne zamandır ONCEP'te olduğu görünür.</p>
-      <ul class="maddeler"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Puana, ilan sayısına ya da A–Z sırala</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Kendi şehrindekileri ya da tüm Türkiye'yi gör</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Alışverişten sonra mağazayı 1–5 yıldızla puanla</span></li></ul>
-      
     </div>
-    <div class="telefonlar" aria-hidden="true"><div style="width: 264px; height: 540px; flex-shrink: 0; box-sizing: border-box; border-radius: 40px; background: #0F1B3D; padding: 8px; box-shadow: 0 30px 60px rgba(20,27,52,0.22);">
+    <div class="panel" id="magazalar" role="tabpanel" aria-labelledby="sekme-magazalar" tabindex="0">
+      <div class="tur-metin">
+        <h3>Kimden aldığını bil.</h3>
+        <p class="giris-metin">Her mağazanın puanı, yorumları, ilan sayısı ve ne zamandır ONCEP'te olduğu görünür.</p>
+        <ul class="maddeler"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Puana, ilan sayısına ya da A–Z sırala</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Kendi şehrindekileri ya da tüm Türkiye'yi gör</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12l5 5L20 7"></path></svg><span>Alışverişten sonra mağazayı 1–5 yıldızla puanla</span></li></ul>
+        
+      </div>
+      <div class="telefonlar" aria-hidden="true"><div style="width: 264px; height: 540px; flex-shrink: 0; box-sizing: border-box; border-radius: 40px; background: #0F1B3D; padding: 8px; box-shadow: 0 30px 60px rgba(20,27,52,0.22);">
     <div style="width: 100%; height: 100%; border-radius: 32px; overflow: hidden; background: #F5F7FC; display: flex; flex-direction: column; position: relative; font-family: 'Onest', system-ui, sans-serif; color: #0F1B3D;">
       <div style="height: 30px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 11px; font-weight: 700; color: #0F1B3D; background: #FFFFFF;"><span>9:41</span><span style="width: 64px; height: 18px; border-radius: 9px; background: #0F1B3D;"></span><span style="display: flex; gap: 3px; align-items: flex-end;"><span style="width: 3px; height: 5px; background: #0F1B3D;"></span><span style="width: 3px; height: 7px; background: #0F1B3D;"></span><span style="width: 3px; height: 9px; background: #0F1B3D;"></span><span style="width: 16px; height: 8px; border-radius: 2px; box-shadow: inset 0 0 0 1.5px #0F1B3D; margin-left: 3px; position: relative;"><span style="position: absolute; left: 2px; top: 2px; bottom: 2px; width: 9px; background: #0F1B3D;"></span></span></span></div><div style="flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 6px 14px 10px; background: #FFFFFF; border-bottom: 1px solid #E7EAF3;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F1B3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg><span style="flex: 1; font-size: 15px; font-weight: 800; letter-spacing: -0.2px; white-space: nowrap; overflow: hidden;">Mağazalar</span></div><div style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 9px; padding: 12px;">
     <div style="display: flex; align-items: center; gap: 8px; height: 34px; border-radius: 10px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #D9DEEC; padding: 0 10px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6B7390" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg><span style="font-size: 11px; font-weight: 500; color: #6B7390; ">Mağaza veya şehir ara</span></div>
@@ -718,6 +728,7 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
   <span style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 10px; border-radius: 10px; font-size: 12px; font-weight: 700; white-space: nowrap; background: #F26A1B; color: #FFFFFF; padding: 12px; font-size: 13px; margin-top: auto;">Yorumu Gönder</span>
 </div>
     </div></div></div>
+    </div>
   </div>
 </section>
 <section id="guvenlik" class="guv">
@@ -891,6 +902,53 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
   form.addEventListener('change', function (e) {
     if (e.target !== el.marka && e.target !== el.model) guncelle();
   });
+  // 3. adım kapalıyken seçilenlerin özeti; telefonda kapalı başlar.
+  var ekstra = document.querySelector('.ekstra'), ozet = document.querySelector('[data-ozet]');
+  function ozetle() {
+    ozet.textContent = el.pil.options[el.pil.selectedIndex].text + ' · Değişen ' + (el.degisen.value === '1' ? 'var' : 'yok') + ' · Garanti ' + (el.garanti.value === '1' ? 'var' : 'yok');
+  }
+  form.addEventListener('change', ozetle);
+  if (ekstra && window.matchMedia('(max-width: 700px)').matches) ekstra.open = false;
+
+  // Sekmeler: tıklama, ok tuşları ve #sat gibi çapalar.
+  var sekmeler = [].slice.call(document.querySelectorAll('.sekme'));
+  function sec(id, odak) {
+    sekmeler.forEach(function (s) {
+      var on = s.getAttribute('aria-controls') === id;
+      s.setAttribute('aria-selected', on ? 'true' : 'false');
+      s.tabIndex = on ? 0 : -1;
+      s.classList.toggle('acik', on);
+      if (on && odak) s.focus();
+    });
+    [].forEach.call(document.querySelectorAll('.panel'), function (p) { p.classList.toggle('acik', p.id === id); });
+  }
+  sekmeler.forEach(function (s, i) {
+    s.addEventListener('click', function () { sec(s.getAttribute('aria-controls')); });
+    s.addEventListener('keydown', function (e) {
+      var yon = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!yon) return;
+      e.preventDefault();
+      sec(sekmeler[(i + yon + sekmeler.length) % sekmeler.length].getAttribute('aria-controls'), true);
+    });
+  });
+  function bolumeGit() { document.getElementById('ozellikler').scrollIntoView(); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if (!document.getElementById('sekme-' + id)) return;
+    e.preventDefault();
+    sec(id);
+    bolumeGit();
+    history.replaceState(null, '', '#' + id);
+  });
+  function capadanAc() {
+    var id = location.hash.slice(1);
+    if (id && document.getElementById('sekme-' + id)) { sec(id); bolumeGit(); }
+  }
+  window.addEventListener('hashchange', capadanAc);
+  capadanAc();
+
   // Mobil menü: bağlantıya dokununca kapansın.
   var menu = document.querySelector('.menu');
   if (menu) menu.addEventListener('click', function (e) { if (e.target.closest('a')) menu.removeAttribute('open'); });
