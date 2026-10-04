@@ -102,7 +102,7 @@ function acilis() {
       <p class="ozet">İlanını koy. Şehrindeki onaylı telefoncular teklif versin. Teklifleri yan yana gör, en iyisini seç, mağazada elden teslim et.</p>
       <div class="dugmeler"><a class="dugme turuncu" href="#indir">Uygulama çıkınca haber ver</a><a class="dugme acik" href="#magaza">Mağazam var</a></div>
       <div class="sayilar"><div><b>0 TL</b>komisyon</div><div><b>Kargo yok</b>elden teslim</div><div><b>30 gün</b>ilan yayında</div></div>
-      <div class="kisayollar">${kisayol('#hesap', 'Telefonun kaç eder?', 'Hemen hesapla', 'calc')}${kisayol('#gez', 'Mağazaları gez', 'Bütün vitrinler tek ekranda', 'store')}</div>
+      <div class="kisayollar">${kisayol('#hesap', 'Gerçek değerini öğren', 'Hemen hesapla', 'calc')}${kisayol('#gez', 'Mağazaları gez', 'Bütün vitrinler tek ekranda', 'store')}</div>
     </div>
     <div class="acilis-tel" aria-hidden="true">${acilisTel()}</div>
   </div>
@@ -126,7 +126,7 @@ function hesap() {
   <div class="kap">
     <div class="hesap-metin">
       <div class="ust-yazi acik">TELEFON DEĞERİ HESAPLA</div>
-      <h2>Telefonun kaç eder? Satmadan önce öğren.</h2>
+      <h2>Satmadan önce telefonunun gerçek değerini öğren.</h2>
       <p>Modelini ve durumunu seç; mağazaya satarsan ne alacağını, mağazadan alırsan ne ödeyeceğini gör.</p>
       <ol class="adim-liste">${adim(1, 'Hangi telefon?', 'Marka, model, depolama.')}${adim(2, 'Ekran ve kasa', 'Beş basamaktan birini seç.')}${adim(3, 'Pil ve ekstralar', 'İstersen pil sağlığı, değişen parça, garanti.')}</ol>
     </div>
@@ -349,7 +349,7 @@ function alt() {
   <div class="kap">
     <div class="alt-ust">
       <div class="alt-yazi">
-        <h2>Satmadan önce kaç ettiğini gör. Almadan önce bütün vitrinleri gez.</h2>
+        <h2>Satmadan önce gerçek değerini öğren. Almadan önce bütün vitrinleri gez.</h2>
         <p>Uygulama yakında Google Play ve App Store'da. Çıktığı gün Instagram ve TikTok'ta duyuracağız.</p>
       </div>
       <div class="rozetler">
@@ -797,7 +797,7 @@ const BETIK = `
 `;
 
 // ---------- Sayfa ----------
-const ACIKLAMA = "Telefonun kaç eder, hemen gör. İlanını koy, şehrindeki onaylı telefoncular teklif versin; mağazaların vitrinini gezmeden gez. Yakında Google Play ve App Store'da.";
+const ACIKLAMA = "Telefonunun gerçek değerini öğren. İlanını koy, şehrindeki onaylı telefoncular teklif versin; mağazaların vitrinini gezmeden gez. Yakında Google Play ve App Store'da.";
 const BASLIK = 'ONCEP — Telefonunu sat, mağazalar teklif versin';
 
 const html = `<!DOCTYPE html>
