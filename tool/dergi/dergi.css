@@ -133,7 +133,7 @@ p.giris.acik, .ornek-notu.acik, .durust.acik { color: var(--acik-metin) !importa
   padding: 16mm 17mm;
 }
 .kapak-ust { display: flex; justify-content: space-between; align-items: flex-start; }
-.kapak .logo { height: 17mm; }
+.kapak .logo { height: 9mm; }
 .kunye { font-family: var(--mono); font-size: 7.5pt; letter-spacing: 0.16em; text-align: right; color: var(--acik-metin); line-height: 1.7; }
 .kapak-govde { margin-top: 26mm; max-width: 118mm; position: relative; z-index: 2; }
 .kapak h1 {
@@ -386,7 +386,7 @@ tr.biz .isaret.var circle { fill: var(--turuncu); }
   display: flex; flex-direction: column; justify-content: space-between;
   padding: 26mm 17mm 16mm;
 }
-.arka .logo { height: 22mm; }
+.arka .logo { height: 13mm; }
 .arka-slogan em { font-style: italic; color: #FFB27F; }
 .arka-slogan { margin-top: 14mm; font-family: var(--baslik); font-size: 30pt; line-height: 1.15; color: var(--acik); font-weight: 700; max-width: 150mm; }
 .arka-iletisim { margin-top: 20mm; display: flex; gap: 10mm; align-items: center; }
