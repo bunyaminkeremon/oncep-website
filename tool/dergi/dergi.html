@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ONCEP Tanıtım Dosyası</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=block">
+<style>
+/* ONCEP tanıtım dergisi — A4 baskı.
+   Renkler sitedeki (sayfa.css) ve uygulamadaki marka renkleri. Türkçe büyük
+   harf tuzağı yüzünden text-transform: uppercase KULLANILMIYOR; büyük harfli
+   etiketler metinde büyük yazıldı. Basılı nesne: tek tema, her renk açık. */
+
+@page { size: 210mm 297mm; margin: 0; }
+
+:root {
+  --gece: #0B1033;
+  --lacivert: #1A237E;
+  --lacivert-2: #26308F;
+  --turuncu: #F26A1B;
+  --turuncu-soluk: #FDE7D8;
+  --kagit: #FFFFFF;
+  --sis: #F2F4FA;
+  --murekkep: #0F1B3D;
+  --metin: #3E4866;
+  --soluk: #6B7390;
+  --cizgi: #DCE1EE;
+  --acik: #FFFFFF;
+  --acik-metin: #C3C9EC;
+  --acik-soluk: #8C94C4;
+  --baslik: 'Fraunces', 'Georgia', serif;
+  --yazi: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: #D5D9E6;
+  color: var(--murekkep);
+  font-family: var(--yazi);
+  font-size: 10.5pt;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.kitap { display: flex; flex-direction: column; align-items: center; gap: 10mm; padding: 10mm 0; }
+
+.sayfa {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  background: var(--kagit);
+  padding: 18mm 17mm 22mm;
+  box-shadow: 0 2mm 8mm rgba(11, 16, 51, 0.18);
+  break-after: page;
+  page-break-after: always;
+}
+
+@media print {
+  body { background: none; }
+  .kitap { display: block; padding: 0; zoom: 1 !important; }
+  .sayfa { box-shadow: none; margin: 0; }
+}
+
+/* ---------- tipografi ---------- */
+h1, h2, h3 { margin: 0; font-weight: 700; text-wrap: balance; }
+h2 {
+  font-family: var(--baslik);
+  font-optical-sizing: auto;
+  font-size: 34pt;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: var(--murekkep);
+}
+h2.buyuk { font-size: 42pt; }
+h2 em, h1 em { font-style: italic; color: var(--turuncu); font-weight: 700; }
+h3 { font-size: 11.5pt; line-height: 1.3; font-weight: 700; color: var(--murekkep); }
+p { margin: 0; }
+
+.ust-etiket {
+  font-family: var(--mono);
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--turuncu);
+  margin-bottom: 5mm;
+}
+.giris { font-size: 13pt; line-height: 1.5; color: var(--metin); margin-top: 6mm; max-width: 120mm; }
+.giris.genis { max-width: 150mm; }
+.kaynak { font-family: var(--mono); font-size: 6.6pt; line-height: 1.45; color: var(--soluk); margin-top: 2.5mm; }
+.ornek-notu { font-size: 7.5pt; color: var(--soluk); margin-top: 6mm; font-style: italic; }
+.durust {
+  font-size: 8.5pt;
+  line-height: 1.5;
+  color: var(--metin);
+  border-left: 0.8mm solid var(--turuncu);
+  padding: 1mm 0 1mm 4mm;
+  margin-top: 7mm;
+  max-width: 150mm;
+}
+
+.acik { color: var(--acik) !important; }
+p.giris.acik, .ornek-notu.acik, .durust.acik { color: var(--acik-metin) !important; }
+.ust-etiket.acik { color: var(--turuncu) !important; }
+
+/* ---------- folyo ---------- */
+.folyo {
+  position: absolute;
+  left: 17mm; right: 17mm; bottom: 9mm;
+  display: flex; justify-content: space-between;
+  font-family: var(--mono); font-size: 6.8pt; letter-spacing: 0.06em;
+  color: var(--soluk);
+  border-top: 0.25mm solid var(--cizgi);
+  padding-top: 2.5mm;
+}
+.koyu .folyo, .magaza-tarafi .folyo, .pazar .folyo, .teknoloji .folyo { color: var(--acik-soluk); border-color: rgba(255, 255, 255, 0.14); }
+
+/* ---------- cihaz çerçevesi ---------- */
+.cihaz {
+  margin: 0;
+  width: var(--g);
+  padding: calc(var(--g) * 0.03);
+  background: #101218;
+  border-radius: calc(var(--g) * 0.16);
+  box-shadow: 0 5mm 12mm rgba(11, 16, 51, 0.26), inset 0 0 0 0.45mm #2C303C;
+  flex-shrink: 0;
+}
+.cihaz img { display: block; width: 100%; border-radius: calc(var(--g) * 0.13); }
+
+/* ---------- 1 kapak ---------- */
+.kapak {
+  background:
+    radial-gradient(120mm 120mm at 105% 72%, rgba(38, 48, 143, 0.9), transparent 70%),
+    radial-gradient(90mm 90mm at -10% 110%, rgba(242, 106, 27, 0.18), transparent 70%),
+    var(--gece);
+  color: var(--acik);
+  padding: 16mm 17mm;
+}
+.kapak-ust { display: flex; justify-content: space-between; align-items: flex-start; }
+.kapak .logo { height: 17mm; }
+.kunye { font-family: var(--mono); font-size: 7.5pt; letter-spacing: 0.16em; text-align: right; color: var(--acik-metin); line-height: 1.7; }
+.kapak-govde { margin-top: 26mm; max-width: 118mm; position: relative; z-index: 2; }
+.kapak h1 {
+  font-family: var(--baslik);
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-size: 52pt;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--acik);
+}
+.kapak-giris { margin-top: 8mm; font-size: 11.5pt; line-height: 1.55; color: var(--acik-metin); max-width: 88mm; }
+.kapak-cihazlar { position: absolute; right: 9mm; top: 112mm; }
+.kapak-cihazlar .on { transform: rotate(4deg); box-shadow: 0 8mm 20mm rgba(0, 0, 0, 0.45), inset 0 0 0 0.45mm #2C303C; }
+.kapak-serit {
+  position: absolute; left: 17mm; width: 112mm; bottom: 14mm;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm;
+  list-style: none; margin: 0; padding: 5mm 0 0;
+  border-top: 0.3mm solid rgba(255, 255, 255, 0.2);
+  font-size: 9pt; color: var(--acik-metin);
+}
+.kapak-serit b { display: block; font-family: var(--baslik); font-size: 15pt; color: var(--acik); font-weight: 700; white-space: nowrap; }
+
+/* ---------- 2 bir bakışta ---------- */
+.bakis { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 12mm; }
+.bakis h2 { font-size: 32pt; }
+.bakis-liste { margin: 10mm 0 0; display: grid; gap: 6mm; }
+.bakis-liste div { display: grid; grid-template-columns: 26mm 1fr; gap: 4mm; border-top: 0.25mm solid var(--cizgi); padding-top: 3.5mm; }
+.bakis-liste dt { font-family: var(--mono); font-size: 7.5pt; font-weight: 700; letter-spacing: 0.08em; color: var(--lacivert); padding-top: 0.8mm; }
+.bakis-liste dd { margin: 0; font-size: 10pt; color: var(--metin); }
+.icindekiler { background: var(--sis); border-radius: 4mm; padding: 8mm 7mm; align-self: start; }
+.icindekiler ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.2mm; }
+.icindekiler li { display: grid; grid-template-columns: 9mm 1fr; column-gap: 2mm; }
+.ic-no { grid-row: span 2; font-family: var(--baslik); font-size: 14pt; font-weight: 700; color: var(--turuncu); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.ic-bas { font-weight: 700; font-size: 10pt; }
+.ic-alt { font-size: 8pt; color: var(--soluk); line-height: 1.35; }
+
+/* ---------- 3 sorun ---------- */
+.sorun { display: flex; flex-direction: column; }
+.sorunlar { margin-top: 16mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 7mm; }
+.sorunlar article { border-top: 1mm solid var(--lacivert); padding-top: 4mm; }
+.sorunlar h3 { font-family: var(--baslik); font-size: 18pt; line-height: 1.12; margin-bottom: 3mm; }
+.sorunlar p { font-size: 10.5pt; color: var(--metin); }
+.sorun-veri { margin-top: auto; margin-bottom: 4mm; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 7mm; }
+.rakam-blok { background: var(--sis); border-radius: 4mm; padding: 9mm 8mm; }
+.rakam-blok p:not(.rakam):not(.kaynak) { font-size: 10.5pt; color: var(--metin); }
+.rakam {
+  font-family: var(--baslik);
+  font-weight: 800;
+  font-size: 56pt;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--lacivert);
+  margin-bottom: 3mm;
+  font-variant-numeric: lining-nums;
+}
+.rakam small { font-size: 0.42em; font-weight: 700; letter-spacing: 0; }
+
+/* ---------- 4 çözüm ---------- */
+.cozum { display: flex; flex-direction: column; }
+.akislar { margin-top: 14mm; flex: 1; display: grid; grid-template-columns: 1fr 1fr 0.9fr; gap: 7mm; }
+.akis h3 { font-family: var(--baslik); font-size: 18pt; margin-bottom: 5mm; padding-bottom: 3mm; border-bottom: 0.3mm solid var(--cizgi); }
+.akis ol { list-style: none; margin: 0; padding: 0; counter-reset: adim; display: grid; gap: 7mm; }
+.akis li { counter-increment: adim; position: relative; padding-left: 9mm; font-size: 10.3pt; color: var(--metin); }
+.akis li::before {
+  content: counter(adim);
+  position: absolute; left: 0; top: -0.6mm;
+  width: 6.2mm; height: 6.2mm; border-radius: 50%;
+  background: var(--turuncu); color: #fff;
+  font-family: var(--mono); font-size: 7.5pt; font-weight: 700;
+  display: grid; place-items: center;
+}
+.akis li b { color: var(--murekkep); display: block; }
+.akis-magaza { background: var(--lacivert); color: var(--acik); border-radius: 4mm; padding: 8mm 6mm; align-self: stretch; margin-bottom: 4mm; display: flex; flex-direction: column; }
+.akis-magaza h3 { color: var(--acik); border-color: rgba(255, 255, 255, 0.2); }
+.akis-magaza p { font-size: 10.3pt; color: var(--acik-metin); margin-bottom: 4mm; }
+.akis-magaza .akis-not { color: var(--acik); font-weight: 600; border-top: 0.3mm solid rgba(255, 255, 255, 0.2); padding-top: 5mm; margin: auto 0 0; }
+
+/* ---------- ürün sayfaları ---------- */
+.urun .ozellik { list-style: none; margin: 8mm 0 0; padding: 0; display: grid; gap: 4.5mm; }
+.urun .ozellik li { font-size: 10.3pt; color: var(--metin); padding-left: 5mm; border-left: 0.6mm solid var(--turuncu); }
+.urun .ozellik b { display: block; color: var(--murekkep); font-size: 11pt; margin-bottom: 0.5mm; }
+
+.urun-tek { display: grid; grid-template-columns: auto 1fr; gap: 14mm; align-items: center; }
+.urun-tek.ters { grid-template-columns: 1fr auto; }
+.urun-tek .urun-cihazlar { display: flex; justify-content: center; }
+.urun-tek.vurgu { background: var(--sis); }
+
+.urun-iki { display: flex; flex-direction: column; }
+.urun-iki .urun-metin { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12mm; }
+.urun-iki .urun-metin .ust-etiket, .urun-iki .urun-metin h2 { grid-column: 1; }
+.urun-iki .urun-metin .giris { grid-column: 1; grid-row: 3; margin-top: 5mm; }
+.urun-iki .urun-metin .ozellik { grid-column: 2; grid-row: 1 / span 4; margin-top: 0; align-self: end; }
+.urun-iki .urun-metin .ornek-notu { grid-column: 1; grid-row: 4; margin-top: 4mm; }
+.urun-iki .urun-cihazlar { margin-top: auto; margin-bottom: 4mm; display: flex; justify-content: center; gap: 14mm; align-items: flex-start; }
+.urun-iki .urun-cihazlar .asagi { margin-top: 12mm; }
+.urun-iki .cihaz { --g: 62mm !important; }
+
+/* adım şeridi (6–9) */
+.urun-tek.serili { grid-template-rows: 1fr auto; row-gap: 6mm; align-items: center; }
+.urun-tek.serili h2 { font-size: 30pt; }
+.urun-tek.serili .giris { font-size: 11.5pt; margin-top: 4mm; }
+.urun-tek.serili .ozellik { margin-top: 5mm; gap: 3mm; }
+.urun-tek.serili .ozellik li { font-size: 9.4pt; }
+.urun-tek.serili .ornek-notu { margin-top: 4mm; }
+.adim-serit {
+  grid-column: 1 / -1; align-self: end;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm;
+  border-top: 0.3mm solid var(--cizgi); padding-top: 6mm;
+}
+.adim-serit figure { margin: 0; display: flex; flex-direction: column; align-items: center; }
+.cihaz.mini { box-shadow: 0 3mm 7mm rgba(11, 16, 51, 0.22), inset 0 0 0 0.4mm #2C303C; }
+.adim-serit figcaption { margin-top: 3.5mm; font-size: 8.3pt; line-height: 1.35; color: var(--metin); text-align: center; max-width: 50mm; }
+.adim-serit figcaption b { display: block; font-size: 9.5pt; color: var(--murekkep); margin-bottom: 0.5mm; }
+
+/* ---------- 12 mağaza tarafı ---------- */
+.magaza-tarafi { background: var(--lacivert); }
+.magaza-tarafi h2 em { color: #FFB27F; }
+.uclu { margin-top: 12mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; justify-items: center; }
+.uclu figure { margin: 0; display: flex; flex-direction: column; align-items: center; }
+.uclu .cihaz { box-shadow: 0 6mm 14mm rgba(0, 0, 0, 0.35), inset 0 0 0 0.45mm #2C303C; }
+.uclu figcaption { margin-top: 6mm; font-size: 8.5pt; color: var(--acik-metin); text-align: center; max-width: 50mm; }
+.uclu figcaption b { display: block; color: var(--acik); font-size: 10pt; margin-bottom: 0.5mm; }
+
+/* ---------- 13 güven ---------- */
+.guven { display: grid; grid-template-columns: 1fr auto; gap: 12mm; align-items: center; }
+.guven-liste { list-style: none; margin: 8mm 0 0; padding: 0; display: grid; gap: 2.6mm; }
+.guven-liste li { position: relative; padding-left: 7mm; font-size: 9.8pt; color: var(--murekkep); }
+.guven-liste li::before {
+  content: ''; position: absolute; left: 0; top: 1.2mm;
+  width: 3.4mm; height: 1.8mm;
+  border-left: 0.6mm solid var(--turuncu); border-bottom: 0.6mm solid var(--turuncu);
+  transform: rotate(-45deg);
+}
+
+/* ---------- 14 pazar ---------- */
+.pazar {
+  background:
+    radial-gradient(120mm 90mm at 100% 0%, rgba(38, 48, 143, 0.85), transparent 70%),
+    var(--gece);
+}
+.pazar h2 em { color: #FFB27F; }
+.rakamlar { margin-top: 11mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; }
+.rakam-kart { background: rgba(255, 255, 255, 0.06); border: 0.25mm solid rgba(255, 255, 255, 0.12); border-radius: 4mm; padding: 6mm 5mm 5mm; }
+.rakam-kart .rakam { color: var(--acik); font-size: 27pt; }
+.rakam-kart .rakam small { color: #FFB27F; }
+.rakam-kart p:not(.rakam):not(.kaynak) { font-size: 8.4pt; line-height: 1.45; color: var(--acik-metin); }
+.rakam-kart .kaynak { color: var(--acik-soluk); }
+.pazar .durust { border-color: #FFB27F; }
+
+/* ---------- 15 rekabet ---------- */
+.rekabet { display: flex; flex-direction: column; padding-bottom: 0; }
+.matris-kap { margin-top: 9mm; }
+table.matris { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+table.matris thead th {
+  font-family: var(--mono); font-size: 6.8pt; font-weight: 700; letter-spacing: 0.04em; line-height: 1.35;
+  color: var(--soluk); text-align: center; vertical-align: bottom; padding: 0 2mm 3mm;
+  border-bottom: 0.4mm solid var(--murekkep);
+}
+table.matris thead th:first-child { width: 50mm; }
+table.matris tbody th { text-align: left; padding: 2.4mm 3mm 2.4mm 0; border-bottom: 0.25mm solid var(--cizgi); font-weight: 400; }
+table.matris tbody th b { display: block; font-size: 10pt; color: var(--murekkep); }
+table.matris tbody th span { display: block; font-size: 7.8pt; color: var(--soluk); line-height: 1.3; margin-top: 0.5mm; }
+table.matris td { text-align: center; vertical-align: middle; border-bottom: 0.25mm solid var(--cizgi); }
+table.matris tr.biz th, table.matris tr.biz td { background: var(--lacivert); border-bottom: 0; }
+table.matris tr.biz th { padding-left: 4mm; border-radius: 3mm 0 0 3mm; }
+table.matris tr.biz td:last-child { border-radius: 0 3mm 3mm 0; }
+table.matris tr.biz th b { color: var(--acik); font-family: var(--baslik); font-size: 14pt; }
+table.matris tr.biz th span { color: var(--acik-metin); }
+.isaret { width: 6.2mm; height: 6.2mm; display: inline-block; vertical-align: middle; }
+.isaret.var circle { fill: var(--lacivert); }
+.isaret.var path { fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.isaret.kismen circle { fill: none; stroke: var(--lacivert); stroke-width: 1.6; }
+.isaret.kismen path { fill: var(--lacivert); }
+.isaret.yok path { stroke: var(--cizgi); stroke-width: 2.4; stroke-linecap: round; }
+tr.biz .isaret.var circle { fill: var(--turuncu); }
+.matris-anahtar { margin-top: 3mm; font-size: 7.8pt; color: var(--soluk); display: flex; align-items: center; gap: 1.5mm; }
+.matris-anahtar .isaret { width: 4mm; height: 4mm; }
+.matris-anahtar span { width: 3mm; }
+.fark-cumle {
+  margin-top: 7mm; font-family: var(--baslik); font-weight: 700; font-size: 16pt; line-height: 1.25;
+  color: var(--murekkep); border-left: 1.2mm solid var(--turuncu); padding-left: 6mm; text-wrap: balance;
+  margin-bottom: 8mm;
+}
+.yatirim-serit {
+  margin: auto -17mm 0; padding: 8mm 17mm 23mm;
+  background: var(--gece);
+}
+.yatirim-serit .kutu-etiket { color: #FFB27F; }
+.kutu-etiket { font-family: var(--mono); font-size: 7.5pt; font-weight: 700; letter-spacing: 0.16em; margin-bottom: 3mm; }
+.yatirim-ikili { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
+.yatirim-ikili .rakam { color: var(--acik); font-size: 40pt; margin-bottom: 1mm; }
+.yatirim-ikili .rakam small { color: #FFB27F; }
+.yatirim-ikili p:not(.rakam) { font-size: 9.5pt; color: var(--acik-metin); }
+.yatirim-ikili b { color: var(--acik); }
+.yatirim-serit .kaynak { color: var(--acik-soluk); margin-top: 4mm; }
+.rekabet .folyo { color: var(--acik-soluk); border-color: rgba(255, 255, 255, 0.14); }
+
+/* ---------- 16 iş modeli ---------- */
+.model { display: flex; flex-direction: column; }
+.planlar { margin-top: 12mm; display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+.plan { border: 0.4mm solid var(--lacivert); border-radius: 4mm; padding: 10mm 8mm; min-height: 42mm; display: flex; flex-direction: column; justify-content: flex-end; }
+.plan:nth-child(2) { background: var(--lacivert); }
+.plan:nth-child(2) .plan-ad { color: var(--acik); }
+.plan:nth-child(2) .plan-alt { color: var(--acik-metin); }
+.plan-ad { font-family: var(--baslik); font-size: 28pt; font-weight: 700; color: var(--lacivert); }
+.plan-alt { margin-top: 2mm; font-size: 10.5pt; color: var(--metin); }
+.plan-icerik { margin-top: 12mm; }
+.plan-icerik h3, .model-neden h3 { font-family: var(--baslik); font-size: 14pt; margin-bottom: 3mm; }
+.plan-icerik ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm 8mm; }
+.plan-icerik li { font-size: 10.3pt; color: var(--metin); padding-left: 5mm; position: relative; }
+.plan-icerik li::before { content: ''; position: absolute; left: 0; top: 1.9mm; width: 2mm; height: 2mm; border-radius: 50%; background: var(--turuncu); }
+.model-neden { margin-top: auto; background: var(--sis); border-radius: 4mm; padding: 7mm; }
+.model-neden p { font-size: 10.5pt; color: var(--metin); }
+
+/* ---------- 17 teknoloji ---------- */
+.teknoloji { background: var(--gece); display: flex; flex-direction: column; }
+.teknoloji h2 em { color: #FFB27F; }
+.teknoloji-izgara { margin-top: 12mm; display: grid; grid-template-columns: repeat(2, 1fr); gap: 5mm; }
+.tek-kart { background: rgba(255, 255, 255, 0.06); border: 0.25mm solid rgba(255, 255, 255, 0.12); border-radius: 4mm; padding: 6mm; }
+.tek-kart h3 { color: var(--acik); font-family: var(--baslik); font-size: 15pt; margin-bottom: 2mm; }
+.tek-kart p { font-size: 10pt; color: var(--acik-metin); }
+.tek-kart.rakamli .rakam { color: #FFB27F; font-size: 44pt; }
+.tek-kart.genis { grid-column: 1 / -1; }
+.iki-sutun { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm 8mm; }
+.iki-sutun li { font-size: 10pt; color: var(--acik-metin); padding-left: 5mm; position: relative; }
+.iki-sutun li::before { content: ''; position: absolute; left: 0; top: 1.8mm; width: 2mm; height: 2mm; border-radius: 50%; background: var(--turuncu); }
+
+/* ---------- 18 yol haritası ---------- */
+.yol { display: flex; flex-direction: column; }
+.zaman { margin-top: 14mm; align-items: start; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; }
+.evre { border-radius: 4mm; padding: 9mm 7mm; }
+.evre ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 5mm; }
+.evre li { font-size: 10.5pt; line-height: 1.4; }
+.evre-ad { font-family: var(--baslik); font-size: 21pt; font-weight: 700; margin-bottom: 5mm; }
+.evre.bitti { background: var(--lacivert); }
+.evre.bitti .evre-ad { color: var(--acik); }
+.evre.bitti li { color: var(--acik-metin); }
+.evre.simdi { background: var(--turuncu-soluk); border: 0.4mm solid var(--turuncu); }
+.evre.simdi .evre-ad { color: var(--turuncu); }
+.evre.sonra { background: var(--sis); }
+.evre.sonra .evre-ad { color: var(--lacivert); }
+.evre.simdi li, .evre.sonra li { color: var(--metin); }
+
+/* ---------- 19 arka kapak ---------- */
+.arka {
+  background:
+    radial-gradient(110mm 110mm at 0% 100%, rgba(38, 48, 143, 0.9), transparent 70%),
+    var(--gece);
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 26mm 17mm 16mm;
+}
+.arka .logo { height: 22mm; }
+.arka-slogan em { font-style: italic; color: #FFB27F; }
+.arka-slogan { margin-top: 14mm; font-family: var(--baslik); font-size: 30pt; line-height: 1.15; color: var(--acik); font-weight: 700; max-width: 150mm; }
+.arka-iletisim { margin-top: 20mm; display: flex; gap: 10mm; align-items: center; }
+.qr { width: 32mm; height: 32mm; background: #fff; padding: 3mm; border-radius: 3mm; }
+.qr svg { display: block; width: 100%; height: 100%; }
+.arka-iletisim dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2mm 6mm; }
+.arka-iletisim dt { font-family: var(--mono); font-size: 7.5pt; letter-spacing: 0.12em; color: var(--acik-soluk); padding-top: 1.5mm; }
+.arka-iletisim dd { margin: 0; font-size: 14pt; font-weight: 600; color: var(--acik); }
+.arka-not { font-size: 7.5pt; line-height: 1.5; color: var(--acik-soluk); max-width: 150mm; border-top: 0.25mm solid rgba(255, 255, 255, 0.15); padding-top: 4mm; }
+
+.yol-alinti { margin-top: auto; margin-bottom: 6mm; font-family: var(--baslik); font-weight: 700; font-size: 26pt; line-height: 1.15; color: var(--lacivert); max-width: 150mm; border-top: 1mm solid var(--turuncu); padding-top: 7mm; text-wrap: balance; }
+.yigin { margin-top: auto; margin-bottom: 6mm; font-family: var(--mono); font-size: 9pt; letter-spacing: 0.08em; color: var(--acik-soluk); border-top: 0.25mm solid rgba(255, 255, 255, 0.15); padding-top: 5mm; }
+
+</style>
+</head>
+<body>
+<main class="kitap">
+
+<section class="sayfa kapak">
+
+  <header class="kapak-ust">
+    <img class="logo" src="gorseller/logo-acik.png" alt="ONCEP">
+    <p class="kunye">TANITIM DOSYASI<br>EKİM 2026</p>
+  </header>
+  <div class="kapak-govde">
+    <h1>İkinci el<br>telefonun<br><em>yeni<br>pazar yeri.</em></h1>
+    <p class="kapak-giris">ONCEP, telefonunu satmak isteyeni şehrindeki onaylı telefoncularla buluşturur. Mağazalar teklif verir; teklifler yan yana, teslim mağazada, elden.</p>
+  </div>
+  <div class="kapak-cihazlar">
+    <figure class="cihaz on" style="--g:74mm"><img src="ekranlar/03-ilanim_teklifler.png" alt=""></figure>
+  </div>
+  <ul class="kapak-serit">
+    <li><b>0 TL</b> komisyon</li>
+    <li><b>Kargo yok</b> elden teslim</li>
+    <li><b>Onaylı</b> telefoncular</li>
+  </ul>
+
+
+</section>
+
+<section class="sayfa bakis">
+
+  <div class="bakis-sol">
+    <p class="ust-etiket">BİR BAKIŞTA</p>
+    <h2>Mahallendeki<br>telefoncular,<br><em>cebinde.</em></h2>
+    <dl class="bakis-liste">
+      <div><dt>Ne</dt><dd>Kullanıcı telefonunu ilana koyar, aynı şehirdeki onaylı telefoncular teklif verir. Kullanıcı teklifleri karşılaştırır, telefonu mağazada elden teslim eder.</dd></div>
+      <div><dt>Kimin için</dt><dd>Telefonunu satmak ya da ikinci el almak isteyenler; kullanıcıya ulaşmak isteyen telefoncular.</dd></div>
+      <div><dt>Nasıl kazanır</dt><dd>Telefoncular aylık ya da yıllık abonelik öder. Kullanıcı için ücretsiz, satıştan komisyon yok.</dd></div>
+      <div><dt>Bugün</dt><dd>Android uygulaması hazır, sunucu ve web sitesi (oncep.com.tr) canlı. Mağazalarda yayın için şirket geliştirici hesabı bekleniyor.</dd></div>
+    </dl>
+  </div>
+  <nav class="icindekiler">
+    <p class="ust-etiket">İÇİNDEKİLER</p>
+    <ol>
+      <li><span class="ic-no">01</span><span class="ic-bas">Kapak</span><span class="ic-alt">İkinci el telefonun yeni pazar yeri</span></li><li><span class="ic-no">02</span><span class="ic-bas">Bir bakışta</span><span class="ic-alt">Mahallendeki telefoncular, cebinde</span></li><li><span class="ic-no">03</span><span class="ic-bas">Sorun</span><span class="ic-alt">Telefon satmak neden yorucu?</span></li><li><span class="ic-no">04</span><span class="ic-bas">Çözüm</span><span class="ic-alt">Üç taraf, tek uygulama</span></li><li><span class="ic-no">05</span><span class="ic-bas">Keşfet</span><span class="ic-alt">Bütün vitrinler tek ekranda</span></li><li><span class="ic-no">06</span><span class="ic-bas">Değer hesapla</span><span class="ic-alt">Gerçek değerini öğren</span></li><li><span class="ic-no">07</span><span class="ic-bas">İlan ver</span><span class="ic-alt">Dört adım, bir dakika</span></li><li><span class="ic-no">08</span><span class="ic-bas">Teklifler</span><span class="ic-alt">Karar kullanıcıda</span></li><li><span class="ic-no">09</span><span class="ic-bas">Mesajlaşma</span><span class="ic-alt">Mağaza bir mesaj uzağında</span></li><li><span class="ic-no">10</span><span class="ic-bas">Karşılaştır</span><span class="ic-alt">İki telefon yan yana</span></li><li><span class="ic-no">11</span><span class="ic-bas">Mağazalar</span><span class="ic-alt">Kimden aldığını bil</span></li><li><span class="ic-no">12</span><span class="ic-bas">Telefoncular</span><span class="ic-alt">İlanlar kendisi gelir</span></li><li><span class="ic-no">13</span><span class="ic-bas">Güven</span><span class="ic-alt">Onay, inceleme, gizlilik</span></li><li><span class="ic-no">14</span><span class="ic-bas">Pazar</span><span class="ic-alt">Rakamlarla ikinci el telefon</span></li><li><span class="ic-no">15</span><span class="ic-bas">Rekabet</span><span class="ic-alt">Kim ne yapıyor, farkımız ne</span></li><li><span class="ic-no">16</span><span class="ic-bas">İş modeli</span><span class="ic-alt">Mağaza aboneliği</span></li><li><span class="ic-no">17</span><span class="ic-bas">Teknoloji</span><span class="ic-alt">Altyapı ve güvenlik</span></li><li><span class="ic-no">18</span><span class="ic-bas">Yol haritası</span><span class="ic-alt">Bugün neredeyiz</span></li><li><span class="ic-no">19</span><span class="ic-bas">Arka kapak</span><span class="ic-alt">İletişim</span></li>
+    </ol>
+  </nav>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası</span><span>02</span></footer>
+</section>
+
+<section class="sayfa sorun">
+
+  <p class="ust-etiket">SORUN</p>
+  <h2 class="buyuk">Telefon satmak<br>neden bu kadar yorucu?</h2>
+  <div class="sorunlar">
+    <article>
+      <h3>Dükkân dükkân gezmek</h3>
+      <p>Telefonunun gerçek değerini öğrenmenin tek yolu telefoncuları tek tek dolaşmak. Her dükkân başka bir fiyat söylüyor, karşılaştırmak için yeniden yola çıkmak gerekiyor.</p>
+    </article>
+    <article>
+      <h3>İlk teklif, son teklif</h3>
+      <p>Satıcı piyasayı göremeyince pazarlık gücü telefoncuda kalıyor. Kimse elindeki teklifi başka bir mağazanınkiyle yan yana koyamıyor.</p>
+    </article>
+    <article>
+      <h3>İnternette güven sorunu</h3>
+      <p>İlan sitelerinde satıcıyı sahte dekont ve kapora tuzakları bekliyor. İstanbul'da bir çete, çevrim içi ilan veren ikinci el iPhone satıcılarını hedef aldı; dosyada 12 olay var.</p>
+      <p class="kaynak">Sabah, 5 Ekim 2025.</p>
+    </article>
+  </div>
+  <div class="sorun-veri">
+    <div class="rakam-blok">
+      <p class="rakam">594<small> milyon TL</small></p>
+      <p>2025'te çevrim içi bireyden bireye satışta (yenilenmiş hariç) en çok satılan ürün: <b>cep telefonu</b>. Elden yapılan satışlar bu rakama dahil değil.</p>
+      <p class="kaynak">Ticaret Bakanlığı, Türkiye'de E-Ticaretin Görünümü (12 Mayıs 2026); ürün kırılımı Bigpara, Mayıs 2026.</p>
+    </div>
+    <div class="rakam-blok">
+      <p class="rakam">2026</p>
+      <p>BTK çift ve klon IMEI'li telefonları kapatmaya başladı. Ne aldığını bilmek artık alıcı için daha da önemli.</p>
+      <p class="kaynak">Gazete Oksijen, 13 Nisan 2026.</p>
+    </div>
+  </div>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Sorun</span><span>03</span></footer>
+</section>
+
+<section class="sayfa cozum">
+
+  <p class="ust-etiket">ÇÖZÜM</p>
+  <h2 class="buyuk">Üç taraf,<br><em>tek uygulama.</em></h2>
+  <div class="akislar">
+    <section class="akis">
+      <h3>Satmak isteyen</h3>
+      <ol>
+        <li><b>Gerçek değerini öğrenir.</b> Model ve durumu seçer, uygulamadaki gerçek teklif ve ilanlara göre fiyat aralığını görür.</li>
+        <li><b>Dört adımda ilan verir.</b> Telefon, cihaz durumu, fotoğraf ve fiyat, konum. İlan yayına girmeden incelenir.</li>
+        <li><b>Teklifleri toplar.</b> Aynı şehirdeki onaylı telefoncular 30 gün boyunca teklif verir.</li>
+        <li><b>Seçer.</b> Teklifleri yan yana görür; kabul eder, reddeder ya da karşı teklif verir.</li>
+        <li><b>Mağazada teslim eder.</b> Kargo yok. Telefon ve ödeme yüz yüze el değiştirir.</li>
+      </ol>
+    </section>
+    <section class="akis">
+      <h3>Almak isteyen</h3>
+      <ol>
+        <li><b>Vitrinleri gezer.</b> Şehrindeki onaylı mağazaların satıştaki telefonları tek ekranda.</li>
+        <li><b>Süzer ve karşılaştırır.</b> Pil sağlığı, ekran ve kasa puanı her kartta; iki telefon yan yana.</li>
+        <li><b>Yazışır.</b> Mağazaya ilanın üstünden yazar, favorisinin fiyatı düşünce haber alır.</li>
+        <li><b>Mağazaya gider.</b> Telefonu görür, dener, orada alır.</li>
+      </ol>
+    </section>
+    <section class="akis akis-magaza">
+      <h3>Telefoncu</h3>
+      <p>Kullanıcıların sattığı telefonları görür, teklifini yazar. Kendi ilanlarını vitrine koyar. Müşteri, teklifi kabul ettiğinde telefonla birlikte kapısına gelir.</p>
+      <p class="akis-not">ONCEP telefon almaz, satmaz, ödemeye aracılık etmez: stok ve ödeme riski taşımayan bir buluşma noktasıdır.</p>
+    </section>
+  </div>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Çözüm</span><span>04</span></footer>
+</section>
+
+<section class="sayfa urun urun-iki">
+
+  <div class="urun-metin">
+    <p class="ust-etiket">ÜRÜN · KEŞFET</p>
+    <h2>Bütün vitrinler<br>tek ekranda.</h2>
+    <p class="giris">Şehrindeki onaylı telefoncuların satıştaki telefonları tek listede. Dükkân dükkân dolaşmadan bakılır, beğenilen için mağazaya gidilir.</p>
+    <ul class="ozellik">
+      <li><b>Durum her kartta.</b> Batarya yüzdesi, 2. el ya da sıfır bilgisi, mağaza ve ilçe.</li>
+      <li><b>Süz ve sırala.</b> Marka, model, fiyat, şehir ve ilçe, menşei, garanti, değişen parça. Fiyata, pile, duruma, tarihe göre.</li>
+      <li><b>İlan detayında şeffaflık.</b> Ekran, kasa ve batarya puanı çubuklarla; kutu, fatura, garanti bilgisi; mağazanın puanı.</li>
+    </ul>
+    <p class="ornek-notu">Ekranlar uygulamanın kendisinden alındı. Mağaza ve kişi adları, fiyatlar örnektir; telefon görselleri temsilîdir.</p>
+  </div>
+  <div class="urun-cihazlar">
+    <figure class="cihaz " style="--g:66mm"><img src="ekranlar/01-ana_sayfa.png" alt=""></figure>
+    <figure class="cihaz asagi" style="--g:66mm"><img src="ekranlar/02-ilan_detay.png" alt=""></figure>
+  </div>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Ürün</span><span>05</span></footer>
+</section>
+
+<section class="sayfa urun urun-tek serili">
+
+  <div class="urun-cihazlar"><figure class="cihaz " style="--g:60mm"><img src="ekranlar/10-deger.png" alt=""></figure></div>
+  <div class="urun-metin">
+    <p class="ust-etiket">ÜRÜN · DEĞER HESAPLA</p>
+    <h2>Satmadan önce gerçek değerini öğren.</h2>
+    <p class="giris">Üç adımda telefon, ekran ve kasa durumu, pil ve ekstralar seçilir. Sonuç iki ayrı rakamdır: mağazaya satarsan eline geçecek aralık ve mağazadan alırsan ödeyeceğin aralık.</p>
+    <ul class="ozellik">
+      <li><b>Kaynağı uygulamanın kendisi.</b> Hesap, ONCEP'teki gerçek teklif ve ilanlardan yapılır; son 90 günün verisi, cihazın durumuna göre düzeltilir.</li>
+      <li><b>Yeterli veri yoksa söyler.</b> Bir modelde yeterli fiyat birikmediyse uydurma rakam göstermez.</li>
+      <li><b>Tek dokunuşla ilana döner.</b> "Bu bilgilerle ilan ver" formu, seçilen değerlerle açar.</li>
+    </ul>
+    <p class="ornek-notu">Ekrandaki aralık örnek veriyle; yayından sonra gerçek tekliflerle hesaplanacak.</p>
+  </div>
+  <div class="adim-serit"><figure><figure class="cihaz mini" style="--g:38mm"><img src="ekranlar/10-deger_adim1.png" alt=""></figure><figcaption><b>1. Telefon</b>Marka, model, depolama.</figcaption></figure><figure><figure class="cihaz mini" style="--g:38mm"><img src="ekranlar/10-deger_adim2.png" alt=""></figure><figcaption><b>2. Ekran ve kasa</b>Beş basamaklı dürüst puan.</figcaption></figure><figure><figure class="cihaz mini" style="--g:38mm"><img src="ekranlar/10-deger_adim3.png" alt=""></figure><figcaption><b>3. Pil ve ekstralar</b>İsteğe bağlı; sonra hesap.</figcaption></figure></div>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Ürün</span><span>06</span></footer>
+</section>
+
+<section class="sayfa urun urun-tek serili ters">
+
+  <div class="urun-metin">
+    <p class="ust-etiket">ÜRÜN · İLAN VER</p>
+    <h2>Dört adım,<br>bir dakika.</h2>
+    <p class="giris">Telefon bilgileri, cihaz durumu, fotoğraf ve fiyat, konum. Durum puanları kaydırıcıyla, değişen parçalar tek tek işaretlenir.</p>
+    <ul class="ozellik">
+      <li><b>Her ilan incelenir.</b> Yayına girmeden önce ONCEP yönetimi bakar. Çalıntı, sahte ya da çalışmayan cihaz ilanı yayınlanmaz.</li>
+      <li><b>Fotoğraftaki konum silinir.</b> GPS ve kişisel meta veri, fotoğraf yüklenmeden önce telefonda temizlenir.</li>
+      <li><b>30 gün teklif.</b> Süre dolmadan 7 ve 2 gün kala hatırlatma gelir; ilan yenilenebilir.</li>
+    </ul>
+    <p class="ornek-notu">Ekranlar uygulamanın kendisinden alındı. Mağaza ve kişi adları, fiyatlar örnektir; telefon görselleri temsilîdir.</p>
+  </div>
+  <div class="urun-cihazlar"><figure class="cihaz " style="--g:60mm"><img src="ekranlar/14-ilan_ver.png" alt=""></figure></div>
+  <div class="adim-serit"><figure><figure class="cihaz mini" style="--g:38mm"><img src="ekranlar/15-ilan_ver_1.png" alt=""></figure><figcaption><b>1. Telefon bilgileri</b>Marka, model, renk, depolama.</figcaption></figure><figure><figure class="cihaz mini" style="--g:38mm"><img src="ekranlar/16-ilan_ver_3.png" alt=""></figure><figcaption><b>3. Foto ve fiyat</b>En fazla 5 fotoğraf, satış fiyatı.</figcaption></figure><figure><figure class="cihaz mini" style="--g:38mm"><img src="ekranlar/17-ilan_ver_4.png" alt=""></figure><figcaption><b>4. Konum</b>Şehir ve ilçe; teklifler buradan gelir.</figcaption></figure></div>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Ürün</span><span>07</span></footer>
+</section>
+
+<section class="sayfa urun urun-tek serili vurgu">
+
+  <div class="urun-cihazlar"><figure class="cihaz " style="--g:60mm"><img src="ekranlar/03-ilanim_teklifler.png" alt=""></figure></div>
+  <div class="urun-metin">
+    <p class="ust-etiket">ÜRÜN · TEKLİFLER</p>
+    <h2>Teklifler<br>üst&nbsp;üste,<br>karar<br>kullanıcıda.</h2>
+    <p class="giris">Aynı telefona dört mağaza dört farklı fiyat verir. Satıcı en yükseğini görür, mağazaların puanına bakar, kabul eder ya da kendi fiyatını yazar.</p>
+    <ul class="ozellik">
+      <li><b>Karşı teklif.</b> Satıcı teklife kendi fiyatıyla cevap verebilir.</li>
+      <li><b>Günlük teklif hakkı.</b> Mağazalar günde sınırlı sayıda teklif verebilir; ilanlar teklif yağmuruna dönmez.</li>
+      <li><b>Süre dolunca temizlik.</b> İlan 30 günü doldurunca yanıt bekleyen teklifler kendiliğinden kapanır.</li>
+    </ul>
+    <p class="ornek-notu">Ekranlar uygulamanın kendisinden alındı. Mağaza ve kişi adları, fiyatlar örnektir; telefon görselleri temsilîdir.</p>
+  </div>
+  <div class="adim-serit"><figure><figure class="cihaz mini" style="--g:38mm"><img src="ekranlar/04-teklifler_liste.png" alt=""></figure><figcaption><b>Bütün teklifler</b>Bekleyen, geçmiş, hepsi.</figcaption></figure><figure><figure class="cihaz mini" style="--g:38mm"><img src="ekranlar/05-teklif_detay.png" alt=""></figure><figcaption><b>Teklifin ayrıntısı</b>En düşük fiyatına göre farkı ve mağazanın notu.</figcaption></figure><figure><figure class="cihaz mini" style="--g:38mm"><img src="ekranlar/05-karsi_teklif.png" alt=""></figure><figcaption><b>Karşı teklif</b>Kendi fiyatını ve notunu yaz.</figcaption></figure></div>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Ürün</span><span>08</span></footer>
+</section>
+
+<section class="sayfa urun urun-tek serili ters">
+
+  <div class="urun-metin">
+    <p class="ust-etiket">ÜRÜN · MESAJLAŞMA</p>
+    <h2>Mağaza<br>bir&nbsp;mesaj<br>uzağında.</h2>
+    <p class="giris">Kullanıcı mağazayla ilanın üstünden yazışır, fotoğraf gönderir. Buluşma saati, kutu, fatura; hepsi tek konuşmada.</p>
+    <ul class="ozellik">
+      <li><b>Numara ve e-posta gizli.</b> Mağazalar kullanıcının iletişim bilgilerini görmez.</li>
+      <li><b>Şikâyet ve engelleme.</b> Rahatsız eden mağaza ya da kullanıcı tek dokunuşla şikâyet edilir veya engellenir.</li>
+      <li><b>Anlık bildirim.</b> Yeni teklif, mesaj ve fiyat düşüşü telefona bildirim olarak gelir.</li>
+    </ul>
+    <p class="ornek-notu">Ekranlar uygulamanın kendisinden alındı. Mağaza ve kişi adları, fiyatlar örnektir; telefon görselleri temsilîdir.</p>
+  </div>
+  <div class="urun-cihazlar"><figure class="cihaz " style="--g:60mm"><img src="ekranlar/06-sohbet.png" alt=""></figure></div>
+  <div class="adim-serit"><figure><figure class="cihaz mini" style="--g:38mm"><img src="ekranlar/07-mesajlar.png" alt=""></figure><figcaption><b>Bütün sohbetler</b>Her konuşma ilanıyla birlikte.</figcaption></figure><figure><figure class="cihaz mini" style="--g:38mm"><img src="ekranlar/09-bildirimler.png" alt=""></figure><figcaption><b>Bildirimler</b>Teklif, mesaj, fiyat düşüşü, ilan onayı.</figcaption></figure><figure><figure class="cihaz mini" style="--g:38mm"><img src="ekranlar/08-sohbet_menu.png" alt=""></figure><figcaption><b>Şikâyet et, engelle</b>Rahatsız edene tek dokunuş.</figcaption></figure></div>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Ürün</span><span>09</span></footer>
+</section>
+
+<section class="sayfa urun urun-tek">
+
+  <div class="urun-cihazlar"><figure class="cihaz " style="--g:74mm"><img src="ekranlar/11-karsilastir.png" alt=""></figure></div>
+  <div class="urun-metin">
+    <p class="ust-etiket">ÜRÜN · KARŞILAŞTIR</p>
+    <h2>Hangisi<br>daha&nbsp;iyi?<br>Yan&nbsp;yana&nbsp;gör.</h2>
+    <p class="giris">İki telefon arasında kararsız kalan alıcı, modelleri teknik özellikleriyle yan yana koyar. Ekrandaki örnekte iPhone 15 Pro ile Galaxy S24: ekran boyutu, ekran tipi, yenileme hızı, çözünürlük, işlemci.</p>
+    <ul class="ozellik">
+      <li><b>Fark çubukta ve yüzdede.</b> Öndeki telefonun değeri koyu, sayısal özelliklerde çubuğu dolu ve farkı yüzdeyle yazılı. Fark küçükse "Aradaki fark önemsiz", değerler eşitse "İki telefonda da aynı" der.</li>
+      <li><b>Beş başlık.</b> Ekran, performans, pil ve şarj, kamera, diğer. Sonda "Nerede önde" özeti.</li>
+      <li><b>İlandan tek dokunuş.</b> İlan detayındaki "Bu telefonu karşılaştır" ilandaki telefonu sola koyar; alıcı yalnızca karşısına koyacağını seçer.</li>
+      <li><b>27 marka, 814 model.</b> Teknik verisi olan bütün telefonlar seçilebilir.</li>
+    </ul>
+  </div>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Ürün</span><span>10</span></footer>
+</section>
+
+<section class="sayfa urun urun-iki">
+
+  <div class="urun-metin">
+    <p class="ust-etiket">ÜRÜN · MAĞAZALAR</p>
+    <h2>Kimden aldığını bil.</h2>
+    <p class="giris">Her mağazanın kendi sayfası var: puanı, yorumları, ilan sayısı ve ne zamandır ONCEP'te olduğu. Mağazalar puana, ilan sayısına ya da ada göre sıralanır, şehre göre süzülür.</p>
+    <ul class="ozellik">
+      <li><b>Kişi başı tek puan.</b> Her kullanıcı bir mağazayı bir kez puanlar; ikinci puanı eskisinin yerine geçer. Uygunsuz yorum şikâyet edilebilir.</li>
+      <li><b>Mağaza vitrini.</b> Mağazanın bütün ilanları tek sayfada.</li>
+    </ul>
+    <p class="ornek-notu">Ekranlar uygulamanın kendisinden alındı. Mağaza ve kişi adları, fiyatlar örnektir; telefon görselleri temsilîdir.</p>
+  </div>
+  <div class="urun-cihazlar">
+    <figure class="cihaz " style="--g:66mm"><img src="ekranlar/12-magazalar.png" alt=""></figure>
+    <figure class="cihaz asagi" style="--g:66mm"><img src="ekranlar/13-magaza_sayfasi.png" alt=""></figure>
+  </div>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Ürün</span><span>11</span></footer>
+</section>
+
+<section class="sayfa magaza-tarafi">
+
+  <p class="ust-etiket acik">TELEFONCULAR İÇİN</p>
+  <h2 class="buyuk acik">İlanlar telefoncuya<br><em>kendisi gelir.</em></h2>
+  <p class="giris acik">Mağaza hesabıyla giren telefoncu, şehrindeki kullanıcıların sattığı telefonları görür ve teklifini yazar. Kabul edilen teklif, müşterinin telefonuyla birlikte dükkâna gelmesi demektir.</p>
+  <div class="uclu">
+    <figure><figure class="cihaz " style="--g:54mm"><img src="ekranlar/19-magaza_ana.png" alt=""></figure><figcaption><b>Kullanıcı ilanları</b> Minimum teklif, pil ve ilçe kartta.</figcaption></figure>
+    <figure><figure class="cihaz " style="--g:54mm"><img src="ekranlar/20-magaza_ilan_detay.png" alt=""></figure><figcaption><b>Teklif ver</b> Tutar ve kısa bir not; kullanıcının en düşük fiyatı üstte.</figcaption></figure>
+    <figure><figure class="cihaz " style="--g:54mm"><img src="ekranlar/21-magaza_teklifler.png" alt=""></figure><figcaption><b>Verdiğim teklifler</b> Bekleyen, kabul edilen, karşı teklif.</figcaption></figure>
+  </div>
+  <p class="ornek-notu acik">Ekranlar uygulamanın kendisinden alındı. Mağaza ve kişi adları, fiyatlar örnektir; telefon görselleri temsilîdir.</p>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Telefoncular</span><span>12</span></footer>
+</section>
+
+<section class="sayfa guven">
+
+  <div class="guven-sol">
+    <p class="ust-etiket">GÜVEN</p>
+    <h2 class="buyuk">Güvenle al,<br><em>güvenle sat.</em></h2>
+    <p class="giris">Uygulamadaki Güvenli Alışveriş Rehberi, ikinci el alım satımda en sık karşılaşılan tuzakları altı kuralda topluyor. Platformun kendi önlemleri de aynı hedefe çalışıyor.</p>
+    <ul class="guven-liste">
+      <li>Her mağaza tek tek onaylanır.</li>
+      <li>Her ilan yayından önce incelenir.</li>
+      <li>Numara ve e-posta mağazalara gösterilmez.</li>
+      <li>Fotoğraflardaki konum bilgisi silinir.</li>
+      <li>Şüpheli ilan, mesaj ve yorum şikâyet edilir.</li>
+      <li>Veriler satılmaz, reklam için paylaşılmaz.</li>
+      <li>Hesap uygulamanın içinden silinebilir; KVKK aydınlatma metni ve gizlilik politikası yayında.</li>
+    </ul>
+    <p class="durust">ONCEP IMEI doğrulaması yapmaz. Rehber, teslim almadan önce *#06# ile IMEI'nin kutu ve faturayla karşılaştırılmasını ve e-Devlet'ten sorgulanmasını öğütler.</p>
+  </div>
+  <div class="guven-sag"><figure class="cihaz " style="--g:72mm"><img src="ekranlar/18-guvenli.png" alt=""></figure></div>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Güven</span><span>13</span></footer>
+</section>
+
+<section class="sayfa pazar">
+
+  <p class="ust-etiket acik">PAZAR</p>
+  <h2 class="buyuk acik">Neden <em>şimdi?</em></h2>
+  <p class="giris acik">Yeni telefon pahalanıyor, yurt dışından telefon getirmek zorlaştı, ikinci el büyüyor. Kaynağıyla rakamlar:</p>
+  <div class="rakamlar">
+    <div class="rakam-kart">
+      <p class="rakam">11,68<small> milyon</small></p>
+      <p>2025'te Türkiye'de IMEI kaydı yapılan akıllı telefon (2024: 11,30 milyon). Satış değil, pazara giren cihaz sayısı.</p>
+      <p class="kaynak">BTK Mobil Cihaz Kayıt Sistemi verisi; Patronlar Dünyası, 11 Nisan 2026.</p>
+    </div>
+    <div class="rakam-kart">
+      <p class="rakam">+%27,6</p>
+      <p>2026'da küresel ortalama akıllı telefon fiyatında beklenen artış (581 USD). Aynı yıl küresel sevkiyatın %16,7 düşmesi bekleniyor.</p>
+      <p class="kaynak">IDC, 26 Ağustos 2026.</p>
+    </div>
+    <div class="rakam-kart">
+      <p class="rakam">+%15</p>
+      <p>2026'da küresel organize ikinci el akıllı telefon pazarında beklenen büyüme.</p>
+      <p class="kaynak">FDM CCS Insight, 17 Haziran 2026.</p>
+    </div>
+    <div class="rakam-kart">
+      <p class="rakam">54.258<small> TL</small></p>
+      <p>2026'da yurt dışından getirilen telefonun IMEI kayıt harcı. Bu yolla kaydedilen cihaz 2023'te 892.501 iken 2025'te 71.203'e indi.</p>
+      <p class="kaynak">Harç: Bigpara, 1 Ocak 2026. Kayıt sayıları: Dünya, 2 Temmuz 2025; Patronlar Dünyası, 11 Nisan 2026.</p>
+    </div>
+    <div class="rakam-kart">
+      <p class="rakam">660<small> bin</small></p>
+      <p>Türkiye'de satılan yenilenmiş telefon: 2025'te 660 bin, 2026 beklentisi 1 milyonun üstü. Yenilenmiş, ikinci el pazarın küçük ve kayıtlı dilimi.</p>
+      <p class="kaynak">MOBİSAD Başkanı, 30 Haziran 2026 (haberler.com).</p>
+    </div>
+    <div class="rakam-kart">
+      <p class="rakam">15–32<small> bin</small></p>
+      <p>Türkiye'deki telefoncu noktası. Kaynaklar farklı tanımlar kullandığı için aralık olarak: MOBİSAD ~15 bin, Forbes Türkiye ~25 bin, Getmobil 32 bin+.</p>
+      <p class="kaynak">mobisad.org; Forbes Türkiye, 3 Temmuz 2025; Webrazzi, 23 Aralık 2025.</p>
+    </div>
+  </div>
+  <p class="durust acik">Türkiye'de toplam ikinci el telefon pazarı için doğrulanmış tek bir rakam yok; sektör tahminleri yılda 5 ile 20 milyon adet arasında değişiyor. Bu yüzden burada yalnızca kaynağı belli rakamlar var.</p>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Pazar</span><span>14</span></footer>
+</section>
+
+<section class="sayfa rekabet">
+
+  <p class="ust-etiket">REKABET</p>
+  <h2 class="buyuk">ONCEP'i <em>farklı</em><br>kılan ne?</h2>
+  <div class="matris-kap">
+    <table class="matris">
+      <thead>
+        <tr><th></th><th>Mağazalar teklif yarışına girer</th><th>Teklifler yan yana</th><th>Yerel telefoncuya elden teslim</th><th>Platform stok tutmaz</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><b>sahibinden.com</b><span>İlan platformu</span></th>
+          <td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret kismen" viewBox="0 0 20 20" aria-label="kısmen"><circle cx="10" cy="10" r="8.2"/><path d="M10 1.8a8.2 8.2 0 0 1 0 16.4z"/></svg></td><td><svg class="isaret var" viewBox="0 0 20 20" aria-label="var"><circle cx="10" cy="10" r="9"/><path d="M5.8 10.4l2.7 2.7 5.7-6"/></svg></td>
+        </tr><tr>
+          <th><b>letgo</b><span>Bireyden bireye ilan</span></th>
+          <td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret kismen" viewBox="0 0 20 20" aria-label="kısmen"><circle cx="10" cy="10" r="8.2"/><path d="M10 1.8a8.2 8.2 0 0 1 0 16.4z"/></svg></td><td><svg class="isaret var" viewBox="0 0 20 20" aria-label="var"><circle cx="10" cy="10" r="9"/><path d="M5.8 10.4l2.7 2.7 5.7-6"/></svg></td>
+        </tr><tr>
+          <th><b>Getmobil</b><span>Anında teklifle alım, yenilenmiş satış</span></th>
+          <td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret kismen" viewBox="0 0 20 20" aria-label="kısmen"><circle cx="10" cy="10" r="8.2"/><path d="M10 1.8a8.2 8.2 0 0 1 0 16.4z"/></svg></td><td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td>
+        </tr><tr>
+          <th><b>EasyCep</b><span>Yenileme merkezi</span></th>
+          <td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret kismen" viewBox="0 0 20 20" aria-label="kısmen"><circle cx="10" cy="10" r="8.2"/><path d="M10 1.8a8.2 8.2 0 0 1 0 16.4z"/></svg></td><td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td>
+        </tr><tr>
+          <th><b>Hepsiburada, Trendyol</b><span>Yenilenmiş kategori</span></th>
+          <td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret var" viewBox="0 0 20 20" aria-label="var"><circle cx="10" cy="10" r="9"/><path d="M5.8 10.4l2.7 2.7 5.7-6"/></svg></td>
+        </tr><tr>
+          <th><b>Operatör takası</b><span>Yeni cihaza indirimle takas</span></th>
+          <td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td><td><svg class="isaret kismen" viewBox="0 0 20 20" aria-label="kısmen"><circle cx="10" cy="10" r="8.2"/><path d="M10 1.8a8.2 8.2 0 0 1 0 16.4z"/></svg></td><td><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg></td>
+        </tr><tr class="biz">
+          <th><b>ONCEP</b><span>Onaylı telefoncuların teklif pazarı</span></th>
+          <td><svg class="isaret var" viewBox="0 0 20 20" aria-label="var"><circle cx="10" cy="10" r="9"/><path d="M5.8 10.4l2.7 2.7 5.7-6"/></svg></td><td><svg class="isaret var" viewBox="0 0 20 20" aria-label="var"><circle cx="10" cy="10" r="9"/><path d="M5.8 10.4l2.7 2.7 5.7-6"/></svg></td><td><svg class="isaret var" viewBox="0 0 20 20" aria-label="var"><circle cx="10" cy="10" r="9"/><path d="M5.8 10.4l2.7 2.7 5.7-6"/></svg></td><td><svg class="isaret var" viewBox="0 0 20 20" aria-label="var"><circle cx="10" cy="10" r="9"/><path d="M5.8 10.4l2.7 2.7 5.7-6"/></svg></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="matris-anahtar"><svg class="isaret var" viewBox="0 0 20 20" aria-label="var"><circle cx="10" cy="10" r="9"/><path d="M5.8 10.4l2.7 2.7 5.7-6"/></svg> var <span></span><svg class="isaret kismen" viewBox="0 0 20 20" aria-label="kısmen"><circle cx="10" cy="10" r="8.2"/><path d="M10 1.8a8.2 8.2 0 0 1 0 16.4z"/></svg> kısmen <span></span><svg class="isaret yok" viewBox="0 0 20 20" aria-label="yok"><path d="M6 10h8"/></svg> yok</p>
+  </div>
+  <p class="fark-cumle">Telefoncuların teklif yarışına girdiği, tekliflerin yan yana durduğu ve teslimin şehrindeki telefoncuda elden yapıldığı başka bir model bulamadık.</p>
+  <section class="yatirim-serit">
+    <p class="kutu-etiket">ALANA YATIRIM GELİYOR</p>
+    <div class="yatirim-ikili">
+      <div><p class="rakam">45<small> milyon $</small></p><p><b>EasyCep</b> · Kasım 2025</p></div>
+      <div><p class="rakam">22<small> milyon $</small></p><p><b>Getmobil</b> · Seri A, IFC katılımıyla · Aralık 2025</p></div>
+    </div>
+    <p class="kaynak">Yatırımlar: Bloomberg HT; Webrazzi, 23 Aralık 2025. Tablo: şirket sayfaları ve haberler, Eylül 2026; tarama kapsamlı değil.</p>
+  </section>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Rekabet</span><span>15</span></footer>
+</section>
+
+<section class="sayfa model">
+
+  <p class="ust-etiket">İŞ MODELİ</p>
+  <h2 class="buyuk">Kullanıcıya ücretsiz.<br><em>Telefoncuya abonelik.</em></h2>
+  <p class="giris genis">ONCEP satıştan komisyon almaz, ödemeye aracılık etmez. Gelir, platformdan müşteri kazanan telefonculardan gelir: aylık ya da yıllık abonelik.</p>
+  <div class="planlar">
+    <article class="plan">
+      <p class="plan-ad">Aylık plan</p>
+      <p class="plan-alt">Esnek başlangıç; her ay yenilenir.</p>
+    </article>
+    <article class="plan">
+      <p class="plan-ad">Yıllık plan</p>
+      <p class="plan-alt">Tek ödemeyle bir yıl.</p>
+    </article>
+  </div>
+  <div class="plan-icerik">
+    <h3>İki planda da</h3>
+    <ul>
+      <li>Şehirdeki kullanıcı ilanlarını görme ve teklif verme</li>
+      <li>Mağaza vitrini: ilan verme ve yenileme</li>
+      <li>Mağaza sayfası, puan ve yorumlar</li>
+      <li>Kullanıcılarla uygulama içi yazışma</li>
+      <li>Teklif ve mesaj bildirimleri</li>
+    </ul>
+  </div>
+  <div class="model-neden">
+    <h3>Telefoncu neden öder?</h3>
+    <p>Kabul edilen her teklif, telefonuyla dükkâna gelen bir müşteri demek: telefoncu stok için ilan sitelerinde satıcı aramak yerine, satıcıyı ayağına getiren bir kanal için öder. Vitrini de şehrindeki alıcılara aynı uygulamada görünür.</p>
+  </div>
+  <p class="durust">Bugün ONCEP'in bütün hizmetleri ücretsiz. Ücretli hizmetler başlamadan önce kapsamı ve fiyatı duyurulur (Kullanım Şartları, madde 7).</p>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · İş modeli</span><span>16</span></footer>
+</section>
+
+<section class="sayfa teknoloji">
+
+  <p class="ust-etiket acik">TEKNOLOJİ</p>
+  <h2 class="buyuk acik">Hazır, test edilmiş,<br><em>güvenli.</em></h2>
+  <div class="teknoloji-izgara">
+    <div class="tek-kart rakamli">
+      <p class="rakam">5.744</p>
+      <p>otomatik test: 3.471 mobil uygulama, 2.273 sunucu. Her değişiklik birleştirilmeden önce hepsi çalıştırılıyor.</p>
+    </div>
+    <div class="tek-kart">
+      <h3>Tek kod, iki platform</h3>
+      <p>Flutter ile yazıldı: aynı kod Android ve iOS'ta çalışır. Arayüz Türkçe; İngilizce çevirisi kodda hazır.</p>
+    </div>
+    <div class="tek-kart">
+      <h3>Sunucu</h3>
+      <p>.NET 10 API, PostgreSQL veritabanı. Kendi alan adımızda: api.oncep.com.tr.</p>
+    </div>
+    <div class="tek-kart">
+      <h3>Hizmetler</h3>
+      <p>Fotoğraflar Cloudinary'de, bildirim ve çökme raporları Firebase'de, e-posta Resend ve Zoho ile. Sunucu beş dakikada bir izleniyor.</p>
+    </div>
+    <div class="tek-kart genis">
+      <h3>Güvenlik önlemleri</h3>
+      <ul class="iki-sutun">
+        <li>Kısa ömürlü oturum anahtarı, yenileme ve diğer cihazlardan çıkış</li>
+        <li>Parolalar geri döndürülemez biçimde (BCrypt) saklanır</li>
+        <li>İstek sınırlama: kaba kuvvet ve spam denemelerine karşı</li>
+        <li>Fotoğraflar sunucudan imzalı yüklenir; içerik ve boyut denetlenir</li>
+        <li>Fotoğraftaki konum ve kişisel meta veri yüklemeden önce silinir</li>
+        <li>Veritabanına dışarıdan doğrudan erişim kapalı</li>
+        <li>E-posta doğrulama, şifre sıfırlama, hesap silme</li>
+        <li>Hassas veriler şifreli; anahtarlar kod dışında</li>
+      </ul>
+    </div>
+  </div>
+  <p class="yigin">Flutter · .NET 10 · PostgreSQL · Cloudinary · Firebase · Render · Vercel</p>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Teknoloji</span><span>17</span></footer>
+</section>
+
+<section class="sayfa yol">
+
+  <p class="ust-etiket">YOL HARİTASI</p>
+  <h2 class="buyuk">Bugün neredeyiz?</h2>
+  <div class="zaman">
+    <section class="evre bitti">
+      <p class="evre-ad">Tamamlandı</p>
+      <ul>
+        <li>Android uygulaması (sürüm 1.0.0) yayına hazır</li>
+        <li>Sunucu, web sitesi ve alan adı canlı</li>
+        <li>Kullanıcı ve mağaza akışlarının tamamı; yönetim paneli</li>
+        <li>Güvenlik denetimi ve açıkların kapatılması</li>
+        <li>Gizlilik, KVKK ve kullanım şartları metinleri</li>
+      </ul>
+    </section>
+    <section class="evre simdi">
+      <p class="evre-ad">Yayın öncesi</p>
+      <ul>
+        <li>Şirket adına Google Play ve App Store geliştirici hesapları</li>
+        <li>Yasal metinlerin hukuk danışmanı onayı</li>
+        <li>İlk şehirde telefoncu ağının kurulması</li>
+        <li>Mağaza sayfaları, ekran görüntüleri, tanıtım</li>
+      </ul>
+    </section>
+    <section class="evre sonra">
+      <p class="evre-ad">Yayından sonra</p>
+      <ul>
+        <li>iOS sürümü</li>
+        <li>Değer hesabının gerçek teklif verisiyle beslenmesi</li>
+        <li>Mağaza aboneliğinin başlaması</li>
+        <li>Yeni şehirler</li>
+      </ul>
+    </section>
+  </div>
+  <p class="yol-alinti">Uygulama hazır. Sıradaki adım, ilk şehirde telefoncuları ONCEP'e getirmek.</p>
+
+<footer class="folyo"><span>ONCEP · Tanıtım Dosyası · Yol haritası</span><span>18</span></footer>
+</section>
+
+<section class="sayfa arka">
+
+  <div class="arka-govde">
+    <img class="logo" src="gorseller/logo-acik.png" alt="ONCEP">
+    <p class="arka-slogan">Telefoncu telefoncu gezme.<br><em>Bütün teklifler cebinde.</em></p>
+    <div class="arka-iletisim">
+      <div id="qr" class="qr" aria-label="oncep.com.tr adresine giden QR kod"></div>
+      <dl>
+        <dt>Web</dt><dd>oncep.com.tr</dd>
+        <dt>E-posta</dt><dd>destek@oncep.com.tr</dd>
+      </dl>
+    </div>
+  </div>
+  <p class="arka-not">Bu dosyadaki ekran görüntüleri ONCEP uygulamasının kendisinden, örnek verilerle alındı; mağaza ve kişi adları ile fiyatlar örnektir, telefon görselleri temsilîdir. Pazar rakamlarının kaynakları ilgili sayfalarda yazılıdır.</p>
+
+
+</section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+(function () {
+  try {
+    var qr = qrcode(0, 'M');
+    qr.addData('https://oncep.com.tr');
+    qr.make();
+    document.getElementById('qr').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+  } catch (e) {}
+  // Kontrol için: ?s=3 yalnız 3. sayfayı, ?izgara bütün sayfaları küçük
+  // gösterir. Baskıyı etkilemez.
+  var q = new URLSearchParams(location.search);
+  var tekSayfa = q.get('s');
+  if (tekSayfa) {
+    document.querySelectorAll('.sayfa').forEach(function (s, i) {
+      if (String(i + 1) !== tekSayfa) s.style.display = 'none';
+    });
+    document.querySelector('.kitap').style.padding = '0';
+    document.body.style.background = '#fff';
+    return;
+  }
+  if (q.has('izgara')) {
+    var k0 = document.querySelector('.kitap');
+    k0.style.display = 'grid';
+    k0.style.gridTemplateColumns = 'repeat(5, 210mm)';
+    k0.style.gap = '8mm';
+    k0.style.padding = '8mm';
+    k0.style.zoom = '0.3';
+    return;
+  }
+  // Ekranda sayfaları pencereye sığdır (baskıda ölçek yok).
+  function sigdir() {
+    var k = document.querySelector('.kitap');
+    var genislik = document.documentElement.clientWidth;
+    var sayfaPx = 210 * 96 / 25.4 + 32;
+    k.style.zoom = genislik < sayfaPx ? (genislik / sayfaPx).toFixed(3) : '';
+  }
+  sigdir();
+  window.addEventListener('resize', sigdir);
+})();
+</script>
+</body>
+</html>
