@@ -859,3 +859,7 @@ if (html.includes('24 saat')) throw new Error('Karşılığı olmayan "24 saat" 
 const hedef = path.join(__dirname, '..', '..', 'index.html');
 fs.writeFileSync(hedef, html);
 console.log(`index.html yazıldı (${Math.round(html.length / 1024)} KB)`);
+
+// Sayfadaki satır içi betikler (BETIK ve "js" sınıfı satırı) CSP'de özetle
+// izinli; betik değişince özet de değişmeli, yoksa tarayıcı engeller.
+require('../csp/uret.js').guncelle({ sessiz: true });
