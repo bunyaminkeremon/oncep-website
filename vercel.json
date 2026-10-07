@@ -2,5 +2,18 @@
   "rewrites": [
     { "source": "/ilan/:id", "destination": "/ilan-ac/index.html" },
     { "source": "/kullanici-ilani/:id", "destination": "/ilan-ac/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'sha256-hZ5op0+Gtgv0zuY9ANeCeELRl9FvlqkSvKf+zj3N0V0=' 'sha256-NnFovqU/Y4LTNEJANvle7yn0sdFs3hm/UsRZvqnF8q4=' 'sha256-DamCoPgB/VkDCPsu0R6X4sJsz1c66vGlUGBXLu04Yxg=' 'sha256-Hhv9oAs6JB1KSFq8GhCOoZemK/sPwUUej2FjPrGqnU0='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains" }
+      ]
+    }
   ]
 }

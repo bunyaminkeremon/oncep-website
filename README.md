@@ -15,7 +15,11 @@ node tool/ana-sayfa/uret.js
 
 Değer hesabı şimdilik bu tahmini tabloyla çalışıyor; uygulama yayına girip yeterli teklif birikince `GET api/PhoneValue/estimate` ucuna bağlanacak.
 
-`tool/` klasörü `.vercelignore` ile yayına gitmez.
+`tool/` klasörü ve bu README `.vercelignore` ile yayına gitmez.
+
+## Güvenlik başlıkları
+
+Başlıklar (CSP dahil) `vercel.json`'da. CSP satır içi betiklere yalnız özetle izin verir: bir sayfadaki `<script>` değişince `node tool/csp/uret.js` çalıştır (özetleri yazar; `--kontrol` yalnız denetler). Ana sayfa üreteci bunu kendisi çağırır; `onclick=` gibi satır içi işleyici ve `javascript:` bağlantısı kullanma, CSP engeller.
 
 ## Paylaşım görseli
 
