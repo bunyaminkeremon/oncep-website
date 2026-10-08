@@ -69,7 +69,7 @@
 • İlanlar: cihaz bilgileri (marka, model, hafıza, renk, durum, pil sağlığı, değişen parçalar, aksesuar ve garanti durumu), fotoğraflar, fiyat, açıklama, ilanın şehri ve ilçesi.
 • Platformdaki işlemleriniz: teklifler ve karşı teklifler, mesajlar (metin ve fotoğraf), favoriler, mağaza puanları ve yorumları, şikâyetler, engellediğiniz hesaplar ve size gönderilen bildirimler.
 • Onaylar ve tercihler: kayıt sırasında verdiğiniz onayın (18 yaş beyanı ile Kullanım Şartları ve Gizlilik Politikası) tarihi ve metin sürümü, bildirim tercihleriniz.
-• Teknik veriler: oturumunuzu sürdürmek için giriş yaptığınız her cihaz için ayrı bir oturum kaydı (oturum anahtarının geri çözülemeyen özeti, geçerlilik süresi, oluşturulma ve son kullanım zamanı) ve bildirim gönderebilmek için o cihazın bildirim anahtarı (FCM). IP adresiniz kötüye kullanımı önlemek (istek sınırlama) için bağlantı sırasında işlenir ve hesabınızla birlikte saklanmaz; barındırma sağlayıcılarımızın teknik kayıtlarında sınırlı bir süre bulunabilir.
+• Teknik veriler: oturumunuzu sürdürmek için giriş yaptığınız her cihaz için ayrı bir oturum kaydı (oturum anahtarının geri çözülemeyen özeti, geçerlilik süresi, oluşturulma ve son kullanım zamanı) ve bildirim gönderebilmek için o cihazın bildirim anahtarı (FCM). IP adresiniz kötüye kullanımı önlemek (istek sınırlama) için bağlantı sırasında işlenir. Ayrıca 5651 sayılı Kanun gereği uygulamada veri gönderen her işlem (giriş, kayıt, ilan, teklif, mesaj, yorum gibi) için trafik kaydı tutulur: IP adresi ve bağlantı bilgileri (port), işlemin zamanı, türü ve sonucu, işlemi yapan hesap ve aktarılan veri miktarı. İlan, mesaj ve yorum içerikleri bu kayda yazılmaz. IP adresiniz ayrıca barındırma sağlayıcılarımızın teknik kayıtlarında sınırlı bir süre bulunabilir.
 • E-posta doğrulama: adresinizi doğrulamak ya da değiştirmek için gönderilen kodun geri çözülemeyen özeti, kodun gönderildiği adres ve adresinizin doğrulandığı tarih.
 • Çökme raporları: uygulama çöktüğünde cihaz modeli, işletim sistemi ve uygulama sürümü, hatanın teknik ayrıntısı ve rastgele bir kurulum kimliği (Firebase Crashlytics). Raporlara adınız, e-posta adresiniz, mesajlarınız veya hesap kimliğiniz eklenmez.
 • Destek ve geri bildirim: gönderdiğiniz geri bildirimin metni, e-posta adresiniz ve kullandığınız platform (Android veya iOS); destek@oncep.com.tr adresine yazdığınız e-postalar.
@@ -113,6 +113,7 @@ Bazı kayıtlar hesabınız açıkken de belirli sürelerin sonunda silinir:
 • Bir cihazdaki oturum, o cihazda uygulama 30 gün kullanılmazsa sona erer; oturum kaydı ve o cihazın bildirim anahtarı en geç bir gün sonra silinir.
 • Bildirimler 1 yıl saklanır.
 • Sonuçlanmış şikâyetler sonuçlandıkları tarihten itibaren 2 yıl saklanır; incelenmekte olan şikâyetler sonuçlanana kadar saklanır.
+• 5651 sayılı Kanun gereği tutulan trafik kayıtları 2 yıl saklanır ve süre sonunda silinir; hesabınızı silmeniz bu süreyi kısaltmaz.
 • Çökme raporları Firebase Crashlytics'te 90 gün saklanır.
 
 Yasal bir saklama yükümlülüğü bulunan kayıtlar mevzuatın öngördüğü süre boyunca saklanır.</p>
@@ -125,7 +126,7 @@ Mobil uygulama oturumunuzu sürdürmek için oturum anahtarlarını cihazınız�
         </section>
         <section id="b7">
           <h2>7. Güvenlik Önlemleri</h2>
-          <p>Uygulama ile sunucu arasındaki bütün bağlantılar şifrelidir (HTTPS). Şifreler geri çözülemeyecek şekilde (BCrypt) saklanır; giriş, şifre sıfırlama ve hesap silme için deneme sınırları vardır. Her hesap yalnızca kendi verilerine erişebilir; yönetim paneli ayrıdır ve yalnızca yetkili yöneticilere açıktır. Yüklenen fotoğraflardan konum bilgisi silinir. Her cihazdaki oturum ayrıdır: şifrenizi değiştirdiğinizde öteki cihazlardaki oturumlarınız kapanır; Ayarlar'daki &quot;Diğer cihazlardan çıkış yap&quot; ile bu cihaz dışındaki oturumları kendiniz de kapatabilirsiniz. E-posta adresiniz değiştirildiğinde eski adresinize bilgi verilir.
+          <p>Uygulama ile sunucu arasındaki bütün bağlantılar şifrelidir (HTTPS). Şifreler geri çözülemeyecek şekilde (BCrypt) saklanır; giriş, şifre sıfırlama ve hesap silme için deneme sınırları vardır. Her hesap yalnızca kendi verilerine erişebilir; yönetim paneli ayrıdır ve yalnızca yetkili yöneticilere açıktır. Trafik kayıtları yalnızca yasal talepler ve şikâyet incelemesi için açılır; her açılış kayda geçer ve kayıtların sonradan değiştirilmediği günlük özetlerle denetlenir. Yüklenen fotoğraflardan konum bilgisi silinir. Her cihazdaki oturum ayrıdır: şifrenizi değiştirdiğinizde öteki cihazlardaki oturumlarınız kapanır; Ayarlar'daki &quot;Diğer cihazlardan çıkış yap&quot; ile bu cihaz dışındaki oturumları kendiniz de kapatabilirsiniz. E-posta adresiniz değiştirildiğinde eski adresinize bilgi verilir.
 
 Fotoğraflar, bağlantısını bilen herkesin açabileceği adreslerde saklanır; fotoğraflarınızda kişisel bilgi (örneğin fatura üzerindeki ad veya adres) bulunmamasına dikkat edin. İnternet üzerinden hiçbir veri aktarımının tamamen güvenli olmadığını hatırlatırız.</p>
         </section>
