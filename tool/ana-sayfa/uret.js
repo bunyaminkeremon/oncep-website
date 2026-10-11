@@ -290,7 +290,7 @@ function guvenlik() {
     ['receipt', 'Fatura ve kutu iste', 'Kutudaki IMEI telefondakiyle aynı mı, bak.'],
     ['msg', "Yazışmayı ONCEP'te tut", 'SMS kodu ve banka bilgisi paylaşma.'],
   ];
-  const g = [['shield', 'Her mağaza tek tek onaylanır'], ['eye', 'Her ilan yayından önce incelenir'], ['lock', 'Numaran ve e-postan mağazalara gösterilmez'], ['image', 'Fotoğraflardaki konum bilgisi silinir'], ['flag', 'Şüpheli ilanı ya da mesajı şikâyet edersin'], ['x', 'Verilerin satılmaz, reklam için paylaşılmaz']];
+  const g = [['shield', 'Her mağaza tek tek onaylanır'], ['eye', 'Her ilan yayından önce incelenir'], ['lock', 'E-postan gizli; numaran yalnızca sen seçersen görünür'], ['image', 'Fotoğraflardaki konum bilgisi silinir'], ['flag', 'Şüpheli ilanı ya da mesajı şikâyet edersin'], ['x', 'Verilerin satılmaz, reklam için paylaşılmaz']];
   return `<section id="guvenlik" class="guv">
   <div class="kap">
     <div class="guv-ana">
@@ -363,6 +363,14 @@ function alt() {
       <a class="logo" href="#" aria-label="ONCEP ana sayfa"><b>ON</b><i>CEP</i></a>
       <nav aria-label="Yasal ve iletişim">${links.map(([h, s]) => `<a href="${h}">${s}</a>`).join('')}</nav>
     </div>
+    <section class="iletisim" id="iletisim" aria-labelledby="iletisim-baslik">
+      <h2 id="iletisim-baslik">İletişim</h2>
+      <dl>
+        <div><dt>İşleten</dt><dd>Bünyamin Kerem ÖN</dd></div>
+        <div><dt>E-posta</dt><dd><a href="mailto:destek@oncep.com.tr">destek@oncep.com.tr</a></dd></div>
+        <div><dt>Ürün güvenliği temas noktası</dt><dd><a href="mailto:destek@oncep.com.tr">destek@oncep.com.tr</a></dd></div>
+      </dl>
+    </section>
     <p class="telif">© 2026 ONCEP · İkinci el telefon alım satım platformu · Sayfadaki fiyat, mağaza ve kişi adları örnektir.</p>
   </div>
 </footer>`;
@@ -614,6 +622,17 @@ a.rozet:hover { color: var(--lacivert); box-shadow: inset 0 0 0 2px var(--turunc
 .alt nav a { color: var(--lacivert-metin); text-decoration: none; }
 .alt nav a:hover { color: #FFFFFF; }
 .telif { margin: 0; font-size: 12px; line-height: 1.6; color: #8F96CF; }
+/* İletişim: e-ticaret yönetmeliği m.5/2 ana sayfada "İletişim" başlığı altında
+   ad-soyad, adres, KEP, e-posta ve telefon istiyor (adres, telefon, KEP gelince
+   buraya). Ad uygulamadaki kIsleten ile aynı (yasal_metin_koruma_test).
+   Ürün güvenliği temas noktası: uzaktan iletişim yönetmeliği (1 Nis 2025). */
+.iletisim { display: flex; flex-direction: column; gap: 10px; }
+.alt .iletisim h2 { font-size: 15px; line-height: 1.4; letter-spacing: 0; color: #FFFFFF; }
+.iletisim dl { margin: 0; display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 14px; }
+.iletisim dl div { display: flex; gap: 8px; }
+.iletisim dt { color: #8F96CF; }
+.iletisim dd { margin: 0; color: #FFFFFF; }
+.iletisim a { color: inherit; }
 
 /* Ara genişlikler */
 @media (max-width: 1280px) {
