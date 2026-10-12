@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>ONCEP'teki ilan</title>
-<meta name="description" content="Bu ilan ONCEP uygulamasında. Uygulamada açarak ayrıntıları gör, teklif ver.">
+<meta name="description" content="Bu ilan ONCEP uygulamasında. Ayrıntıları uygulamada açarak gör.">
 <meta name="robots" content="noindex">
 <meta property="og:title" content="ONCEP'teki ilan">
-<meta property="og:description" content="Bu ilan ONCEP uygulamasında. Uygulamada açarak ayrıntıları gör, teklif ver.">
+<meta property="og:description" content="Bu ilan ONCEP uygulamasında. Ayrıntıları uygulamada açarak gör.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ONCEP">
 <meta property="og:locale" content="tr_TR">
@@ -40,14 +40,14 @@
     <div class="ilan-kart">
     <p class="alt-yazi" id="tur"><b>İlan</b> · ONCEP</p>
     <h1>Bu ilan<br><em>ONCEP'te.</em></h1>
-    <p>Ayrıntıları görmek ve teklif vermek için ilanı ONCEP uygulamasında aç.</p>
+    <p id="aciklama">Ayrıntıları görmek ve mağazaya yazmak için ilanı ONCEP uygulamasında aç.</p>
 
     <div class="dugmeler">
       <a class="dugme ana" id="uygulamada-ac" href="oncep://ilan">Uygulamada aç</a>
       <a class="dugme ikincil" href="/">ONCEP nedir?</a>
     </div>
 
-    <p class="not">Uygulama yüklü değilse düğme bir şey yapmaz. ONCEP çok yakında Google Play ve App Store'da.</p>
+    <p class="not">Uygulama yüklü değilse bu düğme çalışmaz. ONCEP çok yakında Google Play ve App Store'da.</p>
     </div>
   </main>
 
@@ -71,6 +71,10 @@
       document.getElementById('uygulamada-ac').href = 'oncep://' + m[1] + '/' + m[2];
       if (m[1] === 'kullanici-ilani') {
         document.getElementById('tur').innerHTML = '<b>Kullanıcı ilanı</b> · ONCEP';
+        // Kullanıcı ilanına teklifi MAĞAZALAR veriyor; mağaza ilanında ise
+        // alıcı mağazaya yazıyor (eski metin her ilana "teklif ver" diyordu).
+        document.getElementById('aciklama').textContent =
+          'Ayrıntıları görmek ve mağaza hesabınla teklif vermek için ilanı ONCEP uygulamasında aç.';
       }
     })();
   </script>

@@ -4,9 +4,11 @@
 :root {
   color-scheme: light;
   --zemin: #FFFFFF; --zemin-2: #F5F7FC; --yumusak: #F1F3FA; --cizgi: #E7EAF3; --alan: #D9DEEC;
-  --murekkep: #0F1B3D; --metin: #4A5470; --soluk: #6B7390;
+  --murekkep: #0F1B3D; --metin: #4A5470; --soluk: #616987;
   --lacivert: #1A237E; --lacivert-metin: #C7CCEE;
-  --turuncu: #F26A1B;
+  /* Marka turuncusu yalnız logo ve süs; yazı ve düğme için --turuncu-koyu
+     (WCAG AA 4.5:1; #F26A1B beyazla 3.06:1). */
+  --turuncu: #F26A1B; --turuncu-koyu: #B94A0E;
   --yazi: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --kenar: clamp(20px, 6.6vw, 96px);
 }
@@ -14,7 +16,7 @@
 html { scroll-padding-top: 96px; scroll-behavior: smooth; }
 body { margin: 0; background: var(--zemin); color: var(--murekkep); font-family: var(--yazi); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 a { color: var(--lacivert); text-underline-offset: 3px; }
-a:hover { color: var(--turuncu); }
+a:hover { color: var(--turuncu-koyu); }
 :focus-visible { outline: 2px solid var(--turuncu); outline-offset: 3px; border-radius: 4px; }
 .kap { max-width: 1280px; margin: 0 auto; padding-left: var(--kenar); padding-right: var(--kenar); }
 .logo { font-weight: 800; font-size: 24px; letter-spacing: -0.5px; text-decoration: none; }
@@ -26,14 +28,14 @@ a:hover { color: var(--turuncu); }
 .ust .kap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
 .ana-nav { display: flex; gap: 26px; font-size: 15px; font-weight: 500; }
 .ana-nav a { text-decoration: none; color: #3B4563; }
-.ana-nav a:hover { color: var(--turuncu); }
+.ana-nav a:hover { color: var(--turuncu-koyu); }
 .ust .cta { text-decoration: none; background: var(--lacivert); color: #FFFFFF; padding: 11px 18px; border-radius: 10px; font-size: 15px; font-weight: 600; white-space: nowrap; }
 .ust .cta:hover { color: #FFFFFF; background: #141B66; }
 
 /* Belge sayfaları: gizlilik, kvkk, kullanım şartları, hesap silme */
 main { max-width: 1280px; margin: 0 auto; padding: 56px var(--kenar) 80px; }
 .alt-yazi { margin: 0; font-size: 14px; font-weight: 600; color: var(--soluk); }
-.alt-yazi b { color: var(--turuncu); font-weight: 700; }
+.alt-yazi b { color: var(--turuncu-koyu); font-weight: 700; }
 h1 { margin: 12px 0 0; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; letter-spacing: -1.6px; font-weight: 700; text-wrap: balance; }
 .duzen { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); margin-top: 44px; align-items: start; }
 .icindekiler { position: sticky; top: 96px; background: var(--zemin-2); border-radius: 16px; padding: 18px 14px 14px; }
@@ -50,7 +52,7 @@ h2 { margin: 0 0 10px; font-size: 20px; font-weight: 700; line-height: 1.3; lett
 .diger { margin-top: 48px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .diger a { display: flex; flex-direction: column; gap: 4px; padding: 18px 20px; border-radius: 16px; background: var(--zemin-2); color: var(--murekkep); text-decoration: none; }
 .diger a:hover { color: var(--murekkep); box-shadow: inset 0 0 0 1.5px var(--alan); }
-.diger small { font-size: 12px; font-weight: 700; color: var(--turuncu); }
+.diger small { font-size: 12px; font-weight: 700; color: var(--turuncu-koyu); }
 .diger b { font-size: 18px; }
 
 /* Paylaşılan ilan sayfası */
@@ -64,8 +66,8 @@ h2 { margin: 0 0 10px; font-size: 20px; font-weight: 700; line-height: 1.3; lett
 .ilan-kart > p.not { font-size: 14px; color: var(--soluk); }
 .dugmeler { display: flex; gap: 12px; flex-wrap: wrap; }
 .dugme { display: inline-flex; align-items: center; justify-content: center; padding: 15px 22px; border-radius: 12px; font-size: 16px; font-weight: 600; text-decoration: none; text-align: center; }
-.dugme.ana { background: var(--turuncu); color: #FFFFFF; }
-.dugme.ana:hover { background: #DD5A0E; color: #FFFFFF; }
+.dugme.ana { background: var(--turuncu-koyu); color: #FFFFFF; }
+.dugme.ana:hover { background: #9C3F0B; color: #FFFFFF; }
 .dugme.ikincil { background: var(--yumusak); color: var(--lacivert); }
 
 /* Alt bilgi */
