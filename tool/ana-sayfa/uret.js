@@ -425,6 +425,8 @@ section[id], footer[id] { scroll-margin-top: 76px; }
 .ana-nav a:hover { color: var(--turuncu-koyu); }
 .ust .cta { text-decoration: none; background: var(--lacivert); color: #FFFFFF; padding: 11px 18px; border-radius: 10px; font-size: 15px; font-weight: 600; white-space: nowrap; }
 .menu { display: none; position: relative; }
+.icerige-gec { position: absolute; left: -9999px; top: 8px; z-index: 100; background: var(--lacivert); color: #FFFFFF; padding: 10px 16px; border-radius: 8px; font-weight: 600; text-decoration: none; }
+.icerige-gec:focus { left: 16px; }
 .menu summary { list-style: none; width: 44px; height: 44px; border-radius: 10px; background: var(--yumusak); display: flex; align-items: center; justify-content: center; cursor: pointer; }
 .menu summary::-webkit-details-marker { display: none; }
 .menu nav { position: absolute; right: 0; top: 52px; background: #FFFFFF; border: 1px solid var(--cizgi); border-radius: 14px; box-shadow: 0 18px 40px rgba(15, 27, 61, 0.14); display: flex; flex-direction: column; padding: 8px; min-width: 230px; }
@@ -814,6 +816,10 @@ const BETIK = `
   // Mobil menü: bağlantıya dokununca kapansın.
   var menu = document.querySelector('.menu');
   if (menu) menu.addEventListener('click', function (e) { if (e.target.closest('a')) menu.removeAttribute('open'); });
+  // Esc ile kapansın, odak menü düğmesine dönsün (10 Eki 2026 denetimi).
+  if (menu) document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.open) { menu.removeAttribute('open'); menu.querySelector('summary').focus(); }
+  });
 })();
 `;
 
@@ -859,8 +865,9 @@ const html = `<!DOCTYPE html>
 </script>
 </head>
 <body>
+  <a class="icerige-gec" href="#icerik">İçeriğe geç</a>
 ${ust()}
-<main>
+<main id="icerik">
 ${acilis()}
 ${hesap()}
 ${gez()}
