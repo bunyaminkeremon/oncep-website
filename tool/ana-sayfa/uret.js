@@ -75,10 +75,10 @@ function ust() {
   <div class="kap">
     <a class="logo" href="#" aria-label="ONCEP ana sayfa">${LOGO}</a>
     <nav class="ana-nav" aria-label="Bölümler">${linkler}</nav>
-    <a class="cta" href="#indir">Çıkınca haber ver</a>
+    <a class="cta" href="#indir">Takipte kal</a>
     <details class="menu">
       <summary aria-label="Menü">${ic('menu', 20, K.navy)}</summary>
-      <nav aria-label="Bölümler">${linkler}<a href="#indir">Çıkınca haber ver</a></nav>
+      <nav aria-label="Bölümler">${linkler}<a href="#indir">Takipte kal</a></nav>
     </details>
   </div>
 </header>`;
@@ -100,7 +100,7 @@ function acilis() {
       <div class="ust-yazi">İKİNCİ EL TELEFON</div>
       <h1>Telefonunu sat, <br class="genis">mağazalar teklif versin.</h1>
       <p class="ozet">İlanını koy. Şehrindeki onaylı telefoncular teklif versin. Teklifleri yan yana gör, en iyisini seç, mağazada elden teslim et.</p>
-      <div class="dugmeler"><a class="dugme turuncu" href="#indir">Uygulama çıkınca haber ver</a><a class="dugme acik" href="#magaza">Mağazam var</a></div>
+      <div class="dugmeler"><a class="dugme turuncu" href="#indir">Çıkışı kaçırma: takip et</a><a class="dugme acik" href="#magaza">Mağazam var</a></div>
       <div class="sayilar"><div><b>0 TL</b>komisyon</div><div><b>Kargo yok</b>elden teslim</div><div><b>30 gün</b>ilan yayında</div></div>
       <div class="kisayollar">${kisayol('#hesap', 'Gerçek değerini öğren', 'Hemen hesapla', 'calc')}${kisayol('#gez', 'Mağazaları gez', 'Bütün vitrinler tek ekranda', 'store')}</div>
     </div>
@@ -381,9 +381,11 @@ const CSS = `
 :root {
   color-scheme: light;
   --zemin: #FFFFFF; --zemin-2: #F5F7FC; --yumusak: #F1F3FA; --cizgi: #E7EAF3; --alan: #D9DEEC;
-  --murekkep: #0F1B3D; --metin: #4A5470; --soluk: #6B7390;
+  --murekkep: #0F1B3D; --metin: #4A5470; --soluk: #616987;
   --lacivert: #1A237E; --lacivert-koyu: #10164F; --lacivert-metin: #C7CCEE;
-  --turuncu: #F26A1B; --turuncu-acik: #FFB27A; --yesil: #13795B;
+  /* --turuncu marka rengi (logo, süs); YAZI ve düğme zemini için
+     --turuncu-koyu: #F26A1B beyazla 3.06:1, WCAG AA'nın (4.5:1) altında. */
+  --turuncu: #F26A1B; --turuncu-koyu: #B94A0E; --turuncu-acik: #FFB27A; --yesil: #13795B;
   --yazi: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --kenar: clamp(20px, 6.6vw, 96px);
 }
@@ -391,14 +393,14 @@ const CSS = `
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--zemin); color: var(--murekkep); font-family: var(--yazi); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
 a { color: var(--lacivert); }
-a:hover { color: var(--turuncu); }
+a:hover { color: var(--turuncu-koyu); }
 :focus-visible { outline: 2px solid var(--turuncu); outline-offset: 3px; border-radius: 4px; }
 h1, h2, h3 { margin: 0; font-weight: 700; text-wrap: balance; }
 h2 { font-size: clamp(30px, 3.4vw, 44px); line-height: 1.06; letter-spacing: -1.3px; }
 h2.buyuk { font-size: clamp(34px, 4.2vw, 58px); letter-spacing: -2px; line-height: 1.04; }
 .kap { max-width: 1440px; margin: 0 auto; padding-left: var(--kenar); padding-right: var(--kenar); }
 section[id], footer[id] { scroll-margin-top: 76px; }
-.ust-yazi { font-size: 13px; font-weight: 600; letter-spacing: 1.2px; color: var(--turuncu); }
+.ust-yazi { font-size: 13px; font-weight: 600; letter-spacing: 1.2px; color: var(--turuncu-koyu); }
 .ust-yazi.acik { color: var(--turuncu-acik); }
 .giris-metin { margin: 0; font-size: 17px; line-height: 1.55; color: var(--metin); }
 .maddeler { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
@@ -406,8 +408,8 @@ section[id], footer[id] { scroll-margin-top: 76px; }
 .maddeler svg { margin-top: 2px; }
 .dugmeler { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .dugme { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 15px 22px; border-radius: 12px; font-size: 16px; font-weight: 600; text-decoration: none; text-align: center; }
-.dugme.turuncu { background: var(--turuncu); color: #FFFFFF; }
-.dugme.turuncu:hover { background: #DD5A0E; color: #FFFFFF; }
+.dugme.turuncu { background: var(--turuncu-koyu); color: #FFFFFF; }
+.dugme.turuncu:hover { background: #9C3F0B; color: #FFFFFF; }
 .dugme.acik { background: var(--yumusak); color: var(--lacivert); }
 .dugme.cerceve { background: #FFFFFF; color: var(--lacivert); box-shadow: inset 0 0 0 1.5px var(--lacivert); }
 .not { display: inline-flex; gap: 6px; align-items: center; font-size: 14px; color: var(--soluk); }
@@ -420,7 +422,7 @@ section[id], footer[id] { scroll-margin-top: 76px; }
 .ust .kap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
 .ana-nav { display: flex; gap: 26px; font-size: 15px; font-weight: 500; }
 .ana-nav a, .menu nav a { text-decoration: none; color: #3B4563; }
-.ana-nav a:hover { color: var(--turuncu); }
+.ana-nav a:hover { color: var(--turuncu-koyu); }
 .ust .cta { text-decoration: none; background: var(--lacivert); color: #FFFFFF; padding: 11px 18px; border-radius: 10px; font-size: 15px; font-weight: 600; white-space: nowrap; }
 .menu { display: none; position: relative; }
 .menu summary { list-style: none; width: 44px; height: 44px; border-radius: 10px; background: var(--yumusak); display: flex; align-items: center; justify-content: center; cursor: pointer; }
@@ -551,7 +553,7 @@ section[id], footer[id] { scroll-margin-top: 76px; }
 .olcu-deger { display: flex; flex-direction: column; gap: 6px; }
 .olcu-sayi { display: flex; justify-content: space-between; font-size: 15px; color: var(--metin); font-variant-numeric: tabular-nums; }
 .onde-sol { font-weight: 800; color: var(--lacivert); }
-.onde-sag { font-weight: 800; color: var(--turuncu); }
+.onde-sag { font-weight: 800; color: var(--turuncu-koyu); }
 .olcu-cubuklar { display: flex; gap: 6px; }
 .olcu-cubuk { flex: 1; height: 10px; border-radius: 5px; background: var(--yumusak); display: flex; justify-content: flex-end; overflow: hidden; }
 .olcu-cubuk.sag { justify-content: flex-start; }
