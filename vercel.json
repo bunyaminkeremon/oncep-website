@@ -1,13 +1,14 @@
 {
   "rewrites": [
     { "source": "/ilan/:id", "destination": "/ilan-ac/index.html" },
-    { "source": "/kullanici-ilani/:id", "destination": "/ilan-ac/index.html" }
+    { "source": "/kullanici-ilani/:id", "destination": "/ilan-ac/index.html" },
+    { "source": "/magaza/:id", "destination": "/magaza-ac/index.html" }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'sha256-hZ5op0+Gtgv0zuY9ANeCeELRl9FvlqkSvKf+zj3N0V0=' 'sha256-3ttWF8jz8RqnbK+nKK+HOLVZQZcQQ8BfelJ6MVspckM=' 'sha256-DamCoPgB/VkDCPsu0R6X4sJsz1c66vGlUGBXLu04Yxg=' 'sha256-dSrwwY0ubR1ATSr/JTQEoXfzWzXdEnREeluqH0rfFII='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'sha256-hZ5op0+Gtgv0zuY9ANeCeELRl9FvlqkSvKf+zj3N0V0=' 'sha256-3ttWF8jz8RqnbK+nKK+HOLVZQZcQQ8BfelJ6MVspckM=' 'sha256-DamCoPgB/VkDCPsu0R6X4sJsz1c66vGlUGBXLu04Yxg=' 'sha256-dSrwwY0ubR1ATSr/JTQEoXfzWzXdEnREeluqH0rfFII=' 'sha256-eVnbWiRM97CeBsG8njoyu/w6d9/94Jh1mrpzx9ggVAM='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'" },
         { "key": "X-Frame-Options", "value": "DENY" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },

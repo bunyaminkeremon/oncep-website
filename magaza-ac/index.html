@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ONCEP'teki mağaza</title>
+<meta name="description" content="Bu mağaza ONCEP uygulamasında. İlanlarını görmek ve mağazaya yazmak için uygulamada aç.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="ONCEP'teki mağaza">
+<meta property="og:description" content="Bu mağaza ONCEP uygulamasında. İlanlarını görmek ve mağazaya yazmak için uygulamada aç.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ONCEP">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://oncep.com.tr/paylasim.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ONCEP: Telefonunu sat, mağazalar teklif versin.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oncep.com.tr/paylasim.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="/favicon-192x192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/sayfa.css">
+</head>
+<body class="ilan-sayfa">
+  <a class="icerige-gec" href="#icerik">İçeriğe geç</a>
+  <header class="ust">
+    <div class="kap">
+      <a class="logo" href="/" aria-label="ONCEP ana sayfa"><b>ON</b><i>CEP</i></a>
+      <nav class="ana-nav" aria-label="Site"><a href="/#hesap">Değer hesapla</a><a href="/#gez">Mağazaları gez</a><a href="/#ozellikler">Özellikler</a><a href="/#sss">Sorular</a></nav>
+      <a class="cta" href="/">Ana sayfa</a>
+    </div>
+  </header>
+
+  <main id="icerik" class="ilan-ana">
+    <div class="ilan-kart">
+    <p class="alt-yazi"><b>Mağaza</b> · ONCEP</p>
+    <h1>Bu mağaza<br><em>ONCEP'te.</em></h1>
+    <p>Mağazanın ilanlarını, saatlerini ve yorumlarını görmek için ONCEP uygulamasında aç.</p>
+
+    <div class="dugmeler">
+      <a class="dugme ana" id="uygulamada-ac" href="oncep://magaza">Uygulamada aç</a>
+      <a class="dugme ikincil" href="/">ONCEP nedir?</a>
+    </div>
+
+    <p class="not">Uygulama yüklü değilse bu düğme çalışmaz. ONCEP çok yakında Google Play ve App Store'da.</p>
+    </div>
+  </main>
+
+  <footer class="alt">
+    <div class="kap">
+      <div class="alt-ust">
+        <a class="logo" href="/" aria-label="ONCEP ana sayfa"><b>ON</b><i>CEP</i></a>
+        <nav aria-label="Yasal ve iletişim"><a href="/gizlilik">Gizlilik</a><a href="/kullanim-sartlari">Kullanım Şartları</a><a href="/kvkk">KVKK Aydınlatma Metni</a><a href="/hesap-silme">Hesap silme</a><a href="mailto:destek@oncep.com.tr">destek@oncep.com.tr</a></nav>
+      </div>
+      <p class="telif">© 2026 ONCEP · İkinci el telefon alım satım platformu</p>
+    </div>
+  </footer>
+
+  <script>
+    // /magaza/7 → oncep://magaza/7 (DeepLinkService.parse tanıyor). Kimlik
+    // yalnız rakamsa kullanılıyor; değilse düğme uygulamayı mağazasız açar.
+    (function () {
+      var m = location.pathname.match(/^\/magaza\/(\d+)\/?$/);
+      if (m) document.getElementById('uygulamada-ac').href = 'oncep://magaza/' + m[1];
+    })();
+  </script>
+</body>
+</html>
