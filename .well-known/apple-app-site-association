@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["2NS29UL3L7.com.oncep.mobile"],
+        "components": [
+          { "/": "/ilan/*", "comment": "Mağaza ilanı" },
+          { "/": "/kullanici-ilani/*", "comment": "Kullanıcı ilanı" },
+          { "/": "/magaza/*", "comment": "Mağaza sayfası" }
+        ]
+      }
+    ]
+  }
+}
