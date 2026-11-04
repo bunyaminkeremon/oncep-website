@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.oncep.mobile",
+      "sha256_cert_fingerprints": [
+        "D0:05:42:91:8B:34:00:19:D7:66:B8:4C:CD:CA:77:D2:A6:7F:7D:3C:45:03:3A:74:50:BF:6B:73:A8:24:F0:49"
+      ]
+    }
+  }
+]
