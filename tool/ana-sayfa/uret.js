@@ -75,10 +75,10 @@ function ust() {
   <div class="kap">
     <a class="logo" href="#" aria-label="ONCEP ana sayfa">${LOGO}</a>
     <nav class="ana-nav" aria-label="Bölümler">${linkler}</nav>
-    <a class="cta" href="#indir">Takipte kal</a>
+    <a class="cta" href="#indir">İndir</a>
     <details class="menu">
       <summary aria-label="Menü">${ic('menu', 20, K.navy)}</summary>
-      <nav aria-label="Bölümler">${linkler}<a href="#indir">Takipte kal</a></nav>
+      <nav aria-label="Bölümler">${linkler}<a href="#indir">İndir</a></nav>
     </details>
   </div>
 </header>`;
@@ -100,7 +100,7 @@ function acilis() {
       <div class="ust-yazi">İKİNCİ EL TELEFON</div>
       <h1>Telefonunu sat, <br class="genis">mağazalar teklif versin.</h1>
       <p class="ozet">İlanını koy. Şehrindeki onaylı telefoncular teklif versin. Teklifleri yan yana gör, en iyisini seç, mağazada elden teslim et.</p>
-      <div class="dugmeler"><a class="dugme turuncu" href="#indir">Çıkışı kaçırma: takip et</a><a class="dugme acik" href="#magaza">Mağazam var</a></div>
+      <div class="dugmeler"><a class="dugme turuncu" href="#indir">Uygulamayı indir</a><a class="dugme acik" href="#magaza">Mağazam var</a></div>
       <div class="sayilar"><div><b>0 TL</b>komisyon</div><div><b>Kargo yok</b>elden teslim</div><div><b>30 gün</b>ilan yayında</div></div>
       <div class="kisayollar">${kisayol('#hesap', 'Gerçek değerini öğren', 'Hemen hesapla', 'calc')}${kisayol('#gez', 'Mağazaları gez', 'Bütün vitrinler tek ekranda', 'store')}</div>
     </div>
@@ -163,7 +163,7 @@ function hesap() {
       </div>
       <div class="pay">${ic('tag', 18, K.navy)}<span>Aradaki fark mağazanın payı: ~<b data-pay>${tl(ilkSonuc.al[1] - ilkSonuc.sat[1])}</b> TL</span></div>
       <div class="hesap-dugmeler">
-        <a class="dugme turuncu" href="#indir">Uygulama çıkınca ilan ver</a>
+        <a class="dugme turuncu" href="#indir">İndir, ilanını ver</a>
         <a class="dugme cerceve" href="#al">Satıştaki benzerlerine bak</a>
         <a class="dugme cerceve" href="#gez">Mağazaları gez</a>
       </div>
@@ -350,11 +350,11 @@ function alt() {
     <div class="alt-ust">
       <div class="alt-yazi">
         <h2>Satmadan önce gerçek değerini öğren. Almadan önce bütün vitrinleri gez.</h2>
-        <p>Uygulama yakında Google Play ve App Store'da. Çıktığı gün Instagram ve TikTok'ta duyuracağız.</p>
+        <p>ONCEP App Store'da. Android sürümü yakında Google Play'de; çıktığı gün Instagram ve TikTok'ta duyuracağız.</p>
       </div>
       <div class="rozetler">
+        <a class="rozet" href="https://apps.apple.com/tr/app/oncep-2-el-telefon-al-sat/id6824097707" target="_blank" rel="noopener"><small>İNDİR</small><b>App Store</b></a>
         <span class="rozet"><small>YAKINDA</small><b>Google Play</b></span>
-        <span class="rozet"><small>YAKINDA</small><b>App Store</b></span>
         <a class="rozet" href="https://instagram.com/oncep.tr" target="_blank" rel="noopener"><small>TAKİP ET</small><b>Instagram @oncep.tr</b></a>
         <a class="rozet" href="https://tiktok.com/@oncep.tr" target="_blank" rel="noopener"><small>TAKİP ET</small><b>TikTok @oncep.tr</b></a>
       </div>
@@ -824,7 +824,7 @@ const BETIK = `
 `;
 
 // ---------- Sayfa ----------
-const ACIKLAMA = "Telefonunun gerçek değerini öğren. İlanını koy, şehrindeki onaylı telefoncular teklif versin; mağazaların vitrinini gezmeden gez. Yakında Google Play ve App Store'da.";
+const ACIKLAMA = "Telefonunun gerçek değerini öğren. İlanını koy, şehrindeki onaylı telefoncular teklif versin; mağazaların vitrinini gezmeden gez. App Store'da; yakında Google Play'de.";
 const BASLIK = 'ONCEP — Telefonunu sat, mağazalar teklif versin';
 
 const html = `<!DOCTYPE html>
@@ -834,6 +834,7 @@ const html = `<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>${BASLIK}</title>
 <meta name="description" content="${ACIKLAMA}">
+<meta name="apple-itunes-app" content="app-id=6824097707">
 <link rel="canonical" href="https://oncep.com.tr/">
 <meta property="og:title" content="${BASLIK}">
 <meta property="og:description" content="${ACIKLAMA}">
